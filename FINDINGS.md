@@ -127,6 +127,35 @@ The padding does map exactly - `16px` is Spacing/M, `8px` is Spacing/S.
 
 **Status:** accepted. Worth asking whether 42 and 100 should join the scale.
 
+## 11. The metadata tool truncates on the two largest pages
+
+**Figma:** `get_metadata` on the Notifications page (`1997:39471`) fails every time, and
+fails *identically*: the response stream is cut at exactly character 186,865, mid-string,
+and the JSON never closes. It is a hard ceiling in the transport, not a rate limit and not
+a transient error - two runs produced byte-identical failures. The Style guide (`1:27`)
+fails the same way at 91,143 characters.
+
+**Code:** these two pages are read by screenshot and by drilling into child nodes instead.
+The Components page (`1:28`) is just under the ceiling and persists to a file, which is why
+it could be inventoried in one pass.
+
+**Status:** open, and a live constraint on the build rather than a defect in the design.
+Anything measured on `1:27` or `1997:39471` has to be read node by node.
+
+## 12. Half the file is prototypes, not library
+
+**Figma:** of the nine pages, four define components (`1:28`, `1978:35285`, `7620:90627`,
+`7614:51453`), one is prose (`3567:58959`, accessibility criteria) and four are product UX
+explorations - Notifications, Forms in the workspace, Natural Language AI Configuration.
+
+**Code:** the prototype pages are **not** built from. They contain instances of library
+components, sometimes detached or locally overridden, and treating an instance as a
+specification is how a local override becomes a library value. Where a prototype and a
+component set disagree, `1:28` wins.
+
+**Status:** accepted, and it is what bounds the build: 39 component sets, plus icons,
+plus the AG Grid table components, plus the page-template layout rules.
+
 ---
 
 ## Page inventory
@@ -134,19 +163,22 @@ The padding does map exactly - `16px` is Spacing/M, `8px` is Spacing/S.
 The file's page listing is broken - `get_metadata` with no node id returns only a "Cover"
 page containing a title thumbnail. Pages must be read by node id instead.
 
-| Node id | Page | Contents |
-|---|---|---|
-| `1:27` | Style guide | tokens, typography, dimensions, markdown rules. Exceeds the metadata size ceiling; use screenshots or read its children |
-| `1:28` | **Components** | 286 symbols - 259 variants, 27 standalone - across ~40 component sets |
-| `1978:35285` | Icons | 118 icons, Font Awesome naming |
-| `7620:90627` | AG Grid | table elements, filter menus, table, table card. Contains current **and** planned styling |
-| `7614:51453` | *not yet identified* | |
-| `3567:58959` | *not yet identified* | |
-| `7267:80667` | *not yet identified* | |
-| `4809:205085` | *not yet identified* | |
-| `1997:39471` | *not yet identified* | |
+| Node id | Page | Contents | Source of components? |
+|---|---|---|---|
+| `1:27` | Style guide | tokens, typography, dimensions, markdown rules. Exceeds the metadata size ceiling; use screenshots or read its children | yes - typography |
+| `1:28` | **Components** | 286 symbols - 259 variants, 27 standalone - across 39 component sets | **yes - the library** |
+| `1978:35285` | Icons | 118 icons, Font Awesome naming | yes - icons |
+| `7620:90627` | AG Grid | table elements, filter menus, table, table card. Contains current **and** planned styling | yes - table components |
+| `7614:51453` | Page templates | desktop + mobile page templates, right panels, AI assistant, adaptive card and workspace panel layout specs | yes - layout rules |
+| `3567:58959` | Accessibility | WCAG success criteria written up as user stories - page titles (2.4.2 A), page zoom 400%, bypass blocks (2.4.1 A), language, focus, landmarks | no - prose spec |
+| `7267:80667` | Natural Language AI Configuration | prototype flows for configuring AI in natural language | no - prototype |
+| `4809:205085` | Forms in the workspace | PF27 UX exploration: form rules, large / small / partial forms in the workspace | no - prototype |
+| `1997:39471` | Notifications | PF27 UX exploration: notification prototype, desktop and mobile | no - prototype |
 
-Identify the remaining five before claiming full coverage.
+All nine identified. Four pages carry component definitions; four are product/UX prototype
+pages built **from** the library, and one is prose. A prototype page is not a specification
+- where a prototype screen and a component set disagree, the component set on `1:28` wins,
+because the prototype is an instance that may be stale or locally overridden.
 
 ---
 
