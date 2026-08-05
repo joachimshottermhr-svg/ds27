@@ -156,6 +156,64 @@ component set disagree, `1:28` wins.
 **Status:** accepted, and it is what bounds the build: 39 component sets, plus icons,
 plus the AG Grid table components, plus the page-template layout rules.
 
+## 13. Figma binds a variable for some values and leaves others as bare numbers
+
+**Figma:** on Tags (`232:4873`) the padding is bound to `Spacing and Padding/S` and
+`Spacing and Padding/XS`, but the 4px gap, the 4px corner radius and the 16px icon box are
+bare literals - even though `Radius/S` is 4px and `Size/XS` is 16px and both exist. The
+same file binds `Size/L` for the circle icon's height (`7840:19941`) while leaving its
+width a literal 32px.
+
+**Code:** where Figma leaves a literal that is exactly on a published scale, the code uses
+the token. The rendered value is identical today, and a literal is guaranteed to drift the
+moment the scale moves - which is the failure the token layer exists to prevent. Where the
+value is **off** the scale (the Button's 42px height and 207px radius, the circle icon's
+35px radius) it stays a literal with its node id beside it.
+
+**Status:** open. The binding gaps are worth closing in Figma; the rule above is stated at
+the top of `src/styles.css` so the decision is visible rather than inferred.
+
+## 14. The AI tag has no background token and does not follow dark mode
+
+**Figma:** `Tags/property 1=AI` (`7961:123360`) is the only tag with no background
+variable. It stacks two raw gradients: a 5%-opacity brand sweep
+(blue -> purple -> pink -> red) over a **solid white** base. The label is bound to
+`Foreground/Theme`.
+
+**Code:** both gradients are reproduced as the literals they are. The white base means
+this variant stays white in dark mode while every other tag flips - a light chip on a dark
+surface. That is what Figma specifies, so it is reproduced rather than corrected.
+
+**Status:** open, and worth raising with design: the label uses a theme token that *does*
+flip (pink to blue), on a background that does not.
+
+## 15. Figma's auto-generated variant names hide the real axis
+
+**Figma:** the Link set (`27:543`) reports a `property 1` axis with six values - `No icon`,
+`Icon left`, `Icon right`, and then `Variant4`, `Variant5`, `Variant6`. The last three are
+not three more shapes: they are the same three shapes on the `state=Hover` row, left with
+the names Figma generated automatically.
+
+**Code:** three modifiers and a real `:hover`, not six modifiers. Verified by measuring
+`27:541` (No icon, Default) and `27:550` (Variant5, Hover) - identical but for the
+underline, and both bound to `Foreground/Link`.
+
+**Status:** open. A variant count taken from the axis alone overstates this component by
+100%, so the same check is needed on any set with a `VariantN` name.
+
+## 16. Variant counts understate components that use boolean properties
+
+**Figma:** the Tags set reports 12 variants (`property 1[6] x with icon[2]`), but the
+component also exposes a **boolean** component property, `removeable`, which is not a
+variant axis. The real state count is 24.
+
+**Code:** `.v27-tag__remove` is built as a real `<button>` so it is focusable and
+keyboard-operable.
+
+**Status:** open, and it changes how coverage is counted: `.figma/inventory.json` counts
+variant axes only, so any set with boolean properties is undercounted there. Coverage must
+be checked per component, not from the 259 total.
+
 ---
 
 ## Page inventory

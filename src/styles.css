@@ -6,6 +6,23 @@
  * Class naming: .v27-<block>, .v27-<block>--<modifier>, .v27-<block>__<part>.
  * Figma's variant axes are inconsistently cased (size / Size, state / State); modifiers are
  * lowercase here and the original casing is recorded in FINDINGS.md.
+ *
+ * ON TOKENS VS LITERALS - the rule this file follows, stated once.
+ *
+ * Figma binds some values to a variable and leaves others as bare numbers, and it is not
+ * consistent about which: on Tags it binds the padding to Spacing/S and Spacing/XS but
+ * leaves the gap, the corner radius and the icon box as literals, all three of which sit
+ * exactly on a published scale (FINDINGS.md #13).
+ *
+ * Where Figma leaves a literal that is exactly on the Dimensions scale, this file uses the
+ * token. The value is identical today, and a literal is guaranteed to drift the moment the
+ * scale moves - which is the whole failure the token layer exists to prevent.
+ *
+ * Where the value is OFF the scale - the Button's 42px height, its 207px radius, the
+ * circle icon's 35px radius - it stays a literal with its node id beside it, because
+ * rounding it onto the scale would change the design.
+ *
+ * Colours are never inferred. Every colour here is the variable Figma binds on the node.
  */
 
 /* ==========================================================================
@@ -101,3 +118,165 @@
 /* type=AI and type=AI bold are NOT implemented. Their nodes are 243:4070 and 3993:71960.
    Both are expected to carry a gradient, which cannot be read from geometry, and no value
    for them has been verified. Building them from the token names alone would be a guess. */
+
+/* ==========================================================================
+   Icon - Figma `Icon`, node 289:4504
+   3 variants: property 1[3]. Figma's axis is "Property 1"; the values name sizes.
+   ========================================================================== */
+
+/* A sizing box only. The glyph inherits its colour from the surrounding text, which is how
+   every icon in the file is used - Figma binds the icon's fill on the PARENT component
+   (the tag, the button), never on the Icon component itself. */
+.v27-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  color: inherit;
+}
+
+.v27-icon > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+/* Measured boxes: 20x20 on 289:4501, 24x24 on 289:4503, 32x32 on 289:4502. All three sit
+   on the Size scale, so they are tokens rather than repeated literals. */
+.v27-icon--small  { width: var(--v27-size-s); height: var(--v27-size-s); }
+.v27-icon--medium { width: var(--v27-size-m); height: var(--v27-size-m); }
+.v27-icon--large  { width: var(--v27-size-l); height: var(--v27-size-l); }
+
+/* ==========================================================================
+   Tags - Figma `Tags`, node 232:4878
+   12 variants: property 1[6] x with icon[2].
+
+   Figma also exposes a boolean component property `removeable` that is NOT one of the
+   variant axes, so the set reports 12 variants while the component actually has 24
+   states. Counting variants alone would have missed the close affordance entirely.
+   ========================================================================== */
+
+/* Geometry is identical across all six types - verified on 232:4873 (info), 232:4877
+   (negative), 232:4874 (warning), 232:4876 (positive), 232:4875 (expired) and
+   7961:123360 (AI). Figma binds the padding to Spacing/S and Spacing/XS but leaves the
+   gap and the radius as bare 4px; both are on the scale, so both are tokens here. */
+.v27-tag {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--v27-spacing-xs);
+  padding: var(--v27-spacing-xs) var(--v27-spacing-s);
+  border-radius: var(--v27-radius-s);
+  overflow: clip;
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+}
+
+/* Both the leading icon and the trailing remove control are 16px on every variant. */
+.v27-tag__icon {
+  width: var(--v27-size-xs);
+  height: var(--v27-size-xs);
+  flex: none;
+}
+
+/* The remove affordance is a real button, so it is focusable and keyboard-operable. It
+   carries no colour of its own - it inherits the tag's, which is what Figma shows. */
+.v27-tag__remove {
+  width: var(--v27-size-xs);
+  height: var(--v27-size-xs);
+  flex: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* --- type=info - node 232:4873 --- */
+.v27-tag--info {
+  background: var(--v27-background-info);
+  color: var(--v27-foreground-info);
+}
+
+/* --- type=negative - node 232:4877 --- */
+.v27-tag--negative {
+  background: var(--v27-background-negative);
+  color: var(--v27-foreground-negative);
+}
+
+/* --- type=warning - node 232:4874 --- */
+.v27-tag--warning {
+  background: var(--v27-background-warning);
+  color: var(--v27-foreground-warning);
+}
+
+/* --- type=positive - node 232:4876 --- */
+.v27-tag--positive {
+  background: var(--v27-background-positive);
+  color: var(--v27-foreground-positive);
+}
+
+/* --- type=expired - node 232:4875 ---
+   Note this one does NOT use a dedicated pair: Figma binds Background/Tertiary and
+   Foreground/Secondary, the same neutral roles used elsewhere. Reproduced as bound. */
+.v27-tag--expired {
+  background: var(--v27-background-tertiary);
+  color: var(--v27-foreground-secondary);
+}
+
+/* --- type=AI - node 7961:123360 ---
+   The only tag with no background token. Figma stacks two gradients: a 5%-opacity brand
+   sweep over a solid white base. Both are raw literals in the file, so both are literals
+   here - see FINDINGS.md #14. The white base means this variant does NOT follow dark
+   mode; that is what Figma specifies and it is recorded rather than corrected. */
+.v27-tag--ai {
+  background-image:
+    linear-gradient(90deg, rgba(0, 127, 243, 0.05) 0%, rgba(169, 34, 193, 0.05) 31.5%, rgba(255, 0, 152, 0.05) 58.5%, rgba(255, 0, 41, 0.05) 100%),
+    linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);
+  color: var(--v27-foreground-theme);
+}
+
+/* ==========================================================================
+   Link - Figma `Link`, node 27:543
+   6 variants: property 1[6] x state[2].
+
+   The property-1 axis has six values but only three shapes: "No icon", "Icon left" and
+   "Icon right", plus "Variant4", "Variant5" and "Variant6" - Figma's auto-generated names
+   for the same three shapes on the Hover row. The CSS therefore has three modifiers and a
+   real :hover, not six modifiers. See FINDINGS.md #15.
+   ========================================================================== */
+
+/* Verified on 27:541 (No icon, Default) and 27:550 (Variant5 = No icon, Hover). The colour
+   is Foreground/Link in both states; only the underline changes. */
+.v27-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--v27-spacing-xs);
+  color: var(--v27-foreground-link);
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+  text-decoration: none;
+}
+
+/* state=Hover - node 27:550. Figma sets the underline from the font metrics. */
+.v27-link:hover,
+.v27-link:focus-visible {
+  text-decoration: underline;
+  text-underline-position: from-font;
+}
+
+.v27-link__icon {
+  width: var(--v27-size-xs);
+  height: var(--v27-size-xs);
+  flex: none;
+}
+
+/* Icon side is ordering only - the gap and the box are identical on both. */
+.v27-link--icon-left .v27-link__icon { order: -1; }
+.v27-link--icon-right .v27-link__icon { order: 1; }

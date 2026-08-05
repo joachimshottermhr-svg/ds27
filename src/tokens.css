@@ -123,6 +123,31 @@
   --v27-orange-800: #7a2f00;
   --v27-orange-900: #5e1d08;
 
+  /* typography - hand-transcribed, see tokens/typography.json */
+  --v27-font-family         : "Outfit", system-ui, sans-serif;
+  --v27-font-weight-regular : 400;
+  --v27-font-weight-semibold: 600;
+
+  /* Sm - nodes 232:4831, 58:903, 27:533, 138:3281 */
+  --v27-text-sm-size       : 14px;
+  --v27-text-sm-weight     : 400;
+  --v27-text-sm-line-height: 16px;
+
+  /* Base - nodes 58:904 */
+  --v27-text-base-size       : 16px;
+  --v27-text-base-weight     : 400;
+  --v27-text-base-line-height: 20px;
+
+  /* Lg bold - nodes 138:3280 */
+  --v27-text-lg-bold-size       : 18px;
+  --v27-text-lg-bold-weight     : 600;
+  --v27-text-lg-bold-line-height: normal;
+
+  /* sm-bold (name unconfirmed) - nodes 243:4085 */
+  --v27-text-sm-bold-size       : 14px;
+  --v27-text-sm-bold-weight     : 600;
+  --v27-text-sm-bold-line-height: normal;
+
   /* ---- Semantic: Lightmode ---- */
   /* Foreground */
   --v27-foreground-primary  : var(--v27-neutral-700);

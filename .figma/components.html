@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>V27 render check - Tags, Link, Icon</title>
+<link rel="stylesheet" href="../src/tokens.css" />
+<link rel="stylesheet" href="../src/styles.css" />
+<style>
+  body { margin:0; font-family: system-ui, sans-serif; }
+  .panel { padding:28px; background:var(--v27-background-primary); color:var(--v27-foreground-primary); min-height:100vh; }
+  h2 { font-size:12px; text-transform:uppercase; letter-spacing:.1em;
+       color:var(--v27-foreground-secondary); margin:0 0 6px; }
+  h3 { font-size:11px; text-transform:uppercase; letter-spacing:.08em;
+       color:var(--v27-foreground-secondary); margin:20px 0 8px; font-weight:400; }
+  .row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-bottom:10px; }
+  .wrap { display:grid; grid-template-columns:1fr 1fr; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="panel" id="light">
+    <h2>light</h2>
+
+    <h3>Tags - property 1[6] x with icon[2]</h3>
+    <div class="row">
+      <span class="v27-tag v27-tag--info"><svg class="v27-tag__icon" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="currentColor"/></svg>Info</span>
+      <span class="v27-tag v27-tag--negative"><svg class="v27-tag__icon" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="currentColor"/></svg>Negative</span>
+      <span class="v27-tag v27-tag--warning"><svg class="v27-tag__icon" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="currentColor"/></svg>Warning</span>
+      <span class="v27-tag v27-tag--positive"><svg class="v27-tag__icon" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="currentColor"/></svg>Positive</span>
+      <span class="v27-tag v27-tag--expired"><svg class="v27-tag__icon" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="currentColor"/></svg>Expired</span>
+      <span class="v27-tag v27-tag--ai"><svg class="v27-tag__icon" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="currentColor"/></svg>AI Tag</span>
+    </div>
+    <div class="row">
+      <span class="v27-tag v27-tag--info">Info</span>
+      <span class="v27-tag v27-tag--negative">Negative</span>
+      <span class="v27-tag v27-tag--warning">Warning</span>
+      <span class="v27-tag v27-tag--positive">Positive</span>
+      <span class="v27-tag v27-tag--expired">Expired</span>
+      <span class="v27-tag v27-tag--ai">AI Tag</span>
+    </div>
+    <div class="row">
+      <span class="v27-tag v27-tag--info">Removeable<button class="v27-tag__remove" aria-label="Remove">x</button></span>
+    </div>
+
+    <h3>Link - default and hover</h3>
+    <div class="row">
+      <a class="v27-link" href="#a">Link here</a>
+      <a class="v27-link v27-link--icon-left" href="#b"><svg class="v27-link__icon" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="currentColor"/></svg>Link here</a>
+      <a class="v27-link v27-link--icon-right" href="#c"><svg class="v27-link__icon" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="currentColor"/></svg>Link here</a>
+    </div>
+
+    <h3>Icon - 20 / 24 / 32</h3>
+    <div class="row">
+      <span class="v27-icon v27-icon--small"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7"/></svg></span>
+      <span class="v27-icon v27-icon--medium"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7"/></svg></span>
+      <span class="v27-icon v27-icon--large"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7"/></svg></span>
+    </div>
+
+    <h3>Button (already built - regression check)</h3>
+    <div class="row">
+      <button class="v27-btn v27-btn--positive">Primary positive</button>
+      <button class="v27-btn v27-btn--outline">Outline button</button>
+    </div>
+  </div>
+
+  <div class="panel" data-v27-theme="dark" id="dark">
+    <h2>dark</h2>
+
+    <h3>Tags</h3>
+    <div class="row">
+      <span class="v27-tag v27-tag--info">Info</span>
+      <span class="v27-tag v27-tag--negative">Negative</span>
+      <span class="v27-tag v27-tag--warning">Warning</span>
+      <span class="v27-tag v27-tag--positive">Positive</span>
+      <span class="v27-tag v27-tag--expired">Expired</span>
+      <span class="v27-tag v27-tag--ai">AI Tag</span>
+    </div>
+
+    <h3>Link</h3>
+    <div class="row">
+      <a class="v27-link" href="#d">Link here</a>
+    </div>
+
+    <h3>Icon</h3>
+    <div class="row">
+      <span class="v27-icon v27-icon--small"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7"/></svg></span>
+      <span class="v27-icon v27-icon--medium"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7"/></svg></span>
+      <span class="v27-icon v27-icon--large"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7"/></svg></span>
+    </div>
+
+    <h3>Button</h3>
+    <div class="row">
+      <button class="v27-btn v27-btn--positive">Primary positive</button>
+      <button class="v27-btn v27-btn--outline">Outline button</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>

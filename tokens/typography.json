@@ -1,0 +1,72 @@
+{
+  "_comment": [
+    "V27 typography, read off Figma nodes rather than exported.",
+    "",
+    "Figma text styles are not variables, so no type collection exists in variables.json",
+    "(FINDINGS.md #1). V27 also publishes no text styles to its library - the styles below",
+    "are LOCAL to the file, which is why they appear in neither the variables export nor a",
+    "library style search. They are therefore transcribed here BY HAND, and every entry",
+    "carries the node ids it was measured on so it can be re-checked.",
+    "",
+    "This file is the only hand-maintained source in the token layer. It is a stated gap,",
+    "not a hidden one: when V27 promotes type to variables, delete this file and let",
+    "build-tokens.mjs read the export instead.",
+    "",
+    "lineHeight: Figma reports its AUTO line height as the number 100. It does NOT mean",
+    "100px and it does not mean 100% - Figma's own code generator emits `leading-[normal]`",
+    "for it, so it maps to CSS `normal`. A style with a real numeric line height reports it",
+    "in px and maps directly."
+  ],
+  "fontFamily": {
+    "$value": "Outfit",
+    "fallback": "system-ui, sans-serif",
+    "note": "Not licensed and not bundled - see FINDINGS.md #9. The library renders in the fallback unless the consuming app loads Outfit itself.",
+    "nodes": ["243:4085", "138:3280", "58:904"]
+  },
+  "weights": {
+    "regular": { "$value": 400, "figmaStyle": "Regular" },
+    "semibold": { "$value": 600, "figmaStyle": "SemiBold" }
+  },
+  "styles": {
+    "sm": {
+      "figmaName": "Sm",
+      "fontSize": "14px",
+      "fontWeight": 400,
+      "lineHeight": "16px",
+      "letterSpacing": "0",
+      "verifiedOn": ["232:4831", "58:903", "27:533", "138:3281"],
+      "note": "The workhorse. Tag label, field label, link, header sub text."
+    },
+    "base": {
+      "figmaName": "Base",
+      "fontSize": "16px",
+      "fontWeight": 400,
+      "lineHeight": "20px",
+      "letterSpacing": "0",
+      "verifiedOn": ["58:904"],
+      "note": "Label content."
+    },
+    "lg-bold": {
+      "figmaName": "Lg bold",
+      "fontSize": "18px",
+      "fontWeight": 600,
+      "lineHeight": "normal",
+      "letterSpacing": "0",
+      "verifiedOn": ["138:3280"],
+      "note": "Header display title. Figma reports lineHeight 100 = AUTO."
+    },
+    "sm-bold": {
+      "figmaName": "UNCONFIRMED",
+      "fontSize": "14px",
+      "fontWeight": 600,
+      "lineHeight": "normal",
+      "letterSpacing": "0",
+      "verifiedOn": ["243:4085"],
+      "note": "Measured on every Button variant, which reports Outfit SemiBold 14 / 600 / AUTO. Figma did not report a STYLE NAME for it, so the name here is this library's, not Figma's."
+    }
+  },
+  "unverified": {
+    "note": "The style guide (node 1:27) has a Typography frame naming XL Heading, Larger Heading and Sub heading. Node 1:27 exceeds the metadata ceiling (FINDINGS.md #11) so those three could not be read off their nodes, and they are deliberately NOT emitted. A guessed heading scale is worse than a missing one.",
+    "missing": ["XL Heading", "Larger Heading", "Sub heading"]
+  }
+}

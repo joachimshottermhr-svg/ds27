@@ -32,6 +32,38 @@ const DARK_SELECTOR = `[data-${PREFIX}-theme="dark"]`;
 const raw = JSON.parse(fs.readFileSync(SRC, 'utf8'));
 const collections = Object.fromEntries(raw.map((c) => [Object.keys(c)[0], Object.values(c)[0]]));
 
+/**
+ * Typography is not in the variables export and V27 publishes no library text styles, so
+ * it is transcribed by hand in tokens/typography.json with the node ids it was measured
+ * on. That file is the one hand-maintained input here, and it says so. Type does not vary
+ * by theme, so it is emitted once on :root.
+ */
+const TYPE_SRC = 'tokens/typography.json';
+const type = JSON.parse(fs.readFileSync(TYPE_SRC, 'utf8'));
+
+function typeBlock() {
+  const rows = [];
+  rows.push([`--${PREFIX}-font-family`, `"${type.fontFamily.$value}", ${type.fontFamily.fallback}`]);
+  for (const [name, w] of Object.entries(type.weights)) rows.push([`--${PREFIX}-font-weight-${name}`, String(w.$value)]);
+  const out = ['  /* typography - hand-transcribed, see tokens/typography.json */'];
+  let width = Math.max(...rows.map(([n]) => n.length));
+  for (const [n, v] of rows) out.push(`  ${n.padEnd(width)}: ${v};`);
+  out.push('');
+  for (const [key, s] of Object.entries(type.styles)) {
+    const trio = [
+      [`--${PREFIX}-text-${key}-size`, s.fontSize],
+      [`--${PREFIX}-text-${key}-weight`, String(s.fontWeight)],
+      [`--${PREFIX}-text-${key}-line-height`, s.lineHeight],
+    ];
+    width = Math.max(...trio.map(([n]) => n.length));
+    out.push(`  /* ${s.figmaName === 'UNCONFIRMED' ? key + ' (name unconfirmed)' : s.figmaName} - nodes ${s.verifiedOn.join(', ')} */`);
+    for (const [n, v] of trio) out.push(`  ${n.padEnd(width)}: ${v};`);
+    out.push('');
+  }
+  if (out.at(-1) === '') out.pop();
+  return out.join('\n');
+}
+
 const slug = (s) =>
   String(s)
     .trim()
@@ -128,6 +160,8 @@ const css = `/* V27 Design System - design tokens.
 ${block(dimensions)}
 
 ${block(primitives)}
+
+${typeBlock()}
 
   /* ---- Semantic: Lightmode ---- */
 ${block(light)}

@@ -22,9 +22,21 @@ const rules = parse(fs.readFileSync('src/styles.css', 'utf8'))
 
 // Declarations that carry no identity - every flex row has them, and matching on them
 // would report every layout wrapper as a duplicate of every other.
+//
+// The typography properties are in this list for a sharper reason. Tag and Link both use
+// the "Sm" text style, so they share five declarations and the first run of this audit
+// called them duplicates of each other. They are not. The defect this audit exists to
+// catch is a change that FAILS TO PROPAGATE - a private copy that a retokenisation does
+// not reach. Tag and Link both reference --v27-text-sm-*, so a change to the type tier
+// reaches both, and there is nothing to fix. Two components sharing a text style is the
+// token layer working, not a hand-rolled copy.
+//
+// A true duplicate is identified by its box and its colour - padding, radius, border,
+// background - which is what remains.
 const GENERIC = new Set([
   'display', 'box-sizing', 'align-items', 'justify-content', 'flex', 'flex-direction',
-  'margin', 'position', 'width', 'height', 'cursor', 'text-align', 'overflow',
+  'margin', 'position', 'width', 'height', 'cursor', 'text-align', 'overflow', 'gap',
+  'font-family', 'font-size', 'font-weight', 'line-height', 'letter-spacing',
 ]);
 
 const identity = (r) => r.decls.filter((d) => !GENERIC.has(d.prop)).map((d) => [d.prop, d.value]);
