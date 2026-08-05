@@ -1,0 +1,2121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>V27 tokens</title>
+<link rel="stylesheet" href="../src/tokens.css" />
+<style>
+  body { margin:0; font-family: ui-sans-serif, system-ui, sans-serif; background:#8a8a8a; }
+  .wrap { display:grid; grid-template-columns:1fr 1fr; }
+  .panel { padding:24px 20px 60px; min-height:100vh;
+           background:var(--v27-background-primary); color:var(--v27-foreground-primary); }
+  .panelhead { font:600 11px ui-monospace,monospace; letter-spacing:.14em; text-transform:uppercase;
+               color:var(--v27-foreground-secondary); margin-bottom:20px; }
+  h2 { font-size:13px; margin:26px 0 10px; text-transform:capitalize;
+       border-bottom:1px solid var(--v27-border-default); padding-bottom:6px; }
+  .count { font:400 11px ui-monospace,monospace; color:var(--v27-foreground-secondary); }
+  .grid { display:grid; gap:6px; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); }
+  .tok { display:flex; align-items:center; gap:9px; position:relative; }
+  .chip { width:26px; height:26px; border-radius:var(--v27-radius-s); flex:none;
+          border:1px solid var(--v27-border-default); }
+  .bar { height:10px; background:var(--v27-foreground-theme); border-radius:2px; flex:none; }
+  .meta { display:flex; flex-direction:column; min-width:0; }
+  code { font-family: ui-monospace, monospace; font-size:10.5px; }
+  .n { color:var(--v27-foreground-primary); }
+  .v { color:var(--v27-foreground-secondary); font-size:9.5px; }
+  .dm { position:absolute; right:0; top:0; font:600 8px ui-monospace,monospace;
+        letter-spacing:.06em; text-transform:uppercase; color:var(--v27-foreground-theme); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+  <div class="panel" data-v27-theme="light">
+    <div class="panelhead">light</div>
+    
+    <section>
+      <h2>size <span class="count">5</span></h2>
+      <div class="grid">
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-size-xs)"></div>
+        <div class="meta">
+          <code class="n">size-xs</code>
+          <code class="v">16px</code>
+        </div>
+      </div>
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-size-s)"></div>
+        <div class="meta">
+          <code class="n">size-s</code>
+          <code class="v">20px</code>
+        </div>
+      </div>
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-size-m)"></div>
+        <div class="meta">
+          <code class="n">size-m</code>
+          <code class="v">24px</code>
+        </div>
+      </div>
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-size-l)"></div>
+        <div class="meta">
+          <code class="n">size-l</code>
+          <code class="v">32px</code>
+        </div>
+      </div>
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-size-xl)"></div>
+        <div class="meta">
+          <code class="n">size-xl</code>
+          <code class="v">40px</code>
+        </div>
+      </div></div>
+    </section>
+    <section>
+      <h2>spacing <span class="count">8</span></h2>
+      <div class="grid">
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-spacing-xxs)"></div>
+        <div class="meta">
+          <code class="n">spacing-xxs</code>
+          <code class="v">2px</code>
+        </div>
+      </div>
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-spacing-xs)"></div>
+        <div class="meta">
+          <code class="n">spacing-xs</code>
+          <code class="v">4px</code>
+        </div>
+      </div>
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-spacing-s)"></div>
+        <div class="meta">
+          <code class="n">spacing-s</code>
+          <code class="v">8px</code>
+        </div>
+      </div>
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-spacing-sm)"></div>
+        <div class="meta">
+          <code class="n">spacing-sm</code>
+          <code class="v">12px</code>
+        </div>
+      </div>
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-spacing-m)"></div>
+        <div class="meta">
+          <code class="n">spacing-m</code>
+          <code class="v">16px</code>
+        </div>
+      </div>
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-spacing-ml)"></div>
+        <div class="meta">
+          <code class="n">spacing-ml</code>
+          <code class="v">24px</code>
+        </div>
+      </div>
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-spacing-l)"></div>
+        <div class="meta">
+          <code class="n">spacing-l</code>
+          <code class="v">32px</code>
+        </div>
+      </div>
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-spacing-xl)"></div>
+        <div class="meta">
+          <code class="n">spacing-xl</code>
+          <code class="v">40px</code>
+        </div>
+      </div></div>
+    </section>
+    <section>
+      <h2>radius <span class="count">3</span></h2>
+      <div class="grid">
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-radius-s)"></div>
+        <div class="meta">
+          <code class="n">radius-s</code>
+          <code class="v">4px</code>
+        </div>
+      </div>
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-radius-m)"></div>
+        <div class="meta">
+          <code class="n">radius-m</code>
+          <code class="v">8px</code>
+        </div>
+      </div>
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-radius-l)"></div>
+        <div class="meta">
+          <code class="n">radius-l</code>
+          <code class="v">16px</code>
+        </div>
+      </div></div>
+    </section>
+    <section>
+      <h2>neutral <span class="count">11</span></h2>
+      <div class="grid">
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-neutral-0)"></div>
+        <div class="meta">
+          <code class="n">neutral-0</code>
+          <code class="v">#ffffff</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-neutral-50)"></div>
+        <div class="meta">
+          <code class="n">neutral-50</code>
+          <code class="v">#fafafa</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-neutral-100)"></div>
+        <div class="meta">
+          <code class="n">neutral-100</code>
+          <code class="v">#f5f5f5</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-neutral-200)"></div>
+        <div class="meta">
+          <code class="n">neutral-200</code>
+          <code class="v">#e5e5e5</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-neutral-300)"></div>
+        <div class="meta">
+          <code class="n">neutral-300</code>
+          <code class="v">#d3d3d3</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-neutral-400)"></div>
+        <div class="meta">
+          <code class="n">neutral-400</code>
+          <code class="v">#c1c1c1</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-neutral-500)"></div>
+        <div class="meta">
+          <code class="n">neutral-500</code>
+          <code class="v">#9a9a9a</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-neutral-600)"></div>
+        <div class="meta">
+          <code class="n">neutral-600</code>
+          <code class="v">#656565</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-neutral-700)"></div>
+        <div class="meta">
+          <code class="n">neutral-700</code>
+          <code class="v">#3e3e3e</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-neutral-800)"></div>
+        <div class="meta">
+          <code class="n">neutral-800</code>
+          <code class="v">#222222</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-neutral-900)"></div>
+        <div class="meta">
+          <code class="n">neutral-900</code>
+          <code class="v">#1a1a1a</code>
+        </div>
+        
+      </div></div>
+    </section>
+    <section>
+      <h2>blue <span class="count">10</span></h2>
+      <div class="grid">
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-blue-50)"></div>
+        <div class="meta">
+          <code class="n">blue-50</code>
+          <code class="v">#f3faff</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-blue-100)"></div>
+        <div class="meta">
+          <code class="n">blue-100</code>
+          <code class="v">#e3f5ff</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-blue-200)"></div>
+        <div class="meta">
+          <code class="n">blue-200</code>
+          <code class="v">#b6e5ff</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-blue-300)"></div>
+        <div class="meta">
+          <code class="n">blue-300</code>
+          <code class="v">#80d0fd</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-blue-400)"></div>
+        <div class="meta">
+          <code class="n">blue-400</code>
+          <code class="v">#0099f0</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-blue-500)"></div>
+        <div class="meta">
+          <code class="n">blue-500</code>
+          <code class="v">#1a80cb</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-blue-600)"></div>
+        <div class="meta">
+          <code class="n">blue-600</code>
+          <code class="v">#0364ab</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-blue-700)"></div>
+        <div class="meta">
+          <code class="n">blue-700</code>
+          <code class="v">#144794</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-blue-800)"></div>
+        <div class="meta">
+          <code class="n">blue-800</code>
+          <code class="v">#003877</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-blue-900)"></div>
+        <div class="meta">
+          <code class="n">blue-900</code>
+          <code class="v">#042351</code>
+        </div>
+        
+      </div></div>
+    </section>
+    <section>
+      <h2>green <span class="count">10</span></h2>
+      <div class="grid">
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-green-50)"></div>
+        <div class="meta">
+          <code class="n">green-50</code>
+          <code class="v">#f0faf2</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-green-100)"></div>
+        <div class="meta">
+          <code class="n">green-100</code>
+          <code class="v">#e5f4e7</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-green-200)"></div>
+        <div class="meta">
+          <code class="n">green-200</code>
+          <code class="v">#c1eac3</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-green-300)"></div>
+        <div class="meta">
+          <code class="n">green-300</code>
+          <code class="v">#7dcf80</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-green-400)"></div>
+        <div class="meta">
+          <code class="n">green-400</code>
+          <code class="v">#2fc443</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-green-500)"></div>
+        <div class="meta">
+          <code class="n">green-500</code>
+          <code class="v">#27a438</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-green-600)"></div>
+        <div class="meta">
+          <code class="n">green-600</code>
+          <code class="v">#017e26</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-green-700)"></div>
+        <div class="meta">
+          <code class="n">green-700</code>
+          <code class="v">#036b22</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-green-800)"></div>
+        <div class="meta">
+          <code class="n">green-800</code>
+          <code class="v">#01500d</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-green-900)"></div>
+        <div class="meta">
+          <code class="n">green-900</code>
+          <code class="v">#00400a</code>
+        </div>
+        
+      </div></div>
+    </section>
+    <section>
+      <h2>red <span class="count">10</span></h2>
+      <div class="grid">
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-red-50)"></div>
+        <div class="meta">
+          <code class="n">red-50</code>
+          <code class="v">#fff5f6</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-red-100)"></div>
+        <div class="meta">
+          <code class="n">red-100</code>
+          <code class="v">#ffe6e8</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-red-200)"></div>
+        <div class="meta">
+          <code class="n">red-200</code>
+          <code class="v">#ffb6b9</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-red-300)"></div>
+        <div class="meta">
+          <code class="n">red-300</code>
+          <code class="v">#ff7078</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-red-400)"></div>
+        <div class="meta">
+          <code class="n">red-400</code>
+          <code class="v">#f1444c</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-red-500)"></div>
+        <div class="meta">
+          <code class="n">red-500</code>
+          <code class="v">#f1001e</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-red-600)"></div>
+        <div class="meta">
+          <code class="n">red-600</code>
+          <code class="v">#c80017</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-red-700)"></div>
+        <div class="meta">
+          <code class="n">red-700</code>
+          <code class="v">#b40000</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-red-800)"></div>
+        <div class="meta">
+          <code class="n">red-800</code>
+          <code class="v">#850101</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-red-900)"></div>
+        <div class="meta">
+          <code class="n">red-900</code>
+          <code class="v">#570303</code>
+        </div>
+        
+      </div></div>
+    </section>
+    <section>
+      <h2>pink <span class="count">10</span></h2>
+      <div class="grid">
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-pink-50)"></div>
+        <div class="meta">
+          <code class="n">pink-50</code>
+          <code class="v">#fef8fa</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-pink-100)"></div>
+        <div class="meta">
+          <code class="n">pink-100</code>
+          <code class="v">#ffeaf3</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-pink-200)"></div>
+        <div class="meta">
+          <code class="n">pink-200</code>
+          <code class="v">#ffd1e8</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-pink-300)"></div>
+        <div class="meta">
+          <code class="n">pink-300</code>
+          <code class="v">#ffb2ce</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-pink-400)"></div>
+        <div class="meta">
+          <code class="n">pink-400</code>
+          <code class="v">#fa77aa</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-pink-500)"></div>
+        <div class="meta">
+          <code class="n">pink-500</code>
+          <code class="v">#eb4e8f</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-pink-600)"></div>
+        <div class="meta">
+          <code class="n">pink-600</code>
+          <code class="v">#c82269</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-pink-700)"></div>
+        <div class="meta">
+          <code class="n">pink-700</code>
+          <code class="v">#ad0955</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-pink-800)"></div>
+        <div class="meta">
+          <code class="n">pink-800</code>
+          <code class="v">#710037</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-pink-900)"></div>
+        <div class="meta">
+          <code class="n">pink-900</code>
+          <code class="v">#4b112d</code>
+        </div>
+        
+      </div></div>
+    </section>
+    <section>
+      <h2>purple <span class="count">10</span></h2>
+      <div class="grid">
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-purple-50)"></div>
+        <div class="meta">
+          <code class="n">purple-50</code>
+          <code class="v">#fbf7ff</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-purple-100)"></div>
+        <div class="meta">
+          <code class="n">purple-100</code>
+          <code class="v">#f7edff</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-purple-200)"></div>
+        <div class="meta">
+          <code class="n">purple-200</code>
+          <code class="v">#eeddff</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-purple-300)"></div>
+        <div class="meta">
+          <code class="n">purple-300</code>
+          <code class="v">#dbbbfe</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-purple-400)"></div>
+        <div class="meta">
+          <code class="n">purple-400</code>
+          <code class="v">#ae72f9</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-purple-500)"></div>
+        <div class="meta">
+          <code class="n">purple-500</code>
+          <code class="v">#9d57f4</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-purple-600)"></div>
+        <div class="meta">
+          <code class="n">purple-600</code>
+          <code class="v">#7326d3</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-purple-700)"></div>
+        <div class="meta">
+          <code class="n">purple-700</code>
+          <code class="v">#5d13b7</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-purple-800)"></div>
+        <div class="meta">
+          <code class="n">purple-800</code>
+          <code class="v">#3c008a</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-purple-900)"></div>
+        <div class="meta">
+          <code class="n">purple-900</code>
+          <code class="v">#300f4a</code>
+        </div>
+        
+      </div></div>
+    </section>
+    <section>
+      <h2>orange <span class="count">9</span></h2>
+      <div class="grid">
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-orange-100)"></div>
+        <div class="meta">
+          <code class="n">orange-100</code>
+          <code class="v">#fff4e5</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-orange-200)"></div>
+        <div class="meta">
+          <code class="n">orange-200</code>
+          <code class="v">#ffdfad</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-orange-300)"></div>
+        <div class="meta">
+          <code class="n">orange-300</code>
+          <code class="v">#ffbb71</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-orange-400)"></div>
+        <div class="meta">
+          <code class="n">orange-400</code>
+          <code class="v">#ff8806</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-orange-500)"></div>
+        <div class="meta">
+          <code class="n">orange-500</code>
+          <code class="v">#e46f00</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-orange-600)"></div>
+        <div class="meta">
+          <code class="n">orange-600</code>
+          <code class="v">#bc5001</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-orange-700)"></div>
+        <div class="meta">
+          <code class="n">orange-700</code>
+          <code class="v">#953d00</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-orange-800)"></div>
+        <div class="meta">
+          <code class="n">orange-800</code>
+          <code class="v">#7a2f00</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-orange-900)"></div>
+        <div class="meta">
+          <code class="n">orange-900</code>
+          <code class="v">#5e1d08</code>
+        </div>
+        
+      </div></div>
+    </section>
+    <section>
+      <h2>foreground <span class="count">11</span></h2>
+      <div class="grid">
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-foreground-primary)"></div>
+        <div class="meta">
+          <code class="n">foreground-primary</code>
+          <code class="v">neutral-700</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-foreground-secondary)"></div>
+        <div class="meta">
+          <code class="n">foreground-secondary</code>
+          <code class="v">neutral-600</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-foreground-inverted)"></div>
+        <div class="meta">
+          <code class="n">foreground-inverted</code>
+          <code class="v">neutral-0</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-foreground-positive)"></div>
+        <div class="meta">
+          <code class="n">foreground-positive</code>
+          <code class="v">green-600</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-foreground-negative)"></div>
+        <div class="meta">
+          <code class="n">foreground-negative</code>
+          <code class="v">red-600</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-foreground-warning)"></div>
+        <div class="meta">
+          <code class="n">foreground-warning</code>
+          <code class="v">orange-600</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-foreground-link)"></div>
+        <div class="meta">
+          <code class="n">foreground-link</code>
+          <code class="v">blue-600</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-foreground-info)"></div>
+        <div class="meta">
+          <code class="n">foreground-info</code>
+          <code class="v">blue-600</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-foreground-theme)"></div>
+        <div class="meta">
+          <code class="n">foreground-theme</code>
+          <code class="v">pink-600</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-foreground-purple)"></div>
+        <div class="meta">
+          <code class="n">foreground-purple</code>
+          <code class="v">purple-600</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-foreground-pink)"></div>
+        <div class="meta">
+          <code class="n">foreground-pink</code>
+          <code class="v">pink-600</code>
+        </div>
+        <span class="dm">dark</span>
+      </div></div>
+    </section>
+    <section>
+      <h2>background <span class="count">15</span></h2>
+      <div class="grid">
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-background-primary)"></div>
+        <div class="meta">
+          <code class="n">background-primary</code>
+          <code class="v">neutral-0</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-background-secondary)"></div>
+        <div class="meta">
+          <code class="n">background-secondary</code>
+          <code class="v">neutral-50</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-background-tertiary)"></div>
+        <div class="meta">
+          <code class="n">background-tertiary</code>
+          <code class="v">neutral-100</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-background-highlight)"></div>
+        <div class="meta">
+          <code class="n">background-highlight</code>
+          <code class="v">purple-50</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-background-positive-light)"></div>
+        <div class="meta">
+          <code class="n">background-positive-light</code>
+          <code class="v">green-50</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-background-positive)"></div>
+        <div class="meta">
+          <code class="n">background-positive</code>
+          <code class="v">green-100</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-background-warning)"></div>
+        <div class="meta">
+          <code class="n">background-warning</code>
+          <code class="v">orange-100</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-background-info)"></div>
+        <div class="meta">
+          <code class="n">background-info</code>
+          <code class="v">blue-100</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-background-negative)"></div>
+        <div class="meta">
+          <code class="n">background-negative</code>
+          <code class="v">red-100</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-background-theme)"></div>
+        <div class="meta">
+          <code class="n">background-theme</code>
+          <code class="v">pink-50</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-background-primary-button)"></div>
+        <div class="meta">
+          <code class="n">background-primary-button</code>
+          <code class="v">green-600</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-background-primary-button-hover)"></div>
+        <div class="meta">
+          <code class="n">background-primary-button-hover</code>
+          <code class="v">green-800</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-background-purple)"></div>
+        <div class="meta">
+          <code class="n">background-purple</code>
+          <code class="v">purple-100</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-background-pink)"></div>
+        <div class="meta">
+          <code class="n">background-pink</code>
+          <code class="v">pink-100</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-background-navigation)"></div>
+        <div class="meta">
+          <code class="n">background-navigation</code>
+          <code class="v">blue-50</code>
+        </div>
+        <span class="dm">dark</span>
+      </div></div>
+    </section>
+    <section>
+      <h2>border <span class="count">12</span></h2>
+      <div class="grid">
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-border-default)"></div>
+        <div class="meta">
+          <code class="n">border-default</code>
+          <code class="v">neutral-200</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-border-bold)"></div>
+        <div class="meta">
+          <code class="n">border-bold</code>
+          <code class="v">neutral-400</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-border-input)"></div>
+        <div class="meta">
+          <code class="n">border-input</code>
+          <code class="v">neutral-400</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-border-input-bold)"></div>
+        <div class="meta">
+          <code class="n">border-input-bold</code>
+          <code class="v">neutral-500</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-border-input-active)"></div>
+        <div class="meta">
+          <code class="n">border-input-active</code>
+          <code class="v">neutral-600</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-border-input-disabled)"></div>
+        <div class="meta">
+          <code class="n">border-input-disabled</code>
+          <code class="v">neutral-400</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-border-positive)"></div>
+        <div class="meta">
+          <code class="n">border-positive</code>
+          <code class="v">green-400</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-border-warning)"></div>
+        <div class="meta">
+          <code class="n">border-warning</code>
+          <code class="v">orange-400</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-border-negative)"></div>
+        <div class="meta">
+          <code class="n">border-negative</code>
+          <code class="v">red-400</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-border-info)"></div>
+        <div class="meta">
+          <code class="n">border-info</code>
+          <code class="v">blue-400</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-border-theme)"></div>
+        <div class="meta">
+          <code class="n">border-theme</code>
+          <code class="v">pink-600</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-border-inverted)"></div>
+        <div class="meta">
+          <code class="n">border-inverted</code>
+          <code class="v">neutral-0</code>
+        </div>
+        <span class="dm">dark</span>
+      </div></div>
+    </section>
+    <section>
+      <h2>chart <span class="count">1</span></h2>
+      <div class="grid">
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-chart-1)"></div>
+        <div class="meta">
+          <code class="n">chart-1</code>
+          <code class="v">#ffffff</code>
+        </div>
+        <span class="dm">dark</span>
+      </div></div>
+    </section>
+  </div>
+  <div class="panel" data-v27-theme="dark">
+    <div class="panelhead">dark</div>
+    
+    <section>
+      <h2>size <span class="count">5</span></h2>
+      <div class="grid">
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-size-xs)"></div>
+        <div class="meta">
+          <code class="n">size-xs</code>
+          <code class="v">16px</code>
+        </div>
+      </div>
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-size-s)"></div>
+        <div class="meta">
+          <code class="n">size-s</code>
+          <code class="v">20px</code>
+        </div>
+      </div>
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-size-m)"></div>
+        <div class="meta">
+          <code class="n">size-m</code>
+          <code class="v">24px</code>
+        </div>
+      </div>
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-size-l)"></div>
+        <div class="meta">
+          <code class="n">size-l</code>
+          <code class="v">32px</code>
+        </div>
+      </div>
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-size-xl)"></div>
+        <div class="meta">
+          <code class="n">size-xl</code>
+          <code class="v">40px</code>
+        </div>
+      </div></div>
+    </section>
+    <section>
+      <h2>spacing <span class="count">8</span></h2>
+      <div class="grid">
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-spacing-xxs)"></div>
+        <div class="meta">
+          <code class="n">spacing-xxs</code>
+          <code class="v">2px</code>
+        </div>
+      </div>
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-spacing-xs)"></div>
+        <div class="meta">
+          <code class="n">spacing-xs</code>
+          <code class="v">4px</code>
+        </div>
+      </div>
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-spacing-s)"></div>
+        <div class="meta">
+          <code class="n">spacing-s</code>
+          <code class="v">8px</code>
+        </div>
+      </div>
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-spacing-sm)"></div>
+        <div class="meta">
+          <code class="n">spacing-sm</code>
+          <code class="v">12px</code>
+        </div>
+      </div>
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-spacing-m)"></div>
+        <div class="meta">
+          <code class="n">spacing-m</code>
+          <code class="v">16px</code>
+        </div>
+      </div>
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-spacing-ml)"></div>
+        <div class="meta">
+          <code class="n">spacing-ml</code>
+          <code class="v">24px</code>
+        </div>
+      </div>
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-spacing-l)"></div>
+        <div class="meta">
+          <code class="n">spacing-l</code>
+          <code class="v">32px</code>
+        </div>
+      </div>
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-spacing-xl)"></div>
+        <div class="meta">
+          <code class="n">spacing-xl</code>
+          <code class="v">40px</code>
+        </div>
+      </div></div>
+    </section>
+    <section>
+      <h2>radius <span class="count">3</span></h2>
+      <div class="grid">
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-radius-s)"></div>
+        <div class="meta">
+          <code class="n">radius-s</code>
+          <code class="v">4px</code>
+        </div>
+      </div>
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-radius-m)"></div>
+        <div class="meta">
+          <code class="n">radius-m</code>
+          <code class="v">8px</code>
+        </div>
+      </div>
+      <div class="tok">
+        <div class="bar" style="width:var(--v27-radius-l)"></div>
+        <div class="meta">
+          <code class="n">radius-l</code>
+          <code class="v">16px</code>
+        </div>
+      </div></div>
+    </section>
+    <section>
+      <h2>neutral <span class="count">11</span></h2>
+      <div class="grid">
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-neutral-0)"></div>
+        <div class="meta">
+          <code class="n">neutral-0</code>
+          <code class="v">#ffffff</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-neutral-50)"></div>
+        <div class="meta">
+          <code class="n">neutral-50</code>
+          <code class="v">#fafafa</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-neutral-100)"></div>
+        <div class="meta">
+          <code class="n">neutral-100</code>
+          <code class="v">#f5f5f5</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-neutral-200)"></div>
+        <div class="meta">
+          <code class="n">neutral-200</code>
+          <code class="v">#e5e5e5</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-neutral-300)"></div>
+        <div class="meta">
+          <code class="n">neutral-300</code>
+          <code class="v">#d3d3d3</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-neutral-400)"></div>
+        <div class="meta">
+          <code class="n">neutral-400</code>
+          <code class="v">#c1c1c1</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-neutral-500)"></div>
+        <div class="meta">
+          <code class="n">neutral-500</code>
+          <code class="v">#9a9a9a</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-neutral-600)"></div>
+        <div class="meta">
+          <code class="n">neutral-600</code>
+          <code class="v">#656565</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-neutral-700)"></div>
+        <div class="meta">
+          <code class="n">neutral-700</code>
+          <code class="v">#3e3e3e</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-neutral-800)"></div>
+        <div class="meta">
+          <code class="n">neutral-800</code>
+          <code class="v">#222222</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-neutral-900)"></div>
+        <div class="meta">
+          <code class="n">neutral-900</code>
+          <code class="v">#1a1a1a</code>
+        </div>
+        
+      </div></div>
+    </section>
+    <section>
+      <h2>blue <span class="count">10</span></h2>
+      <div class="grid">
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-blue-50)"></div>
+        <div class="meta">
+          <code class="n">blue-50</code>
+          <code class="v">#f3faff</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-blue-100)"></div>
+        <div class="meta">
+          <code class="n">blue-100</code>
+          <code class="v">#e3f5ff</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-blue-200)"></div>
+        <div class="meta">
+          <code class="n">blue-200</code>
+          <code class="v">#b6e5ff</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-blue-300)"></div>
+        <div class="meta">
+          <code class="n">blue-300</code>
+          <code class="v">#80d0fd</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-blue-400)"></div>
+        <div class="meta">
+          <code class="n">blue-400</code>
+          <code class="v">#0099f0</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-blue-500)"></div>
+        <div class="meta">
+          <code class="n">blue-500</code>
+          <code class="v">#1a80cb</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-blue-600)"></div>
+        <div class="meta">
+          <code class="n">blue-600</code>
+          <code class="v">#0364ab</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-blue-700)"></div>
+        <div class="meta">
+          <code class="n">blue-700</code>
+          <code class="v">#144794</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-blue-800)"></div>
+        <div class="meta">
+          <code class="n">blue-800</code>
+          <code class="v">#003877</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-blue-900)"></div>
+        <div class="meta">
+          <code class="n">blue-900</code>
+          <code class="v">#042351</code>
+        </div>
+        
+      </div></div>
+    </section>
+    <section>
+      <h2>green <span class="count">10</span></h2>
+      <div class="grid">
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-green-50)"></div>
+        <div class="meta">
+          <code class="n">green-50</code>
+          <code class="v">#f0faf2</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-green-100)"></div>
+        <div class="meta">
+          <code class="n">green-100</code>
+          <code class="v">#e5f4e7</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-green-200)"></div>
+        <div class="meta">
+          <code class="n">green-200</code>
+          <code class="v">#c1eac3</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-green-300)"></div>
+        <div class="meta">
+          <code class="n">green-300</code>
+          <code class="v">#7dcf80</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-green-400)"></div>
+        <div class="meta">
+          <code class="n">green-400</code>
+          <code class="v">#2fc443</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-green-500)"></div>
+        <div class="meta">
+          <code class="n">green-500</code>
+          <code class="v">#27a438</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-green-600)"></div>
+        <div class="meta">
+          <code class="n">green-600</code>
+          <code class="v">#017e26</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-green-700)"></div>
+        <div class="meta">
+          <code class="n">green-700</code>
+          <code class="v">#036b22</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-green-800)"></div>
+        <div class="meta">
+          <code class="n">green-800</code>
+          <code class="v">#01500d</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-green-900)"></div>
+        <div class="meta">
+          <code class="n">green-900</code>
+          <code class="v">#00400a</code>
+        </div>
+        
+      </div></div>
+    </section>
+    <section>
+      <h2>red <span class="count">10</span></h2>
+      <div class="grid">
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-red-50)"></div>
+        <div class="meta">
+          <code class="n">red-50</code>
+          <code class="v">#fff5f6</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-red-100)"></div>
+        <div class="meta">
+          <code class="n">red-100</code>
+          <code class="v">#ffe6e8</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-red-200)"></div>
+        <div class="meta">
+          <code class="n">red-200</code>
+          <code class="v">#ffb6b9</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-red-300)"></div>
+        <div class="meta">
+          <code class="n">red-300</code>
+          <code class="v">#ff7078</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-red-400)"></div>
+        <div class="meta">
+          <code class="n">red-400</code>
+          <code class="v">#f1444c</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-red-500)"></div>
+        <div class="meta">
+          <code class="n">red-500</code>
+          <code class="v">#f1001e</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-red-600)"></div>
+        <div class="meta">
+          <code class="n">red-600</code>
+          <code class="v">#c80017</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-red-700)"></div>
+        <div class="meta">
+          <code class="n">red-700</code>
+          <code class="v">#b40000</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-red-800)"></div>
+        <div class="meta">
+          <code class="n">red-800</code>
+          <code class="v">#850101</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-red-900)"></div>
+        <div class="meta">
+          <code class="n">red-900</code>
+          <code class="v">#570303</code>
+        </div>
+        
+      </div></div>
+    </section>
+    <section>
+      <h2>pink <span class="count">10</span></h2>
+      <div class="grid">
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-pink-50)"></div>
+        <div class="meta">
+          <code class="n">pink-50</code>
+          <code class="v">#fef8fa</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-pink-100)"></div>
+        <div class="meta">
+          <code class="n">pink-100</code>
+          <code class="v">#ffeaf3</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-pink-200)"></div>
+        <div class="meta">
+          <code class="n">pink-200</code>
+          <code class="v">#ffd1e8</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-pink-300)"></div>
+        <div class="meta">
+          <code class="n">pink-300</code>
+          <code class="v">#ffb2ce</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-pink-400)"></div>
+        <div class="meta">
+          <code class="n">pink-400</code>
+          <code class="v">#fa77aa</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-pink-500)"></div>
+        <div class="meta">
+          <code class="n">pink-500</code>
+          <code class="v">#eb4e8f</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-pink-600)"></div>
+        <div class="meta">
+          <code class="n">pink-600</code>
+          <code class="v">#c82269</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-pink-700)"></div>
+        <div class="meta">
+          <code class="n">pink-700</code>
+          <code class="v">#ad0955</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-pink-800)"></div>
+        <div class="meta">
+          <code class="n">pink-800</code>
+          <code class="v">#710037</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-pink-900)"></div>
+        <div class="meta">
+          <code class="n">pink-900</code>
+          <code class="v">#4b112d</code>
+        </div>
+        
+      </div></div>
+    </section>
+    <section>
+      <h2>purple <span class="count">10</span></h2>
+      <div class="grid">
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-purple-50)"></div>
+        <div class="meta">
+          <code class="n">purple-50</code>
+          <code class="v">#fbf7ff</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-purple-100)"></div>
+        <div class="meta">
+          <code class="n">purple-100</code>
+          <code class="v">#f7edff</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-purple-200)"></div>
+        <div class="meta">
+          <code class="n">purple-200</code>
+          <code class="v">#eeddff</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-purple-300)"></div>
+        <div class="meta">
+          <code class="n">purple-300</code>
+          <code class="v">#dbbbfe</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-purple-400)"></div>
+        <div class="meta">
+          <code class="n">purple-400</code>
+          <code class="v">#ae72f9</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-purple-500)"></div>
+        <div class="meta">
+          <code class="n">purple-500</code>
+          <code class="v">#9d57f4</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-purple-600)"></div>
+        <div class="meta">
+          <code class="n">purple-600</code>
+          <code class="v">#7326d3</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-purple-700)"></div>
+        <div class="meta">
+          <code class="n">purple-700</code>
+          <code class="v">#5d13b7</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-purple-800)"></div>
+        <div class="meta">
+          <code class="n">purple-800</code>
+          <code class="v">#3c008a</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-purple-900)"></div>
+        <div class="meta">
+          <code class="n">purple-900</code>
+          <code class="v">#300f4a</code>
+        </div>
+        
+      </div></div>
+    </section>
+    <section>
+      <h2>orange <span class="count">9</span></h2>
+      <div class="grid">
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-orange-100)"></div>
+        <div class="meta">
+          <code class="n">orange-100</code>
+          <code class="v">#fff4e5</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-orange-200)"></div>
+        <div class="meta">
+          <code class="n">orange-200</code>
+          <code class="v">#ffdfad</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-orange-300)"></div>
+        <div class="meta">
+          <code class="n">orange-300</code>
+          <code class="v">#ffbb71</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-orange-400)"></div>
+        <div class="meta">
+          <code class="n">orange-400</code>
+          <code class="v">#ff8806</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-orange-500)"></div>
+        <div class="meta">
+          <code class="n">orange-500</code>
+          <code class="v">#e46f00</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-orange-600)"></div>
+        <div class="meta">
+          <code class="n">orange-600</code>
+          <code class="v">#bc5001</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-orange-700)"></div>
+        <div class="meta">
+          <code class="n">orange-700</code>
+          <code class="v">#953d00</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-orange-800)"></div>
+        <div class="meta">
+          <code class="n">orange-800</code>
+          <code class="v">#7a2f00</code>
+        </div>
+        
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-orange-900)"></div>
+        <div class="meta">
+          <code class="n">orange-900</code>
+          <code class="v">#5e1d08</code>
+        </div>
+        
+      </div></div>
+    </section>
+    <section>
+      <h2>foreground <span class="count">11</span></h2>
+      <div class="grid">
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-foreground-primary)"></div>
+        <div class="meta">
+          <code class="n">foreground-primary</code>
+          <code class="v">neutral-700</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-foreground-secondary)"></div>
+        <div class="meta">
+          <code class="n">foreground-secondary</code>
+          <code class="v">neutral-600</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-foreground-inverted)"></div>
+        <div class="meta">
+          <code class="n">foreground-inverted</code>
+          <code class="v">neutral-0</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-foreground-positive)"></div>
+        <div class="meta">
+          <code class="n">foreground-positive</code>
+          <code class="v">green-600</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-foreground-negative)"></div>
+        <div class="meta">
+          <code class="n">foreground-negative</code>
+          <code class="v">red-600</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-foreground-warning)"></div>
+        <div class="meta">
+          <code class="n">foreground-warning</code>
+          <code class="v">orange-600</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-foreground-link)"></div>
+        <div class="meta">
+          <code class="n">foreground-link</code>
+          <code class="v">blue-600</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-foreground-info)"></div>
+        <div class="meta">
+          <code class="n">foreground-info</code>
+          <code class="v">blue-600</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-foreground-theme)"></div>
+        <div class="meta">
+          <code class="n">foreground-theme</code>
+          <code class="v">pink-600</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-foreground-purple)"></div>
+        <div class="meta">
+          <code class="n">foreground-purple</code>
+          <code class="v">purple-600</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-foreground-pink)"></div>
+        <div class="meta">
+          <code class="n">foreground-pink</code>
+          <code class="v">pink-600</code>
+        </div>
+        <span class="dm">dark</span>
+      </div></div>
+    </section>
+    <section>
+      <h2>background <span class="count">15</span></h2>
+      <div class="grid">
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-background-primary)"></div>
+        <div class="meta">
+          <code class="n">background-primary</code>
+          <code class="v">neutral-0</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-background-secondary)"></div>
+        <div class="meta">
+          <code class="n">background-secondary</code>
+          <code class="v">neutral-50</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-background-tertiary)"></div>
+        <div class="meta">
+          <code class="n">background-tertiary</code>
+          <code class="v">neutral-100</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-background-highlight)"></div>
+        <div class="meta">
+          <code class="n">background-highlight</code>
+          <code class="v">purple-50</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-background-positive-light)"></div>
+        <div class="meta">
+          <code class="n">background-positive-light</code>
+          <code class="v">green-50</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-background-positive)"></div>
+        <div class="meta">
+          <code class="n">background-positive</code>
+          <code class="v">green-100</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-background-warning)"></div>
+        <div class="meta">
+          <code class="n">background-warning</code>
+          <code class="v">orange-100</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-background-info)"></div>
+        <div class="meta">
+          <code class="n">background-info</code>
+          <code class="v">blue-100</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-background-negative)"></div>
+        <div class="meta">
+          <code class="n">background-negative</code>
+          <code class="v">red-100</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-background-theme)"></div>
+        <div class="meta">
+          <code class="n">background-theme</code>
+          <code class="v">pink-50</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-background-primary-button)"></div>
+        <div class="meta">
+          <code class="n">background-primary-button</code>
+          <code class="v">green-600</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-background-primary-button-hover)"></div>
+        <div class="meta">
+          <code class="n">background-primary-button-hover</code>
+          <code class="v">green-800</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-background-purple)"></div>
+        <div class="meta">
+          <code class="n">background-purple</code>
+          <code class="v">purple-100</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-background-pink)"></div>
+        <div class="meta">
+          <code class="n">background-pink</code>
+          <code class="v">pink-100</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-background-navigation)"></div>
+        <div class="meta">
+          <code class="n">background-navigation</code>
+          <code class="v">blue-50</code>
+        </div>
+        <span class="dm">dark</span>
+      </div></div>
+    </section>
+    <section>
+      <h2>border <span class="count">12</span></h2>
+      <div class="grid">
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-border-default)"></div>
+        <div class="meta">
+          <code class="n">border-default</code>
+          <code class="v">neutral-200</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-border-bold)"></div>
+        <div class="meta">
+          <code class="n">border-bold</code>
+          <code class="v">neutral-400</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-border-input)"></div>
+        <div class="meta">
+          <code class="n">border-input</code>
+          <code class="v">neutral-400</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-border-input-bold)"></div>
+        <div class="meta">
+          <code class="n">border-input-bold</code>
+          <code class="v">neutral-500</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-border-input-active)"></div>
+        <div class="meta">
+          <code class="n">border-input-active</code>
+          <code class="v">neutral-600</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-border-input-disabled)"></div>
+        <div class="meta">
+          <code class="n">border-input-disabled</code>
+          <code class="v">neutral-400</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-border-positive)"></div>
+        <div class="meta">
+          <code class="n">border-positive</code>
+          <code class="v">green-400</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-border-warning)"></div>
+        <div class="meta">
+          <code class="n">border-warning</code>
+          <code class="v">orange-400</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-border-negative)"></div>
+        <div class="meta">
+          <code class="n">border-negative</code>
+          <code class="v">red-400</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-border-info)"></div>
+        <div class="meta">
+          <code class="n">border-info</code>
+          <code class="v">blue-400</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-border-theme)"></div>
+        <div class="meta">
+          <code class="n">border-theme</code>
+          <code class="v">pink-600</code>
+        </div>
+        <span class="dm">dark</span>
+      </div>
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-border-inverted)"></div>
+        <div class="meta">
+          <code class="n">border-inverted</code>
+          <code class="v">neutral-0</code>
+        </div>
+        <span class="dm">dark</span>
+      </div></div>
+    </section>
+    <section>
+      <h2>chart <span class="count">1</span></h2>
+      <div class="grid">
+      <div class="tok">
+        <div class="chip" style="background:var(--v27-chart-1)"></div>
+        <div class="meta">
+          <code class="n">chart-1</code>
+          <code class="v">#ffffff</code>
+        </div>
+        <span class="dm">dark</span>
+      </div></div>
+    </section>
+  </div></div>
+</body>
+</html>
