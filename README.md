@@ -63,6 +63,52 @@ node tools/build-tokens.mjs
 node tools/build-token-reference.mjs   # visual check, both themes side by side
 ```
 
+Typography is the one hand-maintained input. V27 publishes no text styles to its library
+and has no type collection in the variables export, because the styles are **local to the
+Figma file** - so they are transcribed in `tokens/typography.json` with the node ids each
+value was measured on, and the build emits them alongside the rest.
+
+## Audits
+
+Five checks, each catching a defect that reached production in an earlier build of this
+kind. All five exit non-zero on a finding.
+
+```bash
+node tools/audit.mjs
+```
+
+| Audit | Catches |
+|---|---|
+| `ascii` | a non-ASCII byte that would propagate into every generated doc |
+| `raw-literals` | a literal where a token with that value exists (bucket A fails; bucket B is a recorded gap) |
+| `shared-state` | a themeable value pinned on a base that only some variants override |
+| `duplicate-rules` | a rule that hand-rolls most of a shared component |
+| `nested-interactive` | an interactive element inside a `<button>` or `<a>` |
+
+A literal Figma genuinely leaves unbound is declared, not ignored:
+
+```css
+background: #fff; /* figma-literal: 4634:80745 - raw white, not Background/Primary */
+```
+
+An unexplained literal still fails the build.
+
+## Export
+
+Everything that leaves this repo is generated from one model, so nothing is maintained in
+two places.
+
+```bash
+node tools/build-model.mjs     # -> export/model.json
+node tools/build-copilot.mjs   # -> export/copilot/
+node tools/check-docs.mjs      # validates the bundle
+```
+
+`export/copilot/` is self-contained: instructions, per-component detail, and the CSS
+itself. The always-on instructions file is deliberately small (under 3 KB) because Copilot
+loads it on every request; the per-component detail is read on demand, so the always-on
+cost does not grow as the library does.
+
 The build fails rather than emitting a broken file if a reference does not resolve, if the
 two theme modes fall out of sync, or if a non-ASCII character appears.
 
