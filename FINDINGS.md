@@ -299,6 +299,27 @@ The knob is a raw white rather than `Background/Primary`, so it does not follow 
 It is marked `figma-literal` in `src/styles.css` so the raw-literals audit accepts it with
 its node id rather than proposing a token that would change the behaviour.
 
+## 22. Primitives are used where a semantic role with the same value exists
+
+**Figma:** this is a recurring pattern, not a one-off:
+
+| Node | Binds | A semantic role with the same value |
+|---|---|---|
+| Single Checkbox, selected+disabled `66:1630` | `Neutral/400` `#c1c1c1` | `Border/Bold` |
+| Single Checkbox, selected+disabled `66:1630` | `Neutral/0` `#ffffff` | `Background/Primary` |
+| Checkbox, Disabled `66:1688` | `Neutral/600` `#656565` | `Foreground/Secondary` |
+| Coloured circle icons `7840:19951` | all seven ramps | none exists (#17) |
+
+Only the last has an excuse. The other three had a semantic role available and did not use
+it.
+
+**Code:** reproduced as bound, so the CSS references primitives in these three places.
+
+**Status:** open. The values are identical today, so nothing looks wrong - which is exactly
+the problem. Retokenising `Foreground/Secondary` will move every disabled label in the
+library **except** the checkbox's, and the divergence will appear as a one-off visual bug
+long after the change that caused it.
+
 ---
 
 ## Page inventory

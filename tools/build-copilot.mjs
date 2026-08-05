@@ -16,6 +16,21 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const model = JSON.parse(fs.readFileSync('export/model.json', 'utf8'));
+
+/**
+ * Refuse to run against a model that did not pass its own gates.
+ *
+ * build-model.mjs exits non-zero when a component has no doc, but if it is run without
+ * checking that status the stale model.json is still on disk and this script would happily
+ * consume it - and then die on a null path with a TypeError that says nothing about the
+ * real cause. Fail here, in the language of the actual problem.
+ */
+const undocumented = model.components.filter((c) => !c.doc).map((c) => c.name);
+if (undocumented.length) {
+  console.error(`model.json is stale or incomplete - no doc for: ${undocumented.join(', ')}`);
+  console.error('run `node tools/build-model.mjs` and fix what it reports before exporting.');
+  process.exit(1);
+}
 const OUT = 'export/copilot';
 const DOCS = path.join(OUT, 'docs');
 

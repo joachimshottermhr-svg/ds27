@@ -23,8 +23,8 @@
     "Check this component list before building anything new."
   ],
   "counts": {
-    "components": 7,
-    "classes": 46,
+    "components": 9,
+    "classes": 50,
     "tokens": 143,
     "themed": 39
   },
@@ -968,6 +968,32 @@
       ],
       "baseClass": "v27-tag",
       "doc": "Tags.md"
+    },
+    {
+      "name": "Single Checkbox",
+      "figmaComponentSet": "Single Checkbox",
+      "figmaNode": "66:1391",
+      "variantCount": 4,
+      "variantAxes": "selected[2] x state[3]",
+      "classes": [
+        "v27-checkbox-box",
+        "v27-checkbox__input"
+      ],
+      "baseClass": "v27-checkbox-box",
+      "doc": "SingleCheckbox.md"
+    },
+    {
+      "name": "Checkbox",
+      "figmaComponentSet": "Checkbox",
+      "figmaNode": "66:1687",
+      "variantCount": 2,
+      "variantAxes": "property 1[2] - Default and Disabled.",
+      "classes": [
+        "v27-checkbox",
+        "v27-checkbox__input"
+      ],
+      "baseClass": "v27-checkbox",
+      "doc": "Checkbox.md"
     },
     {
       "name": "In page message",

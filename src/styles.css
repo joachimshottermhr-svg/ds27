@@ -299,6 +299,113 @@
 }
 
 /* ==========================================================================
+   Single Checkbox - Figma `Single Checkbox`, node 66:1391
+   4 variants: selected[2] x state[3]
+
+   The box on its own. Figma ships it as its own component set and Checkbox composes an
+   instance of it, so it gets a shared class here and Checkbox references that class
+   rather than redeclaring the box. A private copy is what the duplicate-rules audit
+   exists to catch.
+   ========================================================================== */
+
+/* Unselected, enabled - 66:1390. 20x20, on the Size scale. */
+.v27-checkbox-box {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: var(--v27-size-s);
+  height: var(--v27-size-s);
+  border: 1px solid var(--v27-border-input-bold);
+  border-radius: var(--v27-radius-s);
+  background: var(--v27-background-primary);
+  overflow: clip;
+}
+
+/* The 16px tick, hidden until checked. */
+.v27-checkbox-box > svg {
+  display: block;
+  width: var(--v27-size-xs);
+  height: var(--v27-size-xs);
+  fill: currentColor;
+  visibility: hidden;
+}
+
+/* Selected, enabled - 66:1389. The fill is Foreground/Primary, a text role used as a
+   surface (the same pattern as Toggle), and Figma drops the border entirely. */
+.v27-checkbox__input:checked + .v27-checkbox-box {
+  border-color: transparent;
+  background: var(--v27-foreground-primary);
+  color: var(--v27-background-primary);
+}
+
+.v27-checkbox__input:checked + .v27-checkbox-box > svg {
+  visibility: visible;
+}
+
+/* Unselected, disabled - 66:1628. */
+.v27-checkbox__input:disabled + .v27-checkbox-box {
+  border-color: var(--v27-border-bold);
+  background: var(--v27-background-tertiary);
+}
+
+/* Selected, disabled - 66:1630. Figma binds PRIMITIVES here - Neutral/400 for the box and
+   Neutral/0 for the tick - not the semantic roles that carry the same values. Reproduced
+   as bound; see FINDINGS.md #22. */
+.v27-checkbox__input:checked:disabled + .v27-checkbox-box {
+  border-color: transparent;
+  background: var(--v27-neutral-400);
+  color: var(--v27-neutral-0);
+}
+
+.v27-checkbox__input:focus-visible + .v27-checkbox-box {
+  outline: 2px solid var(--v27-border-input-active);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Checkbox - Figma `Checkbox`, node 66:1687
+   2 variants: property 1[2] - Default and Disabled.
+   ========================================================================== */
+
+/* The box plus its label, 12px apart - verified on 66:1367. A <label> host means the
+   whole row is clickable without any script, and the real <input> keeps the accessible
+   state and the visual state from drifting apart. */
+.v27-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--v27-spacing-sm);
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+  color: var(--v27-foreground-primary);
+  cursor: pointer;
+}
+
+/* Visually hidden, still focusable and still announced. Not display:none, which would
+   remove it from the tab order and from the accessibility tree. */
+.v27-checkbox__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* Disabled - 66:1688. The label colour Figma binds is the Neutral/600 PRIMITIVE, not
+   Foreground/Secondary, even though the two hold the same value. FINDINGS.md #22. */
+.v27-checkbox:has(.v27-checkbox__input:disabled) {
+  color: var(--v27-neutral-600);
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
    In page message - Figma `in page message`, node 548:22140
    10 variants: property 1[5] x importance[2]
 
