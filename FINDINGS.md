@@ -106,6 +106,27 @@ no icon can be carried across between the two systems.
 **Status:** open. Licensing for any Pro or brand icons needs confirming before they are
 embedded.
 
+## 9. The type face is Outfit, and it is neither licensed nor bundled here
+
+**Figma:** every Button variant reports `Font(family: "Outfit", style: SemiBold, size: 14,
+weight: 600, lineHeight: 100, letterSpacing: 0)`.
+
+**Code:** referenced as `var(--v27-font-family, "Outfit")` with a system fallback. No
+webfont is bundled, so the library renders in the fallback unless the consuming app loads
+Outfit itself.
+
+**Status:** open. Needs a licensing decision and a hosting route before the type tier lands.
+
+## 10. Button geometry does not use the dimension tokens
+
+**Figma:** the button box is height `42px`, min-width `100px`, radius `207px`. The Size
+scale is 16/20/24/32/40 and the Radius scale is 4/8/16, so none of the three is on a scale.
+The padding does map exactly - `16px` is Spacing/M, `8px` is Spacing/S.
+
+**Code:** the three are literals with the node id recorded beside them. Padding uses tokens.
+
+**Status:** accepted. Worth asking whether 42 and 100 should join the scale.
+
 ---
 
 ## Page inventory
