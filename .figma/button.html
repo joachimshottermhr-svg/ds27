@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>V27 Button</title>
+<link rel="stylesheet" href="../src/tokens.css" />
+<link rel="stylesheet" href="../src/styles.css" />
+<style>
+  body { margin:0; font-family: system-ui, sans-serif; }
+  .panel { padding:28px; background:var(--v27-background-primary); color:var(--v27-foreground-primary); }
+  h2 { font-size:12px; text-transform:uppercase; letter-spacing:.1em;
+       color:var(--v27-foreground-secondary); margin:0 0 14px; }
+  .row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-bottom:18px; }
+  .wrap { display:grid; grid-template-columns:1fr 1fr; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="panel">
+    <h2>light</h2>
+    <div class="row">
+      <button class="v27-btn v27-btn--positive">Primary positive</button>
+      <button class="v27-btn v27-btn--negative">Negative button</button>
+      <button class="v27-btn v27-btn--outline">Outline button</button>
+      <button class="v27-btn v27-btn--plain">Plain button</button>
+    </div>
+    <div class="row">
+      <button class="v27-btn v27-btn--positive v27-btn--small">Small</button>
+      <button class="v27-btn v27-btn--outline v27-btn--small">Small</button>
+      <button class="v27-btn v27-btn--positive v27-btn--icon-only">+</button>
+      <button class="v27-btn v27-btn--positive v27-btn--small v27-btn--icon-only">+</button>
+    </div>
+  </div>
+  <div class="panel" data-v27-theme="dark">
+    <h2>dark</h2>
+    <div class="row">
+      <button class="v27-btn v27-btn--positive">Primary positive</button>
+      <button class="v27-btn v27-btn--negative">Negative button</button>
+      <button class="v27-btn v27-btn--outline">Outline button</button>
+      <button class="v27-btn v27-btn--plain">Plain button</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>

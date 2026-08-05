@@ -1,0 +1,103 @@
+/* V27 Design System - component styles.
+ *
+ * Requires tokens.css. Every value here either references a semantic token or is a literal
+ * measured off a Figma node, with that node id recorded beside it. Nothing is approximated.
+ *
+ * Class naming: .v27-<block>, .v27-<block>--<modifier>, .v27-<block>__<part>.
+ * Figma's variant axes are inconsistently cased (size / Size, state / State); modifiers are
+ * lowercase here and the original casing is recorded in FINDINGS.md.
+ */
+
+/* ==========================================================================
+   Button - Figma `Button`, node 243:4085
+   60 variants: type[6] x icon[4] x size[2] x state[3]
+   ========================================================================== */
+
+/* Geometry is shared by every type. Verified on 243:4068 (Positive), 243:4060 (Negative),
+   243:4077 (Outline) and 243:4059 (Plain) - all four return the same box.
+   Three values here are literals, not tokens, because V27 has no token for them:
+     height 42px       the Size scale is 16/20/24/32/40; 42 is not on it
+     radius 207px      Figma's value for a full pill; the Radius scale is 4/8/16
+     min-width 100px   no dimension token matches
+   The padding does map exactly: 16px is --v27-spacing-m, 8px is --v27-spacing-s. */
+.v27-btn {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  min-width: 100px;
+  padding: var(--v27-spacing-s) var(--v27-spacing-m);
+  border: 0;
+  border-radius: 207px;
+  background: transparent;
+  overflow: clip;
+  cursor: pointer;
+  text-align: center;
+  /* Outfit SemiBold 14 / weight 600 / line-height 100 / letter-spacing 0.
+     Reported by Figma on every Button variant. There is no type token in the variables
+     export - see FINDINGS.md #1 - so these are literals until the type tier exists. */
+  font-family: var(--v27-font-family, "Outfit"), system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0;
+}
+
+.v27-btn:disabled {
+  cursor: not-allowed;
+}
+
+/* Figma's Icon=Icon only variants are square: 42px at Default, 32px at small. */
+.v27-btn--icon-only {
+  min-width: 0;
+  width: 42px;
+  padding-inline: 0;
+}
+
+/* size=small. Height measured across every small variant on 1:28. The type size for small
+   is UNVERIFIED - Figma reports one font for the component set - so it is left inherited
+   rather than guessed at. */
+.v27-btn--small {
+  height: 32px;
+}
+
+.v27-btn--small.v27-btn--icon-only {
+  width: 32px;
+}
+
+/* --- type=Positive - node 243:4068 --- */
+.v27-btn--positive {
+  background: var(--v27-background-primary-button);
+  color: var(--v27-foreground-inverted);
+}
+
+/* The only hover Figma names explicitly: the token is Background/Primary button hover. */
+.v27-btn--positive:hover:not(:disabled) {
+  background: var(--v27-background-primary-button-hover);
+}
+
+/* --- type=Negative - node 243:4060 --- */
+.v27-btn--negative {
+  border: 1px solid var(--v27-border-negative);
+  color: var(--v27-foreground-negative);
+}
+
+/* --- type=Outline - node 243:4077 --- */
+.v27-btn--outline {
+  border: 1px solid var(--v27-border-bold);
+  color: var(--v27-foreground-primary);
+}
+
+/* --- type=Plain - node 243:4059 ---
+   No fill and no border. Figma also drops the 100px minimum and sets the label to
+   whitespace-nowrap, so the button hugs its text. */
+.v27-btn--plain {
+  min-width: 0;
+  color: var(--v27-foreground-primary);
+  white-space: nowrap;
+}
+
+/* type=AI and type=AI bold are NOT implemented. Their nodes are 243:4070 and 3993:71960.
+   Both are expected to carry a gradient, which cannot be read from geometry, and no value
+   for them has been verified. Building them from the token names alone would be a guess. */
