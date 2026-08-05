@@ -56,13 +56,22 @@
       "note": "Header display title. Figma reports lineHeight 100 = AUTO."
     },
     "sm-bold": {
-      "figmaName": "UNCONFIRMED",
+      "figmaName": "Sm bold",
       "fontSize": "14px",
       "fontWeight": 600,
       "lineHeight": "normal",
       "letterSpacing": "0",
-      "verifiedOn": ["243:4085"],
-      "note": "Measured on every Button variant, which reports Outfit SemiBold 14 / 600 / AUTO. Figma did not report a STYLE NAME for it, so the name here is this library's, not Figma's."
+      "verifiedOn": ["243:4085", "289:4419"],
+      "note": "Name confirmed from the Avatar set's variable defs, which report it as 'Sm bold'. Previously carried as UNCONFIRMED when only the Button's raw Font() was known."
+    },
+    "base-bold": {
+      "figmaName": "Base bold",
+      "fontSize": "16px",
+      "fontWeight": 600,
+      "lineHeight": "20px",
+      "letterSpacing": "0",
+      "verifiedOn": ["289:4419"],
+      "note": "Avatar initials."
     }
   },
   "unverified": {

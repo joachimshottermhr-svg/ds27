@@ -149,6 +149,64 @@
 .v27-icon--large  { width: var(--v27-size-l); height: var(--v27-size-l); }
 
 /* ==========================================================================
+   Coloured circle icons - Figma `Coloured circle icons`, node 7840:19951
+   21 variants: size[3] x colour[7]
+
+   THIS COMPONENT BREAKS THE TWO-TIER RULE, and it does so because Figma does.
+   Every other component binds a semantic role; this one binds PRIMITIVES directly -
+   Green/100 behind a Green/700 glyph, and so on for all seven ramps. There is no
+   semantic role for "the green circle", so there is nothing to point at. The consequence
+   is real and is not a bug in this file: these circles do NOT change between light and
+   dark, because primitives have one mode. See FINDINGS.md #17.
+   ========================================================================== */
+
+/* Geometry verified on 7840:19941 (medium, Green). Figma binds Size/L for the height but
+   leaves the width a literal 32px - both are the same value and both are the token here.
+   The 35px radius is off every scale; it is Figma's value for a full circle and browsers
+   clamp it to one at all three box sizes, so it is reproduced exactly. */
+.v27-circle-icon {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  padding: var(--v27-spacing-xs);
+  border-radius: 35px;
+  overflow: clip;
+}
+
+.v27-circle-icon > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+/* Box and glyph move together: 24/16, 32/20, 40/24. Both sit on the Size scale. */
+.v27-circle-icon--small  { width: var(--v27-size-m);  height: var(--v27-size-m); }
+.v27-circle-icon--medium { width: var(--v27-size-l);  height: var(--v27-size-l); }
+.v27-circle-icon--large  { width: var(--v27-size-xl); height: var(--v27-size-xl); }
+
+.v27-circle-icon--small  > svg { width: var(--v27-size-xs); height: var(--v27-size-xs); }
+.v27-circle-icon--medium > svg { width: var(--v27-size-s);  height: var(--v27-size-s); }
+.v27-circle-icon--large  > svg { width: var(--v27-size-m);  height: var(--v27-size-m); }
+
+/* The seven ramps. Confirmed per variant on 7840:19938 (Pink), 7840:19940 (Grey) and
+   7840:19939 (Orange); the remaining four are unambiguous because the set's full variable
+   list contains exactly one dark step per ramp.
+
+   Note Pink, Orange and Grey use the 600 step while Green, Blue, Purple and Red use 700.
+   That is what Figma binds - the set exposes no Pink/700, Orange/700 or Neutral/700 at
+   all - so it is reproduced rather than regularised. */
+.v27-circle-icon--green  { background: var(--v27-green-100);  color: var(--v27-green-700); }
+.v27-circle-icon--grey   { background: var(--v27-neutral-100); color: var(--v27-neutral-600); }
+.v27-circle-icon--blue   { background: var(--v27-blue-100);   color: var(--v27-blue-700); }
+.v27-circle-icon--pink   { background: var(--v27-pink-100);   color: var(--v27-pink-600); }
+.v27-circle-icon--purple { background: var(--v27-purple-100); color: var(--v27-purple-700); }
+.v27-circle-icon--orange { background: var(--v27-orange-100); color: var(--v27-orange-600); }
+.v27-circle-icon--red    { background: var(--v27-red-100);    color: var(--v27-red-700); }
+
+/* ==========================================================================
    Tags - Figma `Tags`, node 232:4878
    12 variants: property 1[6] x with icon[2].
 
@@ -239,6 +297,152 @@
     linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);
   color: var(--v27-foreground-theme);
 }
+
+/* ==========================================================================
+   In page message - Figma `in page message`, node 548:22140
+   10 variants: property 1[5] x importance[2]
+
+   The two importance levels are structurally different, not a shade apart:
+   Bold   - the type's own background, border and text colour
+   Subtle - a plain surface with a neutral border, and PRIMARY text regardless of type
+   So on Subtle the only thing carrying the message's severity is the icon.
+   ========================================================================== */
+
+/* Geometry verified on 548:22135 (info, Bold) and 7533:8907 (info, Subtle) - identical.
+   Figma fixes the height at 56px; that is a single-line box, so it is a min-height here
+   rather than a height, or a two-line message would clip. Recorded in FINDINGS.md #20. */
+.v27-message {
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--v27-spacing-s);
+  min-height: 56px;
+  padding: var(--v27-spacing-sm) var(--v27-spacing-m);
+  border: 1px solid;
+  border-radius: var(--v27-radius-m);
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+}
+
+.v27-message__icon {
+  width: var(--v27-size-s);
+  height: var(--v27-size-s);
+  flex: none;
+}
+
+/* The text column. Figma gives it a 4px gap so a heading and body can stack. */
+.v27-message__body {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: var(--v27-spacing-xs);
+  min-width: 0;
+}
+
+/* --- importance=Bold - 548:22135 (info) and the matching node per type --- */
+.v27-message--info {
+  background: var(--v27-background-info);
+  border-color: var(--v27-border-info);
+  color: var(--v27-foreground-info);
+}
+
+.v27-message--positive {
+  background: var(--v27-background-positive);
+  border-color: var(--v27-border-positive);
+  color: var(--v27-foreground-positive);
+}
+
+.v27-message--warning {
+  background: var(--v27-background-warning);
+  border-color: var(--v27-border-warning);
+  color: var(--v27-foreground-warning);
+}
+
+.v27-message--negative {
+  background: var(--v27-background-negative);
+  border-color: var(--v27-border-negative);
+  color: var(--v27-foreground-negative);
+}
+
+/* expired reuses the neutral roles, exactly as Tags does. */
+.v27-message--expired {
+  background: var(--v27-background-tertiary);
+  border-color: var(--v27-border-bold);
+  color: var(--v27-foreground-secondary);
+}
+
+/* --- importance=Subtle - 7533:8907 ---
+   Applied alongside the type modifier. It overrides the surface and the text and leaves
+   the icon to carry the severity, so the icon opts back out to the type colour. */
+.v27-message--subtle {
+  background: var(--v27-background-primary);
+  border-color: var(--v27-border-default);
+  color: var(--v27-foreground-primary);
+}
+
+.v27-message--subtle.v27-message--info     .v27-message__icon { color: var(--v27-foreground-info); }
+.v27-message--subtle.v27-message--positive .v27-message__icon { color: var(--v27-foreground-positive); }
+.v27-message--subtle.v27-message--warning  .v27-message__icon { color: var(--v27-foreground-warning); }
+.v27-message--subtle.v27-message--negative .v27-message__icon { color: var(--v27-foreground-negative); }
+.v27-message--subtle.v27-message--expired  .v27-message__icon { color: var(--v27-foreground-secondary); }
+
+/* ==========================================================================
+   Toggle - Figma `Toggle`, node 4634:77833
+   2 variants: state[2], plus a boolean `icon` property outside the axes.
+   ========================================================================== */
+
+/* Verified on 4634:77832 (on) and 4634:77831 (off). The track is 39x20 with 2px padding
+   and a 13px radius; the knob is 16px with a 17px radius. Both radii are off the Radius
+   scale (4/8/16) and are Figma's values for a pill and a circle, so both are literals. */
+.v27-toggle {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  width: 39px;
+  height: var(--v27-size-s);
+  padding: var(--v27-spacing-xxs);
+  border: 0;
+  border-radius: 13px;
+  background: var(--v27-border-input);
+  overflow: clip;
+  cursor: pointer;
+}
+
+/* state=on - 4634:77832. Figma binds Foreground/Positive as a BACKGROUND here, the only
+   place in the library a foreground role is used as a surface. Reproduced as bound;
+   see FINDINGS.md #21. */
+.v27-toggle[aria-checked='true'] {
+  justify-content: flex-end;
+  background: var(--v27-foreground-positive);
+}
+
+/* The knob is a raw white in Figma, not Background/Primary, so it stays white in dark
+   mode. That is what the file specifies. */
+.v27-toggle__knob {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--v27-size-xs);
+  height: var(--v27-size-xs);
+  flex: none;
+  border-radius: 17px;
+  background: #fff; /* figma-literal: 4634:80745 - raw white, not Background/Primary */
+  overflow: clip;
+}
+
+/* The optional 12px glyph inside the knob - a tick when on, a cross when off. */
+.v27-toggle__knob > svg {
+  display: block;
+  width: 12px;
+  height: 12px;
+  fill: currentColor;
+}
+
+.v27-toggle[aria-checked='true'] .v27-toggle__knob { color: var(--v27-foreground-positive); }
+.v27-toggle[aria-checked='false'] .v27-toggle__knob { color: var(--v27-border-input); }
 
 /* ==========================================================================
    Link - Figma `Link`, node 27:543

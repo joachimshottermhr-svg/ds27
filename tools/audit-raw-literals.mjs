@@ -29,6 +29,27 @@ import { parse, normHex } from './lib/css.mjs';
 const tokensCss = fs.readFileSync('src/tokens.css', 'utf8');
 const stylesCss = fs.readFileSync('src/styles.css', 'utf8');
 
+/**
+ * A declared exception: a literal Figma genuinely leaves unbound, where pointing at a
+ * token would assert a relationship the design file does not make.
+ *
+ * The Toggle knob is the case that forced this. It is a raw white in Figma - not
+ * Background/Primary - so it stays white in dark mode. A token with the value #ffffff
+ * exists, so the audit called it swappable, but swapping it would either change the
+ * behaviour (Background/Primary flips) or reach into the primitive tier to avoid that.
+ * Both are worse than a literal.
+ *
+ * The exemption is deliberately noisy to claim: it needs the node id on the same line.
+ *
+ *     background: #fff; /* figma-literal: 4634:80745 - raw white, not a bound variable *(/
+ *
+ * That keeps the gate strict. An unexplained literal still fails the build; an explained
+ * one carries the evidence to re-check it.
+ */
+const EXEMPT = /\/\*\s*figma-literal:\s*[\d:;IT]+/;
+const rawLines = stylesCss.split('\n');
+const isExempt = (line) => EXEMPT.test(rawLines[line - 1] ?? '');
+
 /* ---- value -> token, from the generated token layer ---- */
 const byColor = new Map();
 const byPx = new Map();
@@ -72,8 +93,13 @@ for (const rule of parse(stylesCss)) {
     // colours
     for (const m of d.value.matchAll(/#[0-9a-fA-F]{3,8}\b/g)) {
       const tok = byColor.get(normHex(m[0]));
-      const row = { selector: rule.selector, prop: d.prop, value: m[0], line: d.line, kind: 'colour', token: tok?.[0] ?? null };
-      (tok ? bucketA : bucketB).push(row);
+      const exempt = isExempt(d.line);
+      const row = {
+        selector: rule.selector, prop: d.prop, value: m[0], line: d.line, kind: 'colour',
+        token: exempt ? null : tok?.[0] ?? null,
+        note: exempt ? 'declared figma-literal - Figma binds no variable here' : undefined,
+      };
+      (tok && !exempt ? bucketA : bucketB).push(row);
     }
     for (const m of d.value.matchAll(/rgba?\([^)]*\)/g)) {
       bucketB.push({ selector: rule.selector, prop: d.prop, value: m[0], line: d.line, kind: 'colour', token: null, note: 'rgba literal' });

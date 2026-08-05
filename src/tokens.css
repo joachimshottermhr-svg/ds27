@@ -143,10 +143,15 @@
   --v27-text-lg-bold-weight     : 600;
   --v27-text-lg-bold-line-height: normal;
 
-  /* sm-bold (name unconfirmed) - nodes 243:4085 */
+  /* Sm bold - nodes 243:4085, 289:4419 */
   --v27-text-sm-bold-size       : 14px;
   --v27-text-sm-bold-weight     : 600;
   --v27-text-sm-bold-line-height: normal;
+
+  /* Base bold - nodes 289:4419 */
+  --v27-text-base-bold-size       : 16px;
+  --v27-text-base-bold-weight     : 600;
+  --v27-text-base-bold-line-height: 20px;
 
   /* ---- Semantic: Lightmode ---- */
   /* Foreground */

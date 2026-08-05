@@ -214,6 +214,91 @@ keyboard-operable.
 variant axes only, so any set with boolean properties is undercounted there. Coverage must
 be checked per component, not from the 259 total.
 
+## 17. Coloured circle icons bind primitives, not semantic tokens
+
+**Figma:** every other component binds a semantic role. `Coloured circle icons`
+(`7840:19951`) binds the Primitives collection directly - `Green/100` behind a `Green/700`
+glyph, and the same for all seven ramps. There is no semantic role for "the green circle",
+so there is nothing to point at.
+
+**Code:** reproduced as bound, referencing primitives. This is the one place in the library
+where component CSS touches the primitive tier, and it is commented as such in
+`src/styles.css`.
+
+**Consequence:** primitives have a single mode, so **these circles do not change between
+light and dark** while everything around them does. That is what the file specifies.
+
+**Status:** open. Worth a decision: either add semantic roles for the seven accent
+surfaces, or accept that this component is theme-invariant.
+
+Note also that the dark step is not consistent across ramps - Green, Blue, Purple and Red
+use the 700 step; Pink, Orange and Grey use 600. The set exposes no `Pink/700`,
+`Orange/700` or `Neutral/700` at all, so this is deliberate rather than an oversight.
+
+## 18. Components bind variables that are not in the V27 export
+
+**Figma:** reading variables off component nodes returns names that do not exist in
+`tokens/variables.json`:
+
+| Variable | Value | Seen on |
+|---|---|---|
+| `Text/Text - Primary` | `#3e3e3e` | Header display `60:1151` |
+| `Icons/Icon - Required field` | `#be2028` | Header display `60:1151` |
+| `Border/Border - Drop shadow` | `#c1c1c1` | in page message `548:22140` |
+
+The naming shape - `Text/Text - *`, `Icons/Icon - *` - is People First's, not V27's, and the
+file subscribes to **both** libraries (see the page inventory note). So some component
+values are bound to the *other* library's variables.
+
+**Code:** these have no V27 token, so anything depending on them is a literal with its node
+id, or is left unbuilt where the value could not be confirmed.
+
+**Status:** open, and the most consequential finding so far: **the V27 variables export is
+not sufficient to rebuild the V27 file.** `Text/Text - Primary` happens to equal
+`Foreground/Primary` (`#3e3e3e`), so it is invisible until a rebrand moves one and not the
+other. `Icons/Icon - Required field` `#be2028` has no V27 equivalent at all.
+
+## 19. There is a shadow style but no shadow token
+
+**Figma:** `in page message` (`548:22140`) carries an effect style
+`Drop shadow = Effect(type: DROP_SHADOW, color: Border/Border - Drop shadow, offset: (0,0),
+radius: 4, spread: 0)` - i.e. `box-shadow: 0 0 4px #c1c1c1`.
+
+**Code:** reproduced as a literal, because the colour it references is not a V27 variable
+(#18) and the Dimensions collection has no shadow tier.
+
+**Status:** open. Effect styles are not variables, so like typography they will never appear
+in a variables export - they have to be read off the node.
+
+## 20. In page message is a fixed 56px high
+
+**Figma:** every one of the ten variants (`548:22135` and siblings) is `h-[56px]` - a fixed
+height, not a minimum - while the body text is a paragraph of placeholder copy long enough
+to wrap.
+
+**Code:** built as `min-height: 56px`. A fixed height would clip the second line of any
+real message, and the component's own placeholder text demonstrates the case.
+
+**Status:** open. This is the one place the code deliberately does **not** reproduce Figma
+exactly, because reproducing it would ship a component that cannot hold its own content.
+Flagged rather than silently changed.
+
+## 21. Toggle uses a foreground role as a background
+
+**Figma:** `Toggle/state=on` (`4634:77832`) fills the track with `Foreground/Positive`
+(`#017e26`). Every other component in the library uses a `Background/*` role for a surface;
+this is the only place a foreground role is used as one. There is no `Background/Positive
+bold` to point at - `Background/Positive` is the pale `#e5f4e7` used behind tags.
+
+**Code:** reproduced as bound.
+
+**Status:** open. The rendered result is correct; the role name is misleading, and a future
+retokenisation of `Foreground/Positive` (a text colour) would silently restyle a switch.
+
+The knob is a raw white rather than `Background/Primary`, so it does not follow dark mode.
+It is marked `figma-literal` in `src/styles.css` so the raw-literals audit accepts it with
+its node id rather than proposing a token that would change the behaviour.
+
 ---
 
 ## Page inventory
