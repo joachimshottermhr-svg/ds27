@@ -13,10 +13,22 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const ROOTS = ['src', 'tools', 'docs', 'export', 'tokens'];
-const FILES = ['README.md', 'FINDINGS.md'];
 const EXT = new Set(['.css', '.mjs', '.js', '.md', '.json', '.html']);
 
-const targets = [...FILES.filter((f) => fs.existsSync(f))];
+/**
+ * Root-level docs are DISCOVERED, not listed.
+ *
+ * This used to be a hand-written list of README.md and FINDINGS.md. STATUS.md was added
+ * later, was not added to the list, and immediately picked up a UTF-8 BOM from PowerShell's
+ * `-Encoding utf8` - the exact failure this audit exists to catch, sitting in the repo
+ * unreported because the audit was not looking at that file.
+ *
+ * An allowlist of things to check is only ever as current as the last person to remember
+ * it. Scan the directory instead.
+ */
+const targets = fs.readdirSync('.', { withFileTypes: true })
+  .filter((e) => e.isFile() && EXT.has(path.extname(e.name)))
+  .map((e) => e.name);
 for (const root of ROOTS) {
   if (!fs.existsSync(root)) continue;
   const walk = (dir) => {

@@ -1,4 +1,4 @@
-﻿# Status
+# Status
 
 Where the build has got to, and exactly what is left. Kept current so the next session
 starts from fact rather than from a re-survey.
