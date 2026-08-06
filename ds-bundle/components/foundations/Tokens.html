@@ -1,0 +1,401 @@
+<!-- @dsCard group="Foundations" viewport="1100x1400" -->
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Tokens - V27</title>
+<link rel="stylesheet" href="../../tokens.css">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body { margin:0; font-family:var(--v27-font-family); }
+  .pane { padding:20px; background:var(--v27-background-primary); color:var(--v27-foreground-primary); }
+  .split { display:grid; grid-template-columns:1fr 1fr; }
+  .h { font-size:11px; text-transform:uppercase; letter-spacing:.09em;
+       color:var(--v27-foreground-secondary); margin:0 0 10px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:6px 14px; }
+  .tk { display:flex; align-items:center; gap:8px; font-size:12px; min-width:0; }
+  .sw { width:18px; height:18px; flex:none; border-radius:var(--v27-radius-s);
+        border:1px solid var(--v27-border-default); }
+  .tk code { font-size:11px; white-space:nowrap; }
+  .tk .v { color:var(--v27-foreground-secondary); font-size:11px;
+           overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .ramp { display:flex; margin:0 0 6px; }
+  .ramp span { flex:1; height:34px; display:flex; align-items:flex-end;
+               justify-content:center; font-size:9px; padding-bottom:2px; }
+  .rl { font-size:11px; color:var(--v27-foreground-secondary); margin:0 0 2px; }
+  .bar { height:14px; background:var(--v27-foreground-theme); border-radius:2px; }
+  .row { display:flex; align-items:center; gap:10px; margin:0 0 4px; font-size:11px; }
+  .row code { width:150px; flex:none; }
+  .rad { width:56px; height:34px; background:var(--v27-background-tertiary);
+         border:1px solid var(--v27-border-bold); flex:none; }
+</style>
+</head>
+<body>
+
+<div class="split">
+  <div class="pane">
+    <p class="h">Semantic - light</p>
+    <div class="grid"><div class="tk">
+        <span class="sw" style="background:var(--v27-foreground-primary)"></span>
+        <code>foreground-primary</code>
+        <span class="v">var(--v27-neutral-700)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-foreground-secondary)"></span>
+        <code>foreground-secondary</code>
+        <span class="v">var(--v27-neutral-600)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-foreground-inverted)"></span>
+        <code>foreground-inverted</code>
+        <span class="v">var(--v27-neutral-0)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-foreground-positive)"></span>
+        <code>foreground-positive</code>
+        <span class="v">var(--v27-green-600)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-foreground-negative)"></span>
+        <code>foreground-negative</code>
+        <span class="v">var(--v27-red-600)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-foreground-warning)"></span>
+        <code>foreground-warning</code>
+        <span class="v">var(--v27-orange-600)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-foreground-link)"></span>
+        <code>foreground-link</code>
+        <span class="v">var(--v27-blue-600)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-foreground-info)"></span>
+        <code>foreground-info</code>
+        <span class="v">var(--v27-blue-600)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-foreground-theme)"></span>
+        <code>foreground-theme</code>
+        <span class="v">var(--v27-pink-600)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-foreground-purple)"></span>
+        <code>foreground-purple</code>
+        <span class="v">var(--v27-purple-600)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-foreground-pink)"></span>
+        <code>foreground-pink</code>
+        <span class="v">var(--v27-pink-600)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-background-primary)"></span>
+        <code>background-primary</code>
+        <span class="v">var(--v27-neutral-0)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-background-secondary)"></span>
+        <code>background-secondary</code>
+        <span class="v">var(--v27-neutral-50)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-background-tertiary)"></span>
+        <code>background-tertiary</code>
+        <span class="v">var(--v27-neutral-100)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-background-highlight)"></span>
+        <code>background-highlight</code>
+        <span class="v">var(--v27-purple-50)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-background-positive-light)"></span>
+        <code>background-positive-light</code>
+        <span class="v">var(--v27-green-50)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-background-positive)"></span>
+        <code>background-positive</code>
+        <span class="v">var(--v27-green-100)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-background-warning)"></span>
+        <code>background-warning</code>
+        <span class="v">var(--v27-orange-100)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-background-info)"></span>
+        <code>background-info</code>
+        <span class="v">var(--v27-blue-100)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-background-negative)"></span>
+        <code>background-negative</code>
+        <span class="v">var(--v27-red-100)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-background-theme)"></span>
+        <code>background-theme</code>
+        <span class="v">var(--v27-pink-50)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-background-primary-button)"></span>
+        <code>background-primary-button</code>
+        <span class="v">var(--v27-green-600)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-background-primary-button-hover)"></span>
+        <code>background-primary-button-hover</code>
+        <span class="v">var(--v27-green-800)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-background-purple)"></span>
+        <code>background-purple</code>
+        <span class="v">var(--v27-purple-100)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-background-pink)"></span>
+        <code>background-pink</code>
+        <span class="v">var(--v27-pink-100)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-background-navigation)"></span>
+        <code>background-navigation</code>
+        <span class="v">var(--v27-blue-50)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-border-default)"></span>
+        <code>border-default</code>
+        <span class="v">var(--v27-neutral-200)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-border-bold)"></span>
+        <code>border-bold</code>
+        <span class="v">var(--v27-neutral-400)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-border-input)"></span>
+        <code>border-input</code>
+        <span class="v">var(--v27-neutral-400)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-border-input-bold)"></span>
+        <code>border-input-bold</code>
+        <span class="v">var(--v27-neutral-500)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-border-input-active)"></span>
+        <code>border-input-active</code>
+        <span class="v">var(--v27-neutral-600)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-border-input-disabled)"></span>
+        <code>border-input-disabled</code>
+        <span class="v">var(--v27-neutral-400)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-border-positive)"></span>
+        <code>border-positive</code>
+        <span class="v">var(--v27-green-400)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-border-warning)"></span>
+        <code>border-warning</code>
+        <span class="v">var(--v27-orange-400)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-border-negative)"></span>
+        <code>border-negative</code>
+        <span class="v">var(--v27-red-400)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-border-info)"></span>
+        <code>border-info</code>
+        <span class="v">var(--v27-blue-400)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-border-theme)"></span>
+        <code>border-theme</code>
+        <span class="v">var(--v27-pink-600)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-border-inverted)"></span>
+        <code>border-inverted</code>
+        <span class="v">var(--v27-neutral-0)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-chart-1)"></span>
+        <code>chart-1</code>
+        <span class="v">#ffffff</span>
+      </div></div>
+  </div>
+  <div class="pane" data-v27-theme="dark">
+    <p class="h">Semantic - dark</p>
+    <div class="grid"><div class="tk">
+        <span class="sw" style="background:var(--v27-foreground-primary)"></span>
+        <code>foreground-primary</code>
+        <span class="v">var(--v27-neutral-700)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-foreground-secondary)"></span>
+        <code>foreground-secondary</code>
+        <span class="v">var(--v27-neutral-600)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-foreground-inverted)"></span>
+        <code>foreground-inverted</code>
+        <span class="v">var(--v27-neutral-0)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-foreground-positive)"></span>
+        <code>foreground-positive</code>
+        <span class="v">var(--v27-green-600)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-foreground-negative)"></span>
+        <code>foreground-negative</code>
+        <span class="v">var(--v27-red-600)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-foreground-warning)"></span>
+        <code>foreground-warning</code>
+        <span class="v">var(--v27-orange-600)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-foreground-link)"></span>
+        <code>foreground-link</code>
+        <span class="v">var(--v27-blue-600)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-foreground-info)"></span>
+        <code>foreground-info</code>
+        <span class="v">var(--v27-blue-600)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-foreground-theme)"></span>
+        <code>foreground-theme</code>
+        <span class="v">var(--v27-pink-600)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-foreground-purple)"></span>
+        <code>foreground-purple</code>
+        <span class="v">var(--v27-purple-600)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-foreground-pink)"></span>
+        <code>foreground-pink</code>
+        <span class="v">var(--v27-pink-600)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-background-primary)"></span>
+        <code>background-primary</code>
+        <span class="v">var(--v27-neutral-0)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-background-secondary)"></span>
+        <code>background-secondary</code>
+        <span class="v">var(--v27-neutral-50)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-background-tertiary)"></span>
+        <code>background-tertiary</code>
+        <span class="v">var(--v27-neutral-100)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-background-highlight)"></span>
+        <code>background-highlight</code>
+        <span class="v">var(--v27-purple-50)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-background-positive-light)"></span>
+        <code>background-positive-light</code>
+        <span class="v">var(--v27-green-50)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-background-positive)"></span>
+        <code>background-positive</code>
+        <span class="v">var(--v27-green-100)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-background-warning)"></span>
+        <code>background-warning</code>
+        <span class="v">var(--v27-orange-100)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-background-info)"></span>
+        <code>background-info</code>
+        <span class="v">var(--v27-blue-100)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-background-negative)"></span>
+        <code>background-negative</code>
+        <span class="v">var(--v27-red-100)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-background-theme)"></span>
+        <code>background-theme</code>
+        <span class="v">var(--v27-pink-50)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-background-primary-button)"></span>
+        <code>background-primary-button</code>
+        <span class="v">var(--v27-green-600)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-background-primary-button-hover)"></span>
+        <code>background-primary-button-hover</code>
+        <span class="v">var(--v27-green-800)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-background-purple)"></span>
+        <code>background-purple</code>
+        <span class="v">var(--v27-purple-100)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-background-pink)"></span>
+        <code>background-pink</code>
+        <span class="v">var(--v27-pink-100)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-background-navigation)"></span>
+        <code>background-navigation</code>
+        <span class="v">var(--v27-blue-50)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-border-default)"></span>
+        <code>border-default</code>
+        <span class="v">var(--v27-neutral-200)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-border-bold)"></span>
+        <code>border-bold</code>
+        <span class="v">var(--v27-neutral-400)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-border-input)"></span>
+        <code>border-input</code>
+        <span class="v">var(--v27-neutral-400)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-border-input-bold)"></span>
+        <code>border-input-bold</code>
+        <span class="v">var(--v27-neutral-500)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-border-input-active)"></span>
+        <code>border-input-active</code>
+        <span class="v">var(--v27-neutral-600)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-border-input-disabled)"></span>
+        <code>border-input-disabled</code>
+        <span class="v">var(--v27-neutral-400)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-border-positive)"></span>
+        <code>border-positive</code>
+        <span class="v">var(--v27-green-400)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-border-warning)"></span>
+        <code>border-warning</code>
+        <span class="v">var(--v27-orange-400)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-border-negative)"></span>
+        <code>border-negative</code>
+        <span class="v">var(--v27-red-400)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-border-info)"></span>
+        <code>border-info</code>
+        <span class="v">var(--v27-blue-400)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-border-theme)"></span>
+        <code>border-theme</code>
+        <span class="v">var(--v27-pink-600)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-border-inverted)"></span>
+        <code>border-inverted</code>
+        <span class="v">var(--v27-neutral-0)</span>
+      </div><div class="tk">
+        <span class="sw" style="background:var(--v27-chart-1)"></span>
+        <code>chart-1</code>
+        <span class="v">#ffffff</span>
+      </div></div>
+  </div></div>
+
+<div class="pane">
+  <p class="h">Primitives - one mode only, so anything bound to these does not follow dark</p>
+  <p class="rl">neutral</p>
+  <div class="ramp"><span style="background:var(--v27-neutral-0);color:#3e3e3e">0</span><span style="background:var(--v27-neutral-50);color:#3e3e3e">50</span><span style="background:var(--v27-neutral-100);color:#3e3e3e">100</span><span style="background:var(--v27-neutral-200);color:#3e3e3e">200</span><span style="background:var(--v27-neutral-300);color:#3e3e3e">300</span><span style="background:var(--v27-neutral-400);color:#fff">400</span><span style="background:var(--v27-neutral-500);color:#fff">500</span><span style="background:var(--v27-neutral-600);color:#fff">600</span><span style="background:var(--v27-neutral-700);color:#fff">700</span><span style="background:var(--v27-neutral-800);color:#fff">800</span><span style="background:var(--v27-neutral-900);color:#fff">900</span></div><p class="rl">blue</p>
+  <div class="ramp"><span style="background:var(--v27-blue-50);color:#3e3e3e">50</span><span style="background:var(--v27-blue-100);color:#3e3e3e">100</span><span style="background:var(--v27-blue-200);color:#3e3e3e">200</span><span style="background:var(--v27-blue-300);color:#3e3e3e">300</span><span style="background:var(--v27-blue-400);color:#fff">400</span><span style="background:var(--v27-blue-500);color:#fff">500</span><span style="background:var(--v27-blue-600);color:#fff">600</span><span style="background:var(--v27-blue-700);color:#fff">700</span><span style="background:var(--v27-blue-800);color:#fff">800</span><span style="background:var(--v27-blue-900);color:#fff">900</span></div><p class="rl">green</p>
+  <div class="ramp"><span style="background:var(--v27-green-50);color:#3e3e3e">50</span><span style="background:var(--v27-green-100);color:#3e3e3e">100</span><span style="background:var(--v27-green-200);color:#3e3e3e">200</span><span style="background:var(--v27-green-300);color:#3e3e3e">300</span><span style="background:var(--v27-green-400);color:#fff">400</span><span style="background:var(--v27-green-500);color:#fff">500</span><span style="background:var(--v27-green-600);color:#fff">600</span><span style="background:var(--v27-green-700);color:#fff">700</span><span style="background:var(--v27-green-800);color:#fff">800</span><span style="background:var(--v27-green-900);color:#fff">900</span></div><p class="rl">red</p>
+  <div class="ramp"><span style="background:var(--v27-red-50);color:#3e3e3e">50</span><span style="background:var(--v27-red-100);color:#3e3e3e">100</span><span style="background:var(--v27-red-200);color:#3e3e3e">200</span><span style="background:var(--v27-red-300);color:#3e3e3e">300</span><span style="background:var(--v27-red-400);color:#fff">400</span><span style="background:var(--v27-red-500);color:#fff">500</span><span style="background:var(--v27-red-600);color:#fff">600</span><span style="background:var(--v27-red-700);color:#fff">700</span><span style="background:var(--v27-red-800);color:#fff">800</span><span style="background:var(--v27-red-900);color:#fff">900</span></div><p class="rl">pink</p>
+  <div class="ramp"><span style="background:var(--v27-pink-50);color:#3e3e3e">50</span><span style="background:var(--v27-pink-100);color:#3e3e3e">100</span><span style="background:var(--v27-pink-200);color:#3e3e3e">200</span><span style="background:var(--v27-pink-300);color:#3e3e3e">300</span><span style="background:var(--v27-pink-400);color:#fff">400</span><span style="background:var(--v27-pink-500);color:#fff">500</span><span style="background:var(--v27-pink-600);color:#fff">600</span><span style="background:var(--v27-pink-700);color:#fff">700</span><span style="background:var(--v27-pink-800);color:#fff">800</span><span style="background:var(--v27-pink-900);color:#fff">900</span></div><p class="rl">purple</p>
+  <div class="ramp"><span style="background:var(--v27-purple-50);color:#3e3e3e">50</span><span style="background:var(--v27-purple-100);color:#3e3e3e">100</span><span style="background:var(--v27-purple-200);color:#3e3e3e">200</span><span style="background:var(--v27-purple-300);color:#3e3e3e">300</span><span style="background:var(--v27-purple-400);color:#fff">400</span><span style="background:var(--v27-purple-500);color:#fff">500</span><span style="background:var(--v27-purple-600);color:#fff">600</span><span style="background:var(--v27-purple-700);color:#fff">700</span><span style="background:var(--v27-purple-800);color:#fff">800</span><span style="background:var(--v27-purple-900);color:#fff">900</span></div><p class="rl">orange</p>
+  <div class="ramp"><span style="background:var(--v27-orange-100);color:#3e3e3e">100</span><span style="background:var(--v27-orange-200);color:#3e3e3e">200</span><span style="background:var(--v27-orange-300);color:#3e3e3e">300</span><span style="background:var(--v27-orange-400);color:#fff">400</span><span style="background:var(--v27-orange-500);color:#fff">500</span><span style="background:var(--v27-orange-600);color:#fff">600</span><span style="background:var(--v27-orange-700);color:#fff">700</span><span style="background:var(--v27-orange-800);color:#fff">800</span><span style="background:var(--v27-orange-900);color:#fff">900</span></div>
+</div>
+
+<div class="pane">
+  <p class="h">Typography - Outfit, with a system fallback (not bundled, FINDINGS #9)</p>
+  <div style="font-size:var(--v27-text-sm-size);font-weight:var(--v27-text-sm-weight);line-height:var(--v27-text-sm-line-height);margin:0 0 8px">
+    sm &mdash; The quick brown fox <span style="font-size:11px;font-weight:400;color:var(--v27-foreground-secondary)">--v27-text-sm-*</span>
+  </div><div style="font-size:var(--v27-text-base-size);font-weight:var(--v27-text-base-weight);line-height:var(--v27-text-base-line-height);margin:0 0 8px">
+    base &mdash; The quick brown fox <span style="font-size:11px;font-weight:400;color:var(--v27-foreground-secondary)">--v27-text-base-*</span>
+  </div><div style="font-size:var(--v27-text-lg-size);font-weight:var(--v27-text-lg-weight);line-height:var(--v27-text-lg-line-height);margin:0 0 8px">
+    lg &mdash; The quick brown fox <span style="font-size:11px;font-weight:400;color:var(--v27-foreground-secondary)">--v27-text-lg-*</span>
+  </div><div style="font-size:var(--v27-text-lg-bold-size);font-weight:var(--v27-text-lg-bold-weight);line-height:var(--v27-text-lg-bold-line-height);margin:0 0 8px">
+    lg-bold &mdash; The quick brown fox <span style="font-size:11px;font-weight:400;color:var(--v27-foreground-secondary)">--v27-text-lg-bold-*</span>
+  </div><div style="font-size:var(--v27-text-sm-bold-size);font-weight:var(--v27-text-sm-bold-weight);line-height:var(--v27-text-sm-bold-line-height);margin:0 0 8px">
+    sm-bold &mdash; The quick brown fox <span style="font-size:11px;font-weight:400;color:var(--v27-foreground-secondary)">--v27-text-sm-bold-*</span>
+  </div><div style="font-size:var(--v27-text-xs-size);font-weight:var(--v27-text-xs-weight);line-height:var(--v27-text-xs-line-height);margin:0 0 8px">
+    xs &mdash; The quick brown fox <span style="font-size:11px;font-weight:400;color:var(--v27-foreground-secondary)">--v27-text-xs-*</span>
+  </div><div style="font-size:var(--v27-text-xl-size);font-weight:var(--v27-text-xl-weight);line-height:var(--v27-text-xl-line-height);margin:0 0 8px">
+    xl &mdash; The quick brown fox <span style="font-size:11px;font-weight:400;color:var(--v27-foreground-secondary)">--v27-text-xl-*</span>
+  </div><div style="font-size:var(--v27-text-2xl-size);font-weight:var(--v27-text-2xl-weight);line-height:var(--v27-text-2xl-line-height);margin:0 0 8px">
+    2xl &mdash; The quick brown fox <span style="font-size:11px;font-weight:400;color:var(--v27-foreground-secondary)">--v27-text-2xl-*</span>
+  </div><div style="font-size:var(--v27-text-base-bold-size);font-weight:var(--v27-text-base-bold-weight);line-height:var(--v27-text-base-bold-line-height);margin:0 0 8px">
+    base-bold &mdash; The quick brown fox <span style="font-size:11px;font-weight:400;color:var(--v27-foreground-secondary)">--v27-text-base-bold-*</span>
+  </div>
+</div>
+
+<div class="pane">
+  <p class="h">Spacing</p>
+  <div class="row"><code>spacing-xxs</code><span class="bar" style="width:var(--v27-spacing-xxs)"></span>2px</div><div class="row"><code>spacing-xs</code><span class="bar" style="width:var(--v27-spacing-xs)"></span>4px</div><div class="row"><code>spacing-s</code><span class="bar" style="width:var(--v27-spacing-s)"></span>8px</div><div class="row"><code>spacing-sm</code><span class="bar" style="width:var(--v27-spacing-sm)"></span>12px</div><div class="row"><code>spacing-m</code><span class="bar" style="width:var(--v27-spacing-m)"></span>16px</div><div class="row"><code>spacing-ml</code><span class="bar" style="width:var(--v27-spacing-ml)"></span>24px</div><div class="row"><code>spacing-l</code><span class="bar" style="width:var(--v27-spacing-l)"></span>32px</div><div class="row"><code>spacing-xl</code><span class="bar" style="width:var(--v27-spacing-xl)"></span>40px</div>
+  <p class="h" style="margin-top:16px">Size</p>
+  <div class="row"><code>size-xs</code><span class="bar" style="width:var(--v27-size-xs)"></span>16px</div><div class="row"><code>size-s</code><span class="bar" style="width:var(--v27-size-s)"></span>20px</div><div class="row"><code>size-m</code><span class="bar" style="width:var(--v27-size-m)"></span>24px</div><div class="row"><code>size-l</code><span class="bar" style="width:var(--v27-size-l)"></span>32px</div><div class="row"><code>size-xl</code><span class="bar" style="width:var(--v27-size-xl)"></span>40px</div>
+  <p class="h" style="margin-top:16px">Radius</p>
+  <div style="display:flex;gap:14px;align-items:center">
+    <div style="text-align:center;font-size:11px"><div class="rad" style="border-radius:var(--v27-radius-s)"></div>s 4px</div><div style="text-align:center;font-size:11px"><div class="rad" style="border-radius:var(--v27-radius-m)"></div>m 8px</div><div style="text-align:center;font-size:11px"><div class="rad" style="border-radius:var(--v27-radius-l)"></div>l 16px</div>
+  </div>
+</div>
+
+</body></html>

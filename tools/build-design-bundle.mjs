@@ -129,7 +129,15 @@ ${stories}
 </body></html>
 `;
 
-  const file = path.join(dir, 'preview.html');
+  /**
+   * The card's LABEL comes from the file name, not from the @dsCard marker and not from
+   * the name passed to register_assets. Naming every preview `preview.html` produced 45
+   * cards all labelled "preview" - technically correct, completely useless.
+   *
+   * The doc basename is already a clean PascalCase name (Button.md, CircleIcon.md,
+   * MultiAvatar.md), so the preview takes the same stem.
+   */
+  const file = path.join(dir, `${c.doc.replace(/\.md$/, '')}.html`);
   fs.writeFileSync(file, html, 'utf8');
 
   // PROJECT-relative, not repo-relative. The manifest and the upload both address files
@@ -140,6 +148,107 @@ ${stories}
   // The doc travels with the card, so the spec is one click away inside Claude Design.
   fs.copyFileSync(path.join('docs', c.doc), path.join(dir, c.doc));
 }
+
+/* ---- Foundations: the token layer itself --------------------------------
+ * A design system whose cards are all components and no tokens is missing its own
+ * foundation - the thing every component is built out of, and the only place the two-tier
+ * structure is visible at all.
+ *
+ * Semantic swatches are shown in BOTH themes side by side, because 39 of them change and
+ * the whole point of the tier is that they do. Primitives are shown once, because they
+ * have a single mode - which is exactly why the components binding them (FINDINGS #17,
+ * #22) do not follow dark mode.
+ */
+function foundations() {
+  const dir = path.join(OUT, 'components', 'foundations');
+  fs.mkdirSync(dir, { recursive: true });
+
+  const byTier = (tier) => model.tokens.filter((t) => t.tier === tier);
+  const swatch = (t) => `<div class="tk">
+        <span class="sw" style="background:var(${t.name})"></span>
+        <code>${t.name.replace('--v27-', '')}</code>
+        <span class="v">${t.value}</span>
+      </div>`;
+  const ramp = (prefix) => byTier('primitive').filter((t) => t.name.startsWith(`--v27-${prefix}-`));
+  const RAMPS = ['neutral', 'blue', 'green', 'red', 'pink', 'purple', 'orange'];
+
+  const typeStyles = [...new Set(model.tokens
+    .filter((t) => /^--v27-text-.*-size$/.test(t.name))
+    .map((t) => t.name.replace('--v27-text-', '').replace('-size', '')))];
+
+  const pane = (theme) => `
+  <div class="pane"${theme === 'dark' ? ' data-v27-theme="dark"' : ''}>
+    <p class="h">Semantic - ${theme}</p>
+    <div class="grid">${byTier('semantic').map(swatch).join('')}</div>
+  </div>`;
+
+  const html = `<!-- @dsCard group="Foundations" viewport="1100x1400" -->
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Tokens - V27</title>
+<link rel="stylesheet" href="../../tokens.css">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body { margin:0; font-family:var(--v27-font-family); }
+  .pane { padding:20px; background:var(--v27-background-primary); color:var(--v27-foreground-primary); }
+  .split { display:grid; grid-template-columns:1fr 1fr; }
+  .h { font-size:11px; text-transform:uppercase; letter-spacing:.09em;
+       color:var(--v27-foreground-secondary); margin:0 0 10px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:6px 14px; }
+  .tk { display:flex; align-items:center; gap:8px; font-size:12px; min-width:0; }
+  .sw { width:18px; height:18px; flex:none; border-radius:var(--v27-radius-s);
+        border:1px solid var(--v27-border-default); }
+  .tk code { font-size:11px; white-space:nowrap; }
+  .tk .v { color:var(--v27-foreground-secondary); font-size:11px;
+           overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .ramp { display:flex; margin:0 0 6px; }
+  .ramp span { flex:1; height:34px; display:flex; align-items:flex-end;
+               justify-content:center; font-size:9px; padding-bottom:2px; }
+  .rl { font-size:11px; color:var(--v27-foreground-secondary); margin:0 0 2px; }
+  .bar { height:14px; background:var(--v27-foreground-theme); border-radius:2px; }
+  .row { display:flex; align-items:center; gap:10px; margin:0 0 4px; font-size:11px; }
+  .row code { width:150px; flex:none; }
+  .rad { width:56px; height:34px; background:var(--v27-background-tertiary);
+         border:1px solid var(--v27-border-bold); flex:none; }
+</style>
+</head>
+<body>
+
+<div class="split">${pane('light')}${pane('dark')}</div>
+
+<div class="pane">
+  <p class="h">Primitives - one mode only, so anything bound to these does not follow dark</p>
+  ${RAMPS.map((r) => `<p class="rl">${r}</p>
+  <div class="ramp">${ramp(r).map((t) => `<span style="background:var(${t.name});color:${/-(0|50|100|200|300)$/.test(t.name) ? '#3e3e3e' : '#fff'}">${t.name.split('-').pop()}</span>`).join('')}</div>`).join('')}
+</div>
+
+<div class="pane">
+  <p class="h">Typography - Outfit, with a system fallback (not bundled, FINDINGS #9)</p>
+  ${typeStyles.map((s) => `<div style="font-size:var(--v27-text-${s}-size);font-weight:var(--v27-text-${s}-weight);line-height:var(--v27-text-${s}-line-height);margin:0 0 8px">
+    ${s} &mdash; The quick brown fox <span style="font-size:11px;font-weight:400;color:var(--v27-foreground-secondary)">--v27-text-${s}-*</span>
+  </div>`).join('')}
+</div>
+
+<div class="pane">
+  <p class="h">Spacing</p>
+  ${byTier('dimension').filter((t) => t.name.includes('spacing')).map((t) => `<div class="row"><code>${t.name.replace('--v27-', '')}</code><span class="bar" style="width:var(${t.name})"></span>${t.value}</div>`).join('')}
+  <p class="h" style="margin-top:16px">Size</p>
+  ${byTier('dimension').filter((t) => t.name.includes('size')).map((t) => `<div class="row"><code>${t.name.replace('--v27-', '')}</code><span class="bar" style="width:var(${t.name})"></span>${t.value}</div>`).join('')}
+  <p class="h" style="margin-top:16px">Radius</p>
+  <div style="display:flex;gap:14px;align-items:center">
+    ${byTier('dimension').filter((t) => t.name.includes('radius')).map((t) => `<div style="text-align:center;font-size:11px"><div class="rad" style="border-radius:var(${t.name})"></div>${t.name.replace('--v27-radius-', '')} ${t.value}</div>`).join('')}
+  </div>
+</div>
+
+</body></html>
+`;
+
+  const file = path.join(dir, 'Tokens.html');
+  fs.writeFileSync(file, html, 'utf8');
+  const rel = path.relative(OUT, file).split(path.sep).join('/');
+  cards.push({ name: 'Tokens', group: 'Foundations', path: rel, viewport: '1100x1400', examples: 0 });
+}
+foundations();
 
 /* ---- _ds_manifest.json --------------------------------------------------
  * The card index the Design System pane actually reads.
@@ -199,6 +308,7 @@ for (const c of manifest.cards) {
     process.exitCode = 1;
   }
 }
+
 
 /* ---- index.html ---------------------------------------------------------
  * A gallery that does not depend on any host application.
