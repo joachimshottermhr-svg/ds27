@@ -1,4 +1,4 @@
-<!-- @dsCard group="Foundations" viewport="1100x1400" -->
+<!-- @dsCard group="Foundations" viewport="1100x2960" -->
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <title>Tokens - V27</title>
@@ -26,6 +26,16 @@
   .row code { width:150px; flex:none; }
   .rad { width:56px; height:34px; background:var(--v27-background-tertiary);
          border:1px solid var(--v27-border-bold); flex:none; }
+  .lead { font-size:12px; line-height:18px; color:var(--v27-foreground-secondary);
+          margin:0 0 12px; max-width:70ch; }
+  .gaps { border-collapse:collapse; font-size:12px; width:100%; }
+  .gaps th { text-align:left; font-weight:var(--v27-font-weight-semibold); padding:4px 10px 6px 0;
+             border-bottom:1px solid var(--v27-border-default); color:var(--v27-foreground-secondary); }
+  .gaps td { padding:7px 10px 7px 0; border-bottom:1px solid var(--v27-border-default);
+             vertical-align:top; line-height:17px; }
+  .gaps td:first-child { white-space:nowrap; font-weight:var(--v27-font-weight-semibold); }
+  .gaps td:last-child { white-space:nowrap; color:var(--v27-foreground-secondary); }
+  .gaps code { font-size:11px; }
 </style>
 </head>
 <body>
@@ -396,6 +406,30 @@
   <div style="display:flex;gap:14px;align-items:center">
     <div style="text-align:center;font-size:11px"><div class="rad" style="border-radius:var(--v27-radius-s)"></div>s 4px</div><div style="text-align:center;font-size:11px"><div class="rad" style="border-radius:var(--v27-radius-m)"></div>m 8px</div><div style="text-align:center;font-size:11px"><div class="rad" style="border-radius:var(--v27-radius-l)"></div>l 16px</div>
   </div>
+</div>
+
+<div class="pane">
+  <p class="h">Known gaps - what is deliberately NOT in this layer</p>
+  <p class="lead">Every one of these is a value that could not be verified or does not exist
+     in the V27 export. None has been invented. A stated gap is useful; a plausible
+     invention is not.</p>
+  <table class="gaps">
+    <tr><th>Gap</th><th>What is missing</th><th></th></tr>
+    <tr><td>Chart palette</td><td><code>chart-1</code> is the only chart token and it is <code>#ffffff</code> in both modes. A real three-colour palette (<code>#0075be</code>, <code>#fc8700</code>, <code>#00ad60</code>) exists but is <strong>not in the V27 export</strong>.</td><td>#3, #25</td></tr>
+    <tr><td>Shadow tier</td><td>None. Toast and Step carry shadows whose colour is <code>Border/Border - Drop shadow</code>, not a V27 variable.</td><td>#19</td></tr>
+    <tr><td>Orange 50</td><td>Every other ramp has ten steps; Orange has nine. No tenth was interpolated.</td><td>#5</td></tr>
+    <tr><td>Three heading styles</td><td><code>XL Heading</code>, <code>Larger Heading</code> and <code>Sub heading</code> are named on the style guide but node <code>1:27</code> exceeds the metadata ceiling, so they could not be read off their nodes.</td><td>#1, #11</td></tr>
+    <tr><td>AI gradient</td><td>The <code>AI gradient</code> style serialises empty - gradients do not come through this toolchain. Exposed as <code>--v27-ai-accent</code> with a neutral fallback rather than a guessed brand colour.</td><td>#32</td></tr>
+    <tr><td>Outfit</td><td>Referenced with a system fallback. Not licensed, not bundled - the library renders in the fallback unless the app loads it.</td><td>#9</td></tr>
+    <tr><td>Off-scale literals</td><td>The Button's 42px height and 207px radius, the circle icon's 35px radius, Toast's 11px gap and others sit on no scale. They stay literals with their node ids rather than being rounded onto one.</td><td>#10, #13</td></tr>
+  </table>
+  <p class="lead" style="margin-top:14px">Seven variables bound on V27 components come from the
+     People First library and are absent from the V27 export entirely -
+     <code>Text/Text - Primary</code>, <code>Icons/Icon - Required field</code>,
+     <code>Border/Border - Drop shadow</code>, <code>Border/Secondary</code>,
+     <code>Charts/Chart 1-3</code>, <code>2nd (light)/Grey steel</code> and a style named
+     <code>DEPRECATED COLOURS/White</code>. The V27 export alone cannot rebuild the V27
+     file. See FINDINGS.md #18 and #28.</p>
 </div>
 
 </body></html>
