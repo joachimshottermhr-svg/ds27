@@ -200,6 +200,69 @@ for (const c of manifest.cards) {
   }
 }
 
+/* ---- index.html ---------------------------------------------------------
+ * A gallery that does not depend on any host application.
+ *
+ * The bundle's whole value is being able to SEE the system, and that should not be
+ * contingent on a pane rendering it. Open this file and every component is there, in both
+ * themes, with its doc a click away.
+ */
+const nav = Object.entries(
+  cards.reduce((acc, c) => ((acc[c.group] ??= []).push(c), acc), {}),
+).sort(([a], [b]) => a.localeCompare(b));
+
+const section = ([group, list]) => `
+  <section class="g" id="${group.toLowerCase()}">
+    <h2>${group} <span class="n">${list.length}</span></h2>
+    <div class="cards">
+${list.sort((a, b) => a.name.localeCompare(b.name)).map((c) => `      <a class="card" href="${c.path}">
+        <span class="nm">${c.name}</span>
+        <span class="mt">${c.examples} example${c.examples === 1 ? '' : 's'}</span>
+      </a>`).join('\n')}
+    </div>
+  </section>`;
+
+const index = `<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>V27 Design System</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+<style>
+  body { margin:0; padding:32px; font-family:var(--v27-font-family);
+         background:var(--v27-background-secondary); color:var(--v27-foreground-primary); }
+  header { max-width:1100px; margin:0 auto 28px; }
+  h1 { font-size:var(--v27-text-2xl-size); font-weight:var(--v27-text-2xl-weight);
+       line-height:var(--v27-text-2xl-line-height); margin:0 0 6px; }
+  .sub { color:var(--v27-foreground-secondary); font-size:var(--v27-text-sm-size);
+         line-height:var(--v27-text-sm-line-height); margin:0; }
+  .g { max-width:1100px; margin:0 auto 30px; }
+  h2 { font-size:var(--v27-text-base-bold-size); font-weight:var(--v27-text-base-bold-weight);
+       line-height:var(--v27-text-base-bold-line-height); margin:0 0 12px; }
+  .n { color:var(--v27-foreground-secondary); font-weight:var(--v27-font-weight-regular); }
+  .cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:12px; }
+  .card { display:flex; flex-direction:column; gap:var(--v27-spacing-xs);
+          padding:var(--v27-spacing-m); border:1px solid var(--v27-border-default);
+          border-radius:var(--v27-radius-m); background:var(--v27-background-primary);
+          text-decoration:none; color:inherit; }
+  .card:hover { border-color:var(--v27-border-theme); }
+  .nm { font-size:var(--v27-text-base-size); line-height:var(--v27-text-base-line-height); }
+  .mt { font-size:var(--v27-text-xs-size); color:var(--v27-foreground-secondary); }
+</style>
+</head>
+<body>
+<header>
+  <h1>V27 Design System</h1>
+  <p class="sub">${model.counts.components} components &middot; ${model.counts.classes} classes &middot;
+     ${model.counts.tokens} tokens, ${model.counts.themed} themed &middot;
+     ${model.coverage.setsBuilt} of ${model.coverage.sets} Figma component sets.
+     Every card shows light and dark.</p>
+</header>
+${nav.map(section).join('\n')}
+</body></html>
+`;
+fs.writeFileSync(path.join(OUT, 'index.html'), index, 'utf8');
+
 const readme = `# V27 Design System
 
 ${model.counts.components} components, ${model.counts.classes} classes, ${model.counts.tokens} tokens

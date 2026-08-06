@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>V27 Design System</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+<style>
+  body { margin:0; padding:32px; font-family:var(--v27-font-family);
+         background:var(--v27-background-secondary); color:var(--v27-foreground-primary); }
+  header { max-width:1100px; margin:0 auto 28px; }
+  h1 { font-size:var(--v27-text-2xl-size); font-weight:var(--v27-text-2xl-weight);
+       line-height:var(--v27-text-2xl-line-height); margin:0 0 6px; }
+  .sub { color:var(--v27-foreground-secondary); font-size:var(--v27-text-sm-size);
+         line-height:var(--v27-text-sm-line-height); margin:0; }
+  .g { max-width:1100px; margin:0 auto 30px; }
+  h2 { font-size:var(--v27-text-base-bold-size); font-weight:var(--v27-text-base-bold-weight);
+       line-height:var(--v27-text-base-bold-line-height); margin:0 0 12px; }
+  .n { color:var(--v27-foreground-secondary); font-weight:var(--v27-font-weight-regular); }
+  .cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:12px; }
+  .card { display:flex; flex-direction:column; gap:var(--v27-spacing-xs);
+          padding:var(--v27-spacing-m); border:1px solid var(--v27-border-default);
+          border-radius:var(--v27-radius-m); background:var(--v27-background-primary);
+          text-decoration:none; color:inherit; }
+  .card:hover { border-color:var(--v27-border-theme); }
+  .nm { font-size:var(--v27-text-base-size); line-height:var(--v27-text-base-line-height); }
+  .mt { font-size:var(--v27-text-xs-size); color:var(--v27-foreground-secondary); }
+</style>
+</head>
+<body>
+<header>
+  <h1>V27 Design System</h1>
+  <p class="sub">45 components &middot; 219 classes &middot;
+     155 tokens, 39 themed &middot;
+     39 of 39 Figma component sets.
+     Every card shows light and dark.</p>
+</header>
+
+  <section class="g" id="actions">
+    <h2>Actions <span class="n">4</span></h2>
+    <div class="cards">
+      <a class="card" href="components/actions/Button/preview.html">
+        <span class="nm">Button</span>
+        <span class="mt">2 examples</span>
+      </a>
+      <a class="card" href="components/actions/Link/preview.html">
+        <span class="nm">Link</span>
+        <span class="mt">2 examples</span>
+      </a>
+      <a class="card" href="components/actions/Select-button-elements/preview.html">
+        <span class="nm">Select button elements</span>
+        <span class="mt">1 example</span>
+      </a>
+      <a class="card" href="components/actions/Toggle/preview.html">
+        <span class="nm">Toggle</span>
+        <span class="mt">1 example</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="g" id="ai">
+    <h2>AI <span class="n">6</span></h2>
+    <div class="cards">
+      <a class="card" href="components/ai/AI-assistant-overlay-mobile/preview.html">
+        <span class="nm">AI assistant overlay (mobile)</span>
+        <span class="mt">1 example</span>
+      </a>
+      <a class="card" href="components/ai/AI-chat-bubble/preview.html">
+        <span class="nm">AI chat bubble</span>
+        <span class="mt">1 example</span>
+      </a>
+      <a class="card" href="components/ai/AI-chat-tool-bar/preview.html">
+        <span class="nm">AI chat tool bar</span>
+        <span class="mt">1 example</span>
+      </a>
+      <a class="card" href="components/ai/Chat-input/preview.html">
+        <span class="nm">Chat input</span>
+        <span class="mt">1 example</span>
+      </a>
+      <a class="card" href="components/ai/Message-box/preview.html">
+        <span class="nm">Message box</span>
+        <span class="mt">1 example</span>
+      </a>
+      <a class="card" href="components/ai/User-chat-bubble/preview.html">
+        <span class="nm">User chat bubble</span>
+        <span class="mt">3 examples</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="g" id="content">
+    <h2>Content <span class="n">14</span></h2>
+    <div class="cards">
+      <a class="card" href="components/content/Avatar/preview.html">
+        <span class="nm">Avatar</span>
+        <span class="mt">2 examples</span>
+      </a>
+      <a class="card" href="components/content/Avatar-compact/preview.html">
+        <span class="nm">Avatar compact</span>
+        <span class="mt">1 example</span>
+      </a>
+      <a class="card" href="components/content/Coloured-circle-icons/preview.html">
+        <span class="nm">Coloured circle icons</span>
+        <span class="mt">1 example</span>
+      </a>
+      <a class="card" href="components/content/Config-tile/preview.html">
+        <span class="nm">Config tile</span>
+        <span class="mt">1 example</span>
+      </a>
+      <a class="card" href="components/content/Content-display/preview.html">
+        <span class="nm">Content display</span>
+        <span class="mt">1 example</span>
+      </a>
+      <a class="card" href="components/content/Data-display/preview.html">
+        <span class="nm">Data display</span>
+        <span class="mt">1 example</span>
+      </a>
+      <a class="card" href="components/content/Document-attachment/preview.html">
+        <span class="nm">Document attachment</span>
+        <span class="mt">1 example</span>
+      </a>
+      <a class="card" href="components/content/Entity-card/preview.html">
+        <span class="nm">Entity card</span>
+        <span class="mt">1 example</span>
+      </a>
+      <a class="card" href="components/content/Header-display/preview.html">
+        <span class="nm">Header display</span>
+        <span class="mt">3 examples</span>
+      </a>
+      <a class="card" href="components/content/Icon/preview.html">
+        <span class="nm">Icon</span>
+        <span class="mt">1 example</span>
+      </a>
+      <a class="card" href="components/content/Icon-compact-with-text/preview.html">
+        <span class="nm">Icon compact with text</span>
+        <span class="mt">1 example</span>
+      </a>
+      <a class="card" href="components/content/Image/preview.html">
+        <span class="nm">Image</span>
+        <span class="mt">1 example</span>
+      </a>
+      <a class="card" href="components/content/Multi-avatar/preview.html">
+        <span class="nm">Multi avatar</span>
+        <span class="mt">1 example</span>
+      </a>
+      <a class="card" href="components/content/Tasks/preview.html">
+        <span class="nm">Tasks</span>
+        <span class="mt">2 examples</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="g" id="feedback">
+    <h2>Feedback <span class="n">5</span></h2>
+    <div class="cards">
+      <a class="card" href="components/feedback/Confirmation-modal/preview.html">
+        <span class="nm">Confirmation modal</span>
+        <span class="mt">1 example</span>
+      </a>
+      <a class="card" href="components/feedback/In-page-message/preview.html">
+        <span class="nm">In page message</span>
+        <span class="mt">2 examples</span>
+      </a>
+      <a class="card" href="components/feedback/Progress-bar/preview.html">
+        <span class="nm">Progress bar</span>
+        <span class="mt">1 example</span>
+      </a>
+      <a class="card" href="components/feedback/Tags/preview.html">
+        <span class="nm">Tags</span>
+        <span class="mt">2 examples</span>
+      </a>
+      <a class="card" href="components/feedback/Toast/preview.html">
+        <span class="nm">Toast</span>
+        <span class="mt">1 example</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="g" id="forms">
+    <h2>Forms <span class="n">7</span></h2>
+    <div class="cards">
+      <a class="card" href="components/forms/Attachments/preview.html">
+        <span class="nm">Attachments</span>
+        <span class="mt">1 example</span>
+      </a>
+      <a class="card" href="components/forms/Checkbox/preview.html">
+        <span class="nm">Checkbox</span>
+        <span class="mt">2 examples</span>
+      </a>
+      <a class="card" href="components/forms/Form-field/preview.html">
+        <span class="nm">Form field</span>
+        <span class="mt">3 examples</span>
+      </a>
+      <a class="card" href="components/forms/Label/preview.html">
+        <span class="nm">Label</span>
+        <span class="mt">4 examples</span>
+      </a>
+      <a class="card" href="components/forms/Radio-button/preview.html">
+        <span class="nm">Radio button</span>
+        <span class="mt">1 example</span>
+      </a>
+      <a class="card" href="components/forms/Single-Checkbox/preview.html">
+        <span class="nm">Single Checkbox</span>
+        <span class="mt">1 example</span>
+      </a>
+      <a class="card" href="components/forms/Single-radio-button/preview.html">
+        <span class="nm">Single radio button</span>
+        <span class="mt">1 example</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="g" id="navigation">
+    <h2>Navigation <span class="n">9</span></h2>
+    <div class="cards">
+      <a class="card" href="components/navigation/App-header-top-navigation/preview.html">
+        <span class="nm">App header + top navigation</span>
+        <span class="mt">1 example</span>
+      </a>
+      <a class="card" href="components/navigation/Breadcrumb/preview.html">
+        <span class="nm">Breadcrumb</span>
+        <span class="mt">2 examples</span>
+      </a>
+      <a class="card" href="components/navigation/Nav-elements/preview.html">
+        <span class="nm">Nav elements</span>
+        <span class="mt">1 example</span>
+      </a>
+      <a class="card" href="components/navigation/Side-nav/preview.html">
+        <span class="nm">Side nav</span>
+        <span class="mt">1 example</span>
+      </a>
+      <a class="card" href="components/navigation/Step/preview.html">
+        <span class="nm">Step</span>
+        <span class="mt">1 example</span>
+      </a>
+      <a class="card" href="components/navigation/Step-connector/preview.html">
+        <span class="nm">Step connector</span>
+        <span class="mt">1 example</span>
+      </a>
+      <a class="card" href="components/navigation/Tab-group/preview.html">
+        <span class="nm">Tab group</span>
+        <span class="mt">2 examples</span>
+      </a>
+      <a class="card" href="components/navigation/Tab-single/preview.html">
+        <span class="nm">Tab single</span>
+        <span class="mt">1 example</span>
+      </a>
+      <a class="card" href="components/navigation/Workspace-header/preview.html">
+        <span class="nm">Workspace header</span>
+        <span class="mt">1 example</span>
+      </a>
+    </div>
+  </section>
+</body></html>
