@@ -1,0 +1,86 @@
+# Tasks
+
+Figma: `Tasks`, node `2129:54674` (page Components, `1:28`).
+3 variants - `property 1[3]`: Default, Selected, No one assigned.
+
+A wide task row: priority, a two-line summary, assignees, a due date and a context menu.
+
+**Only Default is built** - Selected and No one assigned were not measured.
+
+## Markup
+
+```html
+<div class="v27-task">
+  <div class="v27-task__row">
+    <span class="v27-task__priority"><span class="v27-tag v27-tag--warning">Medium</span></span>
+    <div class="v27-task__text">
+      <span class="v27-task__area">Task area</span>
+      <span class="v27-task__summary">Task summary text</span>
+    </div>
+    <span class="v27-task__assignees">
+      <span class="v27-multi-avatar"> ... </span>
+    </span>
+    <span class="v27-task__due">
+      <span class="v27-icon-text"><svg viewBox="0 0 24 24" aria-hidden="true"></svg>Monday</span>
+    </span>
+    <button type="button" class="v27-task__menu" aria-label="Task actions">
+      <svg viewBox="0 0 24 24" aria-hidden="true"></svg>
+    </button>
+  </div>
+</div>
+```
+
+The row composes [Tags](Tags.md), [Multi avatar](MultiAvatar.md) and Icon compact with
+text - none of them is re-implemented here.
+
+## Classes
+
+| Class | What it is |
+|---|---|
+| `.v27-task` | the row |
+| `.v27-task__row` | the 24px-gap track |
+| `.v27-task__priority` | fixed 80px slot for a Tag |
+| `.v27-task__text` | area and summary |
+| `.v27-task__area` | Sm, `Foreground/Secondary` |
+| `.v27-task__summary` | Base, `Foreground/Primary` |
+| `.v27-task__assignees` | fixed 140px slot |
+| `.v27-task__due` | fixed 100px slot |
+| `.v27-task__menu` | 24px context-menu button |
+
+The three fixed-width slots are what make a list of tasks line up; they are Figma's
+measured column widths and are all off every scale.
+
+## Values
+
+| Property | Value |
+|---|---|
+| padding | **20px top / bottom / left, 15px right** |
+| track gap | `--v27-spacing-ml` (24px) |
+| text gap | **5px** |
+| border | 1px `Border/Default` |
+| radius | `--v27-radius-m` (8px) |
+| background | raw white |
+
+The asymmetric padding is what the node says. It is almost certainly the 24px context menu
+being optically centred rather than a deliberate 5px difference, but it is reproduced
+rather than tidied - worth confirming with design.
+
+The card fill is a raw white rather than `Background/Primary`, so it does not follow dark
+mode. That is now the fourth component doing this, after Step's badge, the Toggle knob and
+Config tile.
+
+---
+
+# Icon compact with text
+
+Figma: standalone symbol `Icon/Compact with text`, node `289:4481`. Measured as an instance
+inside Tasks (`2127:54656`).
+
+```html
+<span class="v27-icon-text">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><!-- glyph --></svg>
+  Monday
+</span>
+```
+
+A 24px glyph and a **Sm bold** label, 8px apart, both `Foreground/Primary`.

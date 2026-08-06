@@ -410,6 +410,109 @@
 }
 
 /* ==========================================================================
+   Icon compact with text - Figma standalone symbol `Icon/Compact with text`, node 289:4481
+   Not a variant set. Measured as an instance inside Tasks (2127:54656).
+   ========================================================================== */
+
+.v27-icon-text {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-sm-bold-size);
+  font-weight: var(--v27-text-sm-bold-weight);
+  line-height: var(--v27-text-sm-bold-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+.v27-icon-text > svg {
+  width: var(--v27-size-m);
+  height: var(--v27-size-m);
+  flex: none;
+  fill: currentColor;
+}
+
+/* ==========================================================================
+   Tasks - Figma `Tasks`, node 2129:54674
+   3 variants: property 1[3] - Default, Selected, No one assigned.
+
+   Only Default is built; the other two were not measured.
+   ========================================================================== */
+
+/* Verified on 2129:54672. A wide row: a priority tag, a two-line summary, the assignees,
+   a due date and a context menu.
+
+   The padding is asymmetric and entirely off the Spacing scale - 20px top, bottom and
+   left, but 15px right. That is almost certainly the 24px context menu being optically
+   centred rather than a deliberate 5px difference, but it is what the node says. */
+/* duplicate-ok: .v27-attachment .v27-data-display .v27-config-tile .v27-task - the four
+   share one card surface that V27 defines no component for. See FINDINGS.md #30. */
+.v27-task {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: 20px 15px 20px 20px; /* figma-literal: 2129:54672 - all off the Spacing scale */
+  border: 1px solid var(--v27-border-default);
+  border-radius: var(--v27-radius-m);
+  background: #fff; /* figma-literal: 2129:54672 - raw white, not Background/Primary */
+  font-family: var(--v27-font-family);
+}
+
+.v27-task__row {
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  gap: var(--v27-spacing-ml);
+  min-width: 0;
+}
+
+/* The priority slot is a fixed 80px so the summaries line up down a list, whatever the
+   tag's own width. Compose a .v27-tag into it. */
+.v27-task__priority {
+  width: 80px; /* figma-literal: 2129:54671 - column width, off every scale */
+  flex: none;
+}
+
+.v27-task__text {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px; /* figma-literal: 2127:54652 - off the Spacing scale */
+  min-width: 0;
+}
+
+.v27-task__area {
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+  color: var(--v27-foreground-secondary);
+}
+
+.v27-task__summary {
+  width: 100%;
+  font-size: var(--v27-text-base-size);
+  font-weight: var(--v27-text-base-weight);
+  line-height: var(--v27-text-base-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+/* Fixed columns so a list of tasks aligns. */
+.v27-task__assignees { width: 140px; flex: none; }
+.v27-task__due       { width: 100px; flex: none; }
+
+.v27-task__menu {
+  width: var(--v27-size-m);
+  height: var(--v27-size-m);
+  flex: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--v27-foreground-primary);
+  cursor: pointer;
+}
+
+/* ==========================================================================
    Config tile - Figma `config tile`, node 4338:67656
    2 variants: property 1[2] - Default and Variant2.
 
@@ -420,6 +523,8 @@
 
 /* Verified on 4285:71238. The card fill is a raw white, not Background/Primary, so it does
    not follow dark mode - the same as Step's badge and the Toggle knob. */
+/* duplicate-ok: .v27-attachment .v27-data-display .v27-config-tile .v27-task - the four
+   share one card surface that V27 defines no component for. See FINDINGS.md #30. */
 .v27-config-tile {
   box-sizing: border-box;
   display: flex;
@@ -551,8 +656,8 @@
    Not a variant set. Measured as an instance inside User chat bubble (2879:59434).
    ========================================================================== */
 
-/* duplicate-ok: .v27-data-display - both are token-driven card surfaces, and V27 defines
-   no Card component for either to compose. */
+/* duplicate-ok: .v27-attachment .v27-data-display .v27-config-tile .v27-task - the four
+   share one card surface that V27 defines no component for. See FINDINGS.md #30. */
 .v27-attachment {
   box-sizing: border-box;
   display: flex;
@@ -840,7 +945,8 @@
 
 /* Verified on 232:5312 (default, Default) and 308:12887 (default, Compact). The two differ
    only in the card's padding and the figure's type style - everything else is identical. */
-/* duplicate-ok: .v27-attachment - see the note on .v27-attachment. */
+/* duplicate-ok: .v27-attachment .v27-data-display .v27-config-tile .v27-task - the four
+   share one card surface that V27 defines no component for. See FINDINGS.md #30. */
 .v27-data-display {
   box-sizing: border-box;
   display: flex;

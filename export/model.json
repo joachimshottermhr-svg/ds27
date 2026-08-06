@@ -23,8 +23,8 @@
     "Check this component list before building anything new."
   ],
   "counts": {
-    "components": 28,
-    "classes": 147,
+    "components": 29,
+    "classes": 157,
     "tokens": 149,
     "themed": 39
   },
@@ -1026,10 +1026,31 @@
       "variantAxes": "property 1[2] - Default and Disabled.",
       "classes": [
         "v27-checkbox",
-        "v27-choice-input"
+        "v27-choice-input",
+        "v27-icon-text"
       ],
       "baseClass": "v27-checkbox",
       "doc": "Checkbox.md"
+    },
+    {
+      "name": "Tasks",
+      "figmaComponentSet": "Tasks",
+      "figmaNode": "2129:54674",
+      "variantCount": 3,
+      "variantAxes": "property 1[3] - Default, Selected, No one assigned.",
+      "classes": [
+        "v27-task",
+        "v27-task__area",
+        "v27-task__assignees",
+        "v27-task__due",
+        "v27-task__menu",
+        "v27-task__priority",
+        "v27-task__row",
+        "v27-task__summary",
+        "v27-task__text"
+      ],
+      "baseClass": "v27-task",
+      "doc": "Tasks.md"
     },
     {
       "name": "Config tile",

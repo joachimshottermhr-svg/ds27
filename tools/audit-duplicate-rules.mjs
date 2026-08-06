@@ -36,8 +36,15 @@ const raw = fs.readFileSync('src/styles.css', 'utf8');
  * radius and background ARE the identity of a card, and blinding the audit to them is how
  * a real hand-rolled copy gets through.
  */
+/**
+ * A marker may name a GROUP, not just a pair - four components share the card surface, and
+ * listing six pairs to express that would be worse than listing the four members once.
+ * Every selector on the marker line joins the set.
+ */
 const OK = new Set();
-for (const m of raw.matchAll(/duplicate-ok:\s*(\.[a-z0-9_-]+)/g)) OK.add(m[1]);
+for (const m of raw.matchAll(/duplicate-ok:([^\n]*(?:\n\s+[^*\n]*)?)/g)) {
+  for (const sel of m[1].matchAll(/\.v27-[a-z0-9_-]+/g)) OK.add(sel[0]);
+}
 
 const rules = parse(raw)
   .filter((r) => !r.selector.startsWith('@') && !r.selector.startsWith(':root') && r.decls.length);
