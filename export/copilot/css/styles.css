@@ -410,6 +410,109 @@
 }
 
 /* ==========================================================================
+   Form field - Figma `Form field`, node 63:1078
+   3 variants: property 1[3] - Default, Disabled, Error.
+   ========================================================================== */
+
+/* Verified on 60:1366 (Default), 69:14155 (Disabled) and 63:1079 (Error). */
+.v27-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--v27-spacing-xs);
+  width: 100%;
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+}
+
+/* The label sits 5px from its required marker - off the Spacing scale, so a literal. */
+.v27-field__label {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px; /* figma-literal: 60:1358 - off the Spacing scale */
+  color: var(--v27-foreground-primary);
+}
+
+/* The required marker binds Icons/Icon - Required field (#be2028), which is not a V27
+   variable - it comes from the People First library. Same value and same reason as the
+   Form header's dot; see FINDINGS.md #18. */
+.v27-field__required::after {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 6px;
+  background: #be2028; /* figma-literal: 60:1358 - Icons/Icon - Required field, not a V27 variable */
+}
+
+/* The control. Figma writes the default's padding as a left-only 12px with the trailing
+   icon block carrying its own 12px right padding, and the error's as a uniform 12px. The
+   rendered box is identical - 12px each side - so it is expressed once here. */
+.v27-field__control {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+  width: 100%;
+  height: var(--v27-size-xl);
+  padding-inline: var(--v27-spacing-sm);
+  border: 1px solid var(--v27-border-input);
+  border-radius: var(--v27-radius-s);
+  background: var(--v27-background-primary);
+  overflow: clip;
+}
+
+/* A real input, unstyled, so the control's border is the only frame. */
+.v27-field__input {
+  flex: 1 0 0;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: none;
+  color: var(--v27-foreground-primary);
+  font: inherit;
+}
+
+.v27-field__input::placeholder {
+  color: var(--v27-foreground-secondary);
+}
+
+/* Trailing affordance - a calendar glyph on the default, a warning on the error. */
+.v27-field__icon {
+  width: var(--v27-size-xs);
+  height: var(--v27-size-xs);
+  flex: none;
+}
+
+/* property 1=Disabled - 69:14155. */
+.v27-field--disabled .v27-field__control {
+  border-color: var(--v27-border-input-disabled);
+  background: var(--v27-background-tertiary);
+}
+
+/* property 1=Error - 63:1079. The border turns, and a message is added below. */
+.v27-field--error .v27-field__control {
+  border-color: var(--v27-border-negative);
+}
+
+.v27-field__message {
+  color: var(--v27-foreground-negative);
+}
+
+/* Focus. Figma defines NO focus state for this component, and Border/Input active exists
+   but is bound nowhere here. It is used rather than leaving a field with no focus ring at
+   all, and flagged so it is not mistaken for a measured value. */
+.v27-field__control:focus-within {
+  border-color: var(--v27-border-input-active);
+}
+
+/* NOT BUILT: the default variant has a thin vertical rule between the input and its
+   trailing icon (60:1366, asset "Line 5241"). It is a flattened line asset, so its colour
+   could not be read off the node, and no value is guessed. */
+
+/* ==========================================================================
    Content display - Figma `Content display`, node 368:13923
    4 variants: property 1[2] x property 2[2]
 

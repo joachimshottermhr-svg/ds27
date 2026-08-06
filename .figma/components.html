@@ -151,6 +151,19 @@
       <button type="button" role="tab" class="v27-tab" aria-selected="false"><svg class="v27-tab__icon" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="currentColor"/></svg>With icon</button>
     </div>
 
+    <h3>Form field - default / disabled / error</h3>
+    <div style="display:grid; gap:10px; max-width:527px; margin-bottom:12px;" id="fields">
+      <div class="v27-field"><label class="v27-field__label" for="f1">Field label</label><div class="v27-field__control"><input class="v27-field__input" id="f1" placeholder="Placeholder text (optional)" /><svg class="v27-field__icon" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="currentColor"/></svg></div></div>
+      <div class="v27-field v27-field--disabled"><label class="v27-field__label" for="f2">Field label</label><div class="v27-field__control"><input class="v27-field__input" id="f2" placeholder="Placeholder text" disabled /></div></div>
+      <div class="v27-field v27-field--error"><label class="v27-field__label v27-field__required" for="f3">Field label</label><div class="v27-field__control"><input class="v27-field__input" id="f3" aria-invalid="true" aria-describedby="f3e" placeholder="Placeholder text" /><svg class="v27-field__icon" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="currentColor"/></svg></div><span class="v27-field__message" id="f3e">Error message here</span></div>
+    </div>
+
+    <h3>Content display / Multi avatar</h3>
+    <div class="row" id="cd">
+      <div class="v27-content-display"><span class="v27-content-display__media"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="currentColor"/></svg></span><div class="v27-content-display__text"><span class="v27-content-display__title">Icon default</span><span class="v27-content-display__subtitle">Sub text</span></div></div>
+      <div class="v27-multi-avatar"><span class="v27-multi-avatar__item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="" /></span><span class="v27-multi-avatar__item"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="" /></span><span class="v27-multi-avatar__more">+1</span></div>
+    </div>
+
     <h3>Button (already built - regression check)</h3>
     <div class="row">
       <button class="v27-btn v27-btn--positive">Primary positive</button>
