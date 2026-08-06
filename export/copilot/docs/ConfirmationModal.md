@@ -81,4 +81,4 @@ mode - the fifth component in the library doing this (FINDINGS.md #30).
 
 ## All classes in this component
 
-`.v27-icon-text`, `.v27-modal`, `.v27-modal__actions`, `.v27-modal__body`, `.v27-modal__close`, `.v27-modal__content`, `.v27-modal__glyph`, `.v27-modal__text`, `.v27-modal__title`
+`.v27-modal`, `.v27-modal__actions`, `.v27-modal__body`, `.v27-modal__close`, `.v27-modal__content`, `.v27-modal__glyph`, `.v27-modal__text`, `.v27-modal__title`

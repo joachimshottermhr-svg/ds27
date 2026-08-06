@@ -10,7 +10,7 @@ starts from fact rather than from a re-survey.
 | 0 - reusable skill | `~/.claude/skills/figma-to-css-design-system/SKILL.md` |
 | 1 - repo | done |
 | 2 - token layer | done, including the type tier |
-| 3 - components | **31 of 39 component sets** (Progress bar is Single category only) |
+| 3 - components | **31 of 39 component sets, plus 4 standalone** (Progress bar is Single category only) |
 | 4 - audits | 5 audits, all wired and each proven against a fixture |
 | 5 - export | Copilot bundle, generated from one model, verified in a scratch consumer |
 

@@ -67,4 +67,4 @@ would be a guess about which layer changes.
 
 ## All classes in this component
 
-`.v27-avatar-compact`, `.v27-avatar-compact__face`, `.v27-config-tile`, `.v27-config-tile__disc`, `.v27-config-tile__heading`, `.v27-config-tile__sub`, `.v27-config-tile__text`
+`.v27-config-tile`, `.v27-config-tile__disc`, `.v27-config-tile__heading`, `.v27-config-tile__sub`, `.v27-config-tile__text`

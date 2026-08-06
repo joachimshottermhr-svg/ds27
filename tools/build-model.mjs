@@ -57,7 +57,19 @@ for (const rule of parse(tokensRaw)) {
  * Read from the RAW text because the banner is a comment; the class list for the section
  * is read from the stripped text so a selector mentioned inside prose is never counted.
  */
-const BANNER = /={10,}\s*\n\s*\*?\s*(.+?)\s*-\s*Figma\s*`([^`]+)`,\s*node\s*([\d:]+)\s*\n(?:\s*\*?\s*(\d+)\s*variants?:\s*(.+?)\s*\n)?/g;
+/**
+ * The words between "Figma" and the backtick are optional prose.
+ *
+ * This pattern used to demand `Figma \`name\`` with nothing between them. Four standalone
+ * components were written as "Figma standalone symbol \`name\`" and therefore never
+ * matched - so they were absent from model.json, absent from the export, and invisible to
+ * the no-doc gate, which can only check sections it knows about. Nothing failed; they
+ * simply were not there.
+ *
+ * A parser that silently skips what it does not recognise is the same class of defect as
+ * an audit that never fires.
+ */
+const BANNER = /={10,}\s*\n\s*\*?\s*(.+?)\s*-\s*Figma\s+(?:[\w ]*?\s*)?`([^`]+)`,\s*node\s*([\d:]+)\s*\n(?:\s*\*?\s*(\d+)\s*variants?:\s*(.+?)\s*\n)?/g;
 const sections = [];
 let m;
 while ((m = BANNER.exec(stylesRaw))) {
@@ -126,7 +138,25 @@ const model = {
     tokens: tokens.size,
     themed: [...tokens.values()].filter((t) => t.dark).length,
   },
-  coverage: JSON.parse(fs.readFileSync('.figma/inventory.json', 'utf8')).counts,
+  coverage: (() => {
+    /**
+     * Count only what is actually a component SET against the 39 in the inventory.
+     *
+     * This used to count every banner section, which quietly inflated the number as soon
+     * as standalone symbols - Chat input, Avatar compact, Document attachment - started
+     * getting their own blocks. It reported 32 of 39 when 31 sets were built. A coverage
+     * figure that drifts upward for the wrong reason is worse than none, because it is the
+     * number used to decide when the work is finished.
+     */
+    const inv = JSON.parse(fs.readFileSync('.figma/inventory.json', 'utf8'));
+    const setIds = new Set(inv.sets.map((s) => s.id));
+    const built = sections.filter((s) => setIds.has(s.node));
+    return {
+      ...inv.counts,
+      setsBuilt: built.length,
+      standaloneBuilt: sections.length - built.length,
+    };
+  })(),
   tokens: [...tokens.values()],
   components,
 };
@@ -136,7 +166,7 @@ fs.writeFileSync(OUT, JSON.stringify(model, null, 2), 'utf8');
 
 console.log(`-> ${OUT}  (${(fs.statSync(OUT).size / 1024).toFixed(1)} KB)`);
 console.log(`   ${model.counts.components} components, ${model.counts.classes} classes, ${model.counts.tokens} tokens (${model.counts.themed} themed)`);
-console.log(`   coverage: ${model.counts.components} of ${model.coverage.sets} component sets built`);
+console.log(`   coverage: ${model.coverage.setsBuilt} of ${model.coverage.sets} component sets, plus ${model.coverage.standaloneBuilt} standalone`);
 
 /* ---- gates: a model that cannot be trusted must not ship ----------------- */
 const problems = [];

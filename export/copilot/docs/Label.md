@@ -101,4 +101,4 @@ Figma; reproduced as measured until it is.
 
 ## All classes in this component
 
-`.v27-attachment`, `.v27-attachment__body`, `.v27-attachment__icon`, `.v27-attachment__menu`, `.v27-attachment__meta`, `.v27-attachment__name`, `.v27-label`, `.v27-label__caption`, `.v27-label__value`
+`.v27-label`, `.v27-label__caption`, `.v27-label__value`
