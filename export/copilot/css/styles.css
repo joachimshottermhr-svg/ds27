@@ -410,6 +410,74 @@
 }
 
 /* ==========================================================================
+   Avatar compact - Figma standalone symbol `Avatar compact`, node 289:4416
+   Not a variant set. Measured as an instance inside Label (58:916).
+   ========================================================================== */
+
+.v27-avatar-compact {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-base-size);
+  font-weight: var(--v27-text-base-weight);
+  line-height: var(--v27-text-base-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+/* A 24px face. Like Multi avatar's, this is the `People` symbol with a 46px radius, NOT
+   the Avatar component - so .v27-avatar is not reused. */
+.v27-avatar-compact__face {
+  width: var(--v27-size-m);
+  height: var(--v27-size-m);
+  flex: none;
+  border-radius: 46px;
+  overflow: clip;
+}
+
+.v27-avatar-compact__face > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ==========================================================================
+   Label - Figma `Label`, node 58:919
+   6 variants: property 1[6] - text, icon + text, Variant5, Multi person, status, person.
+
+   All six are ONE shape: a caption above a slot. Only the slot's contents change - plain
+   text, a Tag, an Avatar compact, a multi-avatar stack. So this is a caption and a slot,
+   not six variants, and `Variant5` is another auto-generated name (FINDINGS.md #15).
+   ========================================================================== */
+
+/* Verified on 58:918 (text), 58:917 (status - the slot holds a Tag) and 58:916 (person -
+   the slot holds an Avatar compact). The column gap is 4px on all three. */
+.v27-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--v27-spacing-xs);
+  font-family: var(--v27-font-family);
+}
+
+.v27-label__caption {
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+  color: var(--v27-foreground-secondary);
+}
+
+/* The default slot content: plain text. For the other variants, put a .v27-tag or a
+   .v27-avatar-compact here instead. */
+.v27-label__value {
+  font-size: var(--v27-text-base-size);
+  font-weight: var(--v27-text-base-weight);
+  line-height: var(--v27-text-base-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+/* ==========================================================================
    Document attachment - Figma standalone symbol `Document attachment`, node 58:1073
    Not a variant set. Measured as an instance inside User chat bubble (2879:59434).
    ========================================================================== */

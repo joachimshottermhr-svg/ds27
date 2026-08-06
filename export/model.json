@@ -23,8 +23,8 @@
     "Check this component list before building anything new."
   ],
   "counts": {
-    "components": 26,
-    "classes": 137,
+    "components": 27,
+    "classes": 142,
     "tokens": 149,
     "themed": 39
   },
@@ -1025,17 +1025,33 @@
       "variantCount": 2,
       "variantAxes": "property 1[2] - Default and Disabled.",
       "classes": [
+        "v27-avatar-compact",
+        "v27-avatar-compact__face",
+        "v27-checkbox",
+        "v27-choice-input"
+      ],
+      "baseClass": "v27-avatar-compact",
+      "doc": "Checkbox.md"
+    },
+    {
+      "name": "Label",
+      "figmaComponentSet": "Label",
+      "figmaNode": "58:919",
+      "variantCount": 6,
+      "variantAxes": "property 1[6] - text, icon + text, Variant5, Multi person, status, person.",
+      "classes": [
         "v27-attachment",
         "v27-attachment__body",
         "v27-attachment__icon",
         "v27-attachment__menu",
         "v27-attachment__meta",
         "v27-attachment__name",
-        "v27-checkbox",
-        "v27-choice-input"
+        "v27-label",
+        "v27-label__caption",
+        "v27-label__value"
       ],
       "baseClass": "v27-attachment",
-      "doc": "Checkbox.md"
+      "doc": "Label.md"
     },
     {
       "name": "User chat bubble",
