@@ -10,7 +10,7 @@ starts from fact rather than from a re-survey.
 | 0 - reusable skill | `~/.claude/skills/figma-to-css-design-system/SKILL.md` |
 | 1 - repo | done |
 | 2 - token layer | done, including the type tier |
-| 3 - components | **38 of 39 component sets, plus 6 standalone** (Progress bar is Single category only) |
+| 3 - components | **ALL 39 of 39 component sets, plus 6 standalone** (Progress bar is Single category only) |
 | 4 - audits | 5 audits, all wired and each proven against a fixture |
 | 5 - export | Copilot bundle, generated from one model, verified in a scratch consumer |
 
@@ -28,30 +28,39 @@ FINDINGS.md #25).
 Every one has a doc in `docs/`, node ids beside every value, and was verified in a browser
 against the measured Figma node.
 
-## Not built - 1 component set
+## All 39 component sets are built
 
-Ordered by variant count, which is roughly the work involved. Node ids are in
-`.figma/inventory.json`; nothing needs re-surveying.
+Every set on the Components page (`1:28`) has CSS, a doc with node ids, and browser
+verification. Six standalone symbols are built alongside them: Document attachment, Avatar
+compact, Icon compact with text, Chat input, AI chat tool bar and Tab group.
 
-| Variants | Set | Node |
+### Variants deliberately left unbuilt
+
+Not for want of effort - in each case a value could not be verified, and a plausible
+invention would have been worse than a stated gap.
+
+| Component | Unbuilt | Why |
 |---|---|---|
-| 39 | nav elements | `1997:40997` |
-| 12 | Entity card | `7661:13220` |
-| 8 | Data display | `232:5313` |
-| 6 | Label | `58:919` |
-| 4 | Content display | `368:13923` |
-| 4 | Step | see inventory |
-| 3 | Form field | `63:1078` |
-| 3 | AI chat bubble | see inventory |
-| 2 | App header + top navigation, AI assistant overlay (mobile), Confirmation modal | see inventory |
-| 1 | side nav | see inventory |
+| Button | `AI`, `AI bold` | gradient style serialises empty (#32) |
+| Progress bar | `Multi category` | binds a chart palette absent from the V27 export (#25) |
+| Data display | `icon`, `coloured`, `view all` | layout not measured, only the variable list |
+| Entity card | 3 content types, 2 selected states | not measured |
+| Tasks | `Selected`, `No one assigned` | not measured |
+| config tile | `Variant2` | which layer takes the theme colour was not measured |
+| Attachments | `attachments=True` | the file list was not measured |
+| message box, workspace header, App header | mobile/desktop counterparts | not measured |
+| Confirmation modal | `Unsaved changes` | shares the frame; copy differs, not measured |
+| nav elements, Tab single | third `status` value | not measured |
 
-Plus, outside the 39 sets:
+Everything in that table is a **measurement** gap with a node id recorded, except the first
+two rows, which are blocked on decisions in Figma.
 
-- **~22 standalone components** on `1:28` - Text area, Tab group, Select button, Carousel,
-  Pop up menu, Stepper, date picker, PDF Viewer, mobile bottom sheet, Switcher, Card
-  header, Required field, Document attachment and others. These are listed as `standalone`
-  in the inventory.
+### What remains outside the 39 sets
+
+- **~16 standalone components** still on `1:28` - Text area, Select button (the group, not
+  the segment), Carousel, Pop up menu, Stepper, date picker, PDF Viewer, mobile bottom
+  sheet, Switcher, Card header, Required field, Radio set, Checkbox set, Start and end
+  display, mobile menu, AI assistant header. Listed as `standalone` in the inventory.
 - **The AG Grid page** (`7620:90627`) - table, table card, filter menus. Build **current**
   styling only; the page also contains explicitly labelled future styling (FINDINGS.md #7).
 - **The Page templates page** (`7614:51453`) - layout rules rather than components.

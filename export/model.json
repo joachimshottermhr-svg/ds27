@@ -23,8 +23,8 @@
     "Check this component list before building anything new."
   ],
   "counts": {
-    "components": 44,
-    "classes": 214,
+    "components": 45,
+    "classes": 219,
     "tokens": 155,
     "themed": 39
   },
@@ -32,7 +32,7 @@
     "sets": 39,
     "variants": 259,
     "standalone": 145,
-    "setsBuilt": 38,
+    "setsBuilt": 39,
     "standaloneBuilt": 6
   },
   "tokens": [
@@ -1069,6 +1069,22 @@
       ],
       "baseClass": "v27-checkbox",
       "doc": "Checkbox.md"
+    },
+    {
+      "name": "AI assistant overlay (mobile)",
+      "figmaComponentSet": "AI assistant overlay (mobile)",
+      "figmaNode": "7694:96652",
+      "variantCount": 2,
+      "variantAxes": "property 1[2] - full height and Small.",
+      "classes": [
+        "v27-ai-sheet",
+        "v27-ai-sheet__body",
+        "v27-ai-sheet__handle",
+        "v27-ai-sheet__header",
+        "v27-ai-sheet__title"
+      ],
+      "baseClass": "v27-ai-sheet",
+      "doc": "AiSheet.md"
     },
     {
       "name": "Tab group",

@@ -418,6 +418,91 @@
 }
 
 /* ==========================================================================
+   AI assistant overlay (mobile) - Figma `AI assistant overlay (mobile)`, node 7694:96652
+   2 variants: property 1[2] - full height and Small.
+
+   A bottom sheet that composes AI chat bubble, User chat bubble and the mobile message
+   box. Only the frame itself is new; everything inside it is already built.
+
+   Only `Small` (7694:96650) is measured. `full height` (7694:96651) is the same sheet at
+   752px rather than 505px, but the height is set by the consumer anyway.
+   ========================================================================== */
+
+/* Verified on 7694:96650.
+
+   Note this gradient IS readable - it is a fill on the sheet, not the unserialisable
+   `AI gradient` STYLE that defeats the AI bubble (FINDINGS.md #32). Figma binds Blue/50
+   and Pink/100 directly, so this is another component reaching into the primitive tier
+   and another surface that will not follow dark mode. */
+.v27-ai-sheet {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  border-top-left-radius: 30px; /* figma-literal: 7694:96650 - off the Radius scale */
+  border-top-right-radius: 30px;
+  background-image:
+    linear-gradient(90deg, var(--v27-blue-50) 0%, var(--v27-pink-100) 100%),
+    linear-gradient(90deg, var(--v27-pink-50) 0%, var(--v27-pink-50) 100%);
+  box-shadow: 0 0 20px 0 rgb(0 0 0 / 0.3); /* figma-literal: 7694:96650 - no shadow tier */
+  overflow: clip;
+}
+
+/* The sheet's grab handle and title. It is a button in Figma - the whole header collapses
+   and expands the sheet. */
+.v27-ai-sheet__header {
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+  width: 100%;
+  padding: var(--v27-spacing-sm) 15px; /* figma-literal: 7694:96408 - 15px is off the scale */
+  border: 0;
+  border-bottom: 1px solid var(--v27-border-default);
+  background: none;
+  cursor: pointer;
+}
+
+/* The drag affordance. Figma's measurements are sub-pixel - 48.911 x 5.231 - which is a
+   rotation artefact rather than a designed value, so it is rounded to 49x5. */
+.v27-ai-sheet__handle {
+  width: 49px;
+  height: 5px;
+  flex: none;
+  border-radius: var(--v27-radius-s);
+  background: var(--v27-border-bold);
+}
+
+.v27-ai-sheet__title {
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+  font-size: var(--v27-text-lg-bold-size);
+  font-weight: var(--v27-text-lg-bold-weight);
+  line-height: var(--v27-text-lg-bold-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+/* The conversation. Pinned to the bottom so the newest message sits above the composer. */
+.v27-ai-sheet__body {
+  box-sizing: border-box;
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--v27-spacing-m);
+  width: 100%;
+  min-height: 0;
+  padding: var(--v27-spacing-sm);
+  overflow: clip;
+}
+
+/* ==========================================================================
    Tab group - Figma standalone symbol `Tab group`, node 2317:69213
    Measured as an instance inside App header (2317:69206).
    ========================================================================== */
