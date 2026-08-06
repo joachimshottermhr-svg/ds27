@@ -23,8 +23,8 @@
     "Check this component list before building anything new."
   ],
   "counts": {
-    "components": 16,
-    "classes": 83,
+    "components": 17,
+    "classes": 89,
     "tokens": 143,
     "themed": 39
   },
@@ -994,6 +994,23 @@
       ],
       "baseClass": "v27-checkbox",
       "doc": "Checkbox.md"
+    },
+    {
+      "name": "Header display",
+      "figmaComponentSet": "Header display",
+      "figmaNode": "60:1151",
+      "variantCount": 5,
+      "variantAxes": "type[5] - Person, Image, Icon, Text only, Form header.",
+      "classes": [
+        "v27-header-display",
+        "v27-header-display__media",
+        "v27-header-display__required",
+        "v27-header-display__subtitle",
+        "v27-header-display__text",
+        "v27-header-display__title"
+      ],
+      "baseClass": "v27-header-display",
+      "doc": "HeaderDisplay.md"
     },
     {
       "name": "Tab single",

@@ -410,6 +410,83 @@
 }
 
 /* ==========================================================================
+   Header display - Figma `Header display`, node 60:1151
+   5 variants: type[5] - Person, Image, Icon, Text only, Form header.
+
+   All five are the same thing: an optional leading slot beside a title/subtitle column.
+   Only what goes in the slot changes, so the slot is a container the consumer fills with
+   an existing component rather than five separate blocks.
+   ========================================================================== */
+
+/* Verified on 138:3276 (Text only), 138:2859 (Person) and 1227:24260 (Form header).
+   The row gap is 8px and the title/subtitle gap is 2px on all three. */
+.v27-header-display {
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+  font-family: var(--v27-font-family);
+}
+
+/* The leading slot. Person puts a 40px avatar here, Icon a 32px glyph, Image a picture;
+   Text only and Form header omit it entirely. It carries no size of its own - compose
+   .v27-avatar or .v27-icon inside it rather than restyling from here. */
+.v27-header-display__media {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.v27-header-display__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--v27-spacing-xxs);
+  min-width: 0;
+}
+
+/* Lg bold on every variant. */
+.v27-header-display__title {
+  font-size: var(--v27-text-lg-bold-size);
+  font-weight: var(--v27-text-lg-bold-weight);
+  line-height: var(--v27-text-lg-bold-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+.v27-header-display__subtitle {
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+  color: var(--v27-foreground-secondary);
+}
+
+/* type=Form header - 1227:24260. Instead of a subtitle it carries a "required field" key:
+   a 6px dot and a Sm label 8px apart.
+
+   The label binds `Text/Text - Primary`, and the dot's colour is `Icons/Icon - Required
+   field` (#be2028) - the only candidate in the set's variable list. NEITHER is in the V27
+   export; both come from the People First library. See FINDINGS.md #18. The label resolves
+   to the same value as Foreground/Primary today, so that token is used; the dot has no V27
+   equivalent at all and is a literal. */
+.v27-header-display__required {
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+.v27-header-display__required::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  flex: none;
+  border-radius: 6px;
+  background: #be2028; /* figma-literal: 1227:24268 - Icons/Icon - Required field, not a V27 variable */
+}
+
+/* ==========================================================================
    Tab single - Figma `Tab single`, node 347:15180
    6 variants: state[2] x style[3]
 

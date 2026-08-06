@@ -1,4 +1,4 @@
-# Status
+﻿# Status
 
 Where the build has got to, and exactly what is left. Kept current so the next session
 starts from fact rather than from a re-survey.
@@ -10,7 +10,7 @@ starts from fact rather than from a re-survey.
 | 0 - reusable skill | `~/.claude/skills/figma-to-css-design-system/SKILL.md` |
 | 1 - repo | done |
 | 2 - token layer | done, including the type tier |
-| 3 - components | **16 of 39 component sets** (Progress bar is Single category only) |
+| 3 - components | **17 of 39 component sets** (Progress bar is Single category only) |
 | 4 - audits | 5 audits, all wired and each proven against a fixture |
 | 5 - export | Copilot bundle, generated from one model, verified in a scratch consumer |
 
@@ -18,7 +18,7 @@ starts from fact rather than from a re-survey.
 
 Button, Icon, Tags, Coloured circle icons, Avatar, Single Checkbox, Checkbox,
 Single radio button, Radio button, in page message, Toggle, Link, Progress bar, Toast,
-Breadcrumb, Tab single.
+Breadcrumb, Tab single, Header display.
 
 Two variants are deliberately unbuilt, both because a value could not be verified rather
 than for want of effort: Button's `AI` and `AI bold` types (gradients, no verified value)
@@ -28,7 +28,7 @@ FINDINGS.md #25).
 Every one has a doc in `docs/`, node ids beside every value, and was verified in a browser
 against the measured Figma node.
 
-## Not built - 23 component sets
+## Not built - 22 component sets
 
 Ordered by variant count, which is roughly the work involved. Node ids are in
 `.figma/inventory.json`; nothing needs re-surveying.
@@ -39,7 +39,6 @@ Ordered by variant count, which is roughly the work involved. Node ids are in
 | 12 | Entity card | `7661:13220` |
 | 8 | Data display | `232:5313` |
 | 6 | Label | `58:919` |
-| 5 | Header display | `60:1151` |
 | 4 | Content display | `368:13923` |
 | 4 | Step | see inventory |
 | 3 | Form field | `63:1078` |
