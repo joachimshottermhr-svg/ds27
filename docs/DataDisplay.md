@@ -1,0 +1,84 @@
+# Data display
+
+Figma: `Data display`, node `232:5313` (page Components, `1:28`).
+8 variants - `property 1[4]` x `size[2]`.
+
+A metric card: a label, a large figure with a unit, and a trend chip.
+
+**The size axis is built. Three of the four `property 1` variants are not** - see the end.
+
+## Markup
+
+```html
+<div class="v27-data-display">
+  <div class="v27-data-display__body">
+    <span class="v27-data-display__label">Data card with label</span>
+    <div class="v27-data-display__row">
+      <span class="v27-data-display__value">129%</span>
+      <span class="v27-data-display__unit">Unit</span>
+      <span class="v27-data-display__trend">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><!-- trend arrow --></svg>
+        2.02
+      </span>
+    </div>
+  </div>
+</div>
+```
+
+Compact: add `.v27-data-display--compact` to the root. A falling trend takes
+`.v27-data-display__trend--negative`.
+
+The trend arrow is decorative only if the direction is also in the text. If the number
+alone carries it, give the chip an accessible label - direction conveyed by icon shape
+alone is not readable.
+
+## Classes
+
+| Class | What it is |
+|---|---|
+| `.v27-data-display` | the card |
+| `.v27-data-display--compact` | the compact size |
+| `.v27-data-display__body` | the column |
+| `.v27-data-display__label` | Sm, `Foreground/Secondary` |
+| `.v27-data-display__row` | figure, unit and trend on one baseline |
+| `.v27-data-display__value` | the figure |
+| `.v27-data-display__unit` | Sm, `Foreground/Secondary` |
+| `.v27-data-display__trend` | the trend chip, `Foreground/Positive` |
+| `.v27-data-display__trend--negative` | falling |
+
+## Values
+
+Verified on `232:5312` (Default) and `308:12887` (Compact). The two differ **only** in the
+card padding and the figure's type style.
+
+| Property | Default | Compact |
+|---|---|---|
+| padding | `--v27-spacing-ml` (24px) | `--v27-spacing-sm` (12px) |
+| figure | 2XL - Outfit 28 / 600 / 32 | XL - Outfit 20 / 600 / 24 |
+
+Shared: `Background/Primary`, 1px `Border/Default`, 8px radius, 16px gap, 4px column gap,
+8px row gap, Sm label and unit.
+
+The figure row aligns to its **end**, not its centre, so a 28px number and a 14px unit sit
+on the same baseline.
+
+## Two named type styles came from this component
+
+`XL` (20/600/24) and `2XL` (28/600/32) were discovered here and added to the token layer.
+Neither appears in the variables export - like every other text style in the file, they are
+local (FINDINGS.md #1).
+
+## The trend chip is not a Tag
+
+Figma names the layer "Tags", but it has **no background and no padding** - only the 4px
+gap and the 4px radius. `.v27-tag` is deliberately not reused; composing it would have
+added a filled chip that the design does not have.
+
+## Not built
+
+`property 1` = **icon**, **coloured** and **view all**.
+
+The `coloured` variant's variables (`308:12246`) show `Background/Theme`, `Border/Theme`
+and `Size/L`, so it is evidently a themed card with a 32px glyph - but which element takes
+which role was not measured, and the other two were not read at all. Building them from a
+variable list is a guess about layout rather than a reading of it.

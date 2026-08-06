@@ -23,9 +23,9 @@
     "Check this component list before building anything new."
   ],
   "counts": {
-    "components": 20,
-    "classes": 106,
-    "tokens": 143,
+    "components": 23,
+    "classes": 120,
+    "tokens": 149,
     "themed": 39
   },
   "coverage": {
@@ -641,6 +641,42 @@
       "tier": "typography"
     },
     {
+      "name": "--v27-text-xl-size",
+      "value": "20px",
+      "dark": null,
+      "tier": "typography"
+    },
+    {
+      "name": "--v27-text-xl-weight",
+      "value": "600",
+      "dark": null,
+      "tier": "typography"
+    },
+    {
+      "name": "--v27-text-xl-line-height",
+      "value": "24px",
+      "dark": null,
+      "tier": "typography"
+    },
+    {
+      "name": "--v27-text-2xl-size",
+      "value": "28px",
+      "dark": null,
+      "tier": "typography"
+    },
+    {
+      "name": "--v27-text-2xl-weight",
+      "value": "600",
+      "dark": null,
+      "tier": "typography"
+    },
+    {
+      "name": "--v27-text-2xl-line-height",
+      "value": "32px",
+      "dark": null,
+      "tier": "typography"
+    },
+    {
       "name": "--v27-text-base-bold-size",
       "value": "16px",
       "dark": null,
@@ -994,6 +1030,53 @@
       ],
       "baseClass": "v27-checkbox",
       "doc": "Checkbox.md"
+    },
+    {
+      "name": "Step",
+      "figmaComponentSet": "Step",
+      "figmaNode": "347:15717",
+      "variantCount": 4,
+      "variantAxes": "property 1[4] - Selected, Default, Variant3, Variant4.",
+      "classes": [
+        "v27-step",
+        "v27-step--selected",
+        "v27-step__badge"
+      ],
+      "baseClass": "v27-step",
+      "doc": "Step.md"
+    },
+    {
+      "name": "Step connector",
+      "figmaComponentSet": "Step connector",
+      "figmaNode": "347:15723",
+      "variantCount": 2,
+      "variantAxes": "property 1[2] - Default and Variant2.",
+      "classes": [
+        "v27-step-connector",
+        "v27-step-connector--incomplete"
+      ],
+      "baseClass": "v27-step-connector",
+      "doc": "StepConnector.md"
+    },
+    {
+      "name": "Data display",
+      "figmaComponentSet": "Data display",
+      "figmaNode": "232:5313",
+      "variantCount": 8,
+      "variantAxes": "property 1[4] x size[2]",
+      "classes": [
+        "v27-data-display",
+        "v27-data-display--compact",
+        "v27-data-display__body",
+        "v27-data-display__label",
+        "v27-data-display__row",
+        "v27-data-display__trend",
+        "v27-data-display__trend--negative",
+        "v27-data-display__unit",
+        "v27-data-display__value"
+      ],
+      "baseClass": "v27-data-display",
+      "doc": "DataDisplay.md"
     },
     {
       "name": "Form field",

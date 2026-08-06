@@ -64,6 +64,24 @@
       "verifiedOn": ["243:4085", "289:4419"],
       "note": "Name confirmed from the Avatar set's variable defs, which report it as 'Sm bold'. Previously carried as UNCONFIRMED when only the Button's raw Font() was known."
     },
+    "xl": {
+      "figmaName": "XL",
+      "fontSize": "20px",
+      "fontWeight": 600,
+      "lineHeight": "24px",
+      "letterSpacing": "0",
+      "verifiedOn": ["308:12893"],
+      "note": "Data display's figure at the compact size."
+    },
+    "2xl": {
+      "figmaName": "2XL",
+      "fontSize": "28px",
+      "fontWeight": 600,
+      "lineHeight": "32px",
+      "letterSpacing": "0",
+      "verifiedOn": ["232:5279"],
+      "note": "Data display's figure at the default size."
+    },
     "base-bold": {
       "figmaName": "Base bold",
       "fontSize": "16px",
