@@ -410,6 +410,72 @@
 }
 
 /* ==========================================================================
+   Multi avatar - Figma `Multi avatar`, node 2299:83865
+   2 variants: property 1[2]
+
+   A stack of overlapping 32px faces with an overflow count on the end.
+
+   NOTE the faces here are NOT the Avatar component. They are a separate `People` symbol
+   with a 46px radius and a white ring, where Avatar uses 29px and no ring - so
+   .v27-avatar is deliberately not reused. Composing it would have been wrong.
+   ========================================================================== */
+
+/* Verified on 2299:83864. Each face overlaps the previous by 5px, applied as a negative
+   right margin on every item including the count chip. -5px is off every scale, and a
+   negative overlap could not be a token anyway, so it is a literal. */
+.v27-multi-avatar {
+  display: flex;
+  align-items: center;
+  font-family: var(--v27-font-family);
+}
+
+.v27-multi-avatar > * {
+  margin-right: -5px; /* figma-literal: 2299:83877 - overlap, off every scale */
+}
+
+.v27-multi-avatar > :last-child {
+  margin-right: 0;
+}
+
+/* The white ring is what separates one face from the one beneath it. Border/Border
+   inverted is white in light mode and stays legible against the faces in both. */
+.v27-multi-avatar__item {
+  box-sizing: border-box;
+  width: var(--v27-size-l);
+  height: var(--v27-size-l);
+  flex: none;
+  border: 1px solid var(--v27-border-inverted);
+  border-radius: 46px;
+  overflow: clip;
+}
+
+.v27-multi-avatar__item > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* The overflow count. A different radius again - 17px, not 46px - and it carries no ring.
+   Type is Base, not the Sm bold the faces' initials use. */
+.v27-multi-avatar__more {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--v27-size-l);
+  height: var(--v27-size-l);
+  flex: none;
+  border-radius: 17px;
+  background: var(--v27-background-tertiary);
+  color: var(--v27-foreground-secondary);
+  overflow: clip;
+  font-size: var(--v27-text-base-size);
+  font-weight: var(--v27-text-base-weight);
+  line-height: var(--v27-text-base-line-height);
+}
+
+/* ==========================================================================
    Header display - Figma `Header display`, node 60:1151
    5 variants: type[5] - Person, Image, Icon, Text only, Form header.
 

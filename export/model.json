@@ -23,8 +23,8 @@
     "Check this component list before building anything new."
   ],
   "counts": {
-    "components": 17,
-    "classes": 89,
+    "components": 18,
+    "classes": 92,
     "tokens": 143,
     "themed": 39
   },
@@ -994,6 +994,20 @@
       ],
       "baseClass": "v27-checkbox",
       "doc": "Checkbox.md"
+    },
+    {
+      "name": "Multi avatar",
+      "figmaComponentSet": "Multi avatar",
+      "figmaNode": "2299:83865",
+      "variantCount": 2,
+      "variantAxes": "property 1[2]",
+      "classes": [
+        "v27-multi-avatar",
+        "v27-multi-avatar__item",
+        "v27-multi-avatar__more"
+      ],
+      "baseClass": "v27-multi-avatar",
+      "doc": "MultiAvatar.md"
     },
     {
       "name": "Header display",
