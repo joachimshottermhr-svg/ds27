@@ -418,6 +418,130 @@
 }
 
 /* ==========================================================================
+   Tab group - Figma standalone symbol `Tab group`, node 2317:69213
+   Measured as an instance inside App header (2317:69206).
+   ========================================================================== */
+
+/* A wrapping row of Tab single. The gap is asymmetric on purpose: 0 down, 24 across, so
+   wrapped rows sit flush and the underlines form a continuous rule. */
+.v27-tab-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  align-items: flex-start;
+  gap: 0 var(--v27-spacing-ml);
+}
+
+/* Level 2 tabs drop to Sm. Figma applies this as an instance override on the nested group
+   rather than as a variant of Tab single, so it is a modifier on the GROUP - the tab
+   itself has no size axis. */
+.v27-tab-group--sub .v27-tab {
+  font-size: var(--v27-text-sm-size);
+  line-height: var(--v27-text-sm-line-height);
+}
+
+/* ==========================================================================
+   App header + top navigation - Figma `App header + top navigation`, node 2317:69137
+   2 variants: mobile[2], plus three boolean properties - breadcrumbTitle, tabLevel1 and
+   tabLevel2 - so the real state count is 16, not 2.
+
+   Only mobile=True (2317:69206) is measured. The desktop variant (2317:68864) is a
+   1860x209 frame that was not read.
+   ========================================================================== */
+
+.v27-app-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  overflow: clip;
+  font-family: var(--v27-font-family);
+}
+
+/* The bar: app identity, an AI action, and up to two levels of tabs. */
+.v27-app-header__bar {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--v27-spacing-s);
+  width: 100%;
+  padding: var(--v27-spacing-sm) var(--v27-spacing-sm) 0;
+  border-bottom: 1px solid var(--v27-border-default);
+}
+
+.v27-app-header__identity {
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-sm);
+  width: 100%;
+}
+
+.v27-app-header__icon {
+  width: var(--v27-size-l);
+  height: var(--v27-size-l);
+  flex: none;
+  color: var(--v27-foreground-primary);
+}
+
+/* 20px REGULAR - the same size-weight pair as the workspace header's title, and the same
+   gap: the size is on the scale, the weight is not, and the pair is named nowhere.
+   FINDINGS.md #24. */
+.v27-app-header__title {
+  flex: 1 0 0;
+  min-width: 0;
+  font-size: var(--v27-text-xl-size);
+  font-weight: var(--v27-font-weight-regular); /* figma-literal: 2317:69210 - 20/400 is not a named style */
+  line-height: var(--v27-text-xl-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+.v27-app-header__tabs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--v27-spacing-s);
+  width: 100%;
+}
+
+/* The optional breadcrumb row below the bar - Figma's boolean `breadcrumbTitle`. */
+.v27-app-header__breadcrumb {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 10px; /* figma-literal: 7694:89642 - off the Spacing scale */
+  width: 100%;
+  padding: var(--v27-spacing-sm) var(--v27-spacing-sm) 0;
+  overflow: clip;
+}
+
+.v27-app-header__back {
+  width: var(--v27-size-m);
+  height: var(--v27-size-m);
+  flex: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--v27-foreground-primary);
+  cursor: pointer;
+}
+
+/* Lg, and centred. Figma absolutely positions this to centre it against the full width
+   while the back arrow sits on the left; a flex-1 label with the arrow outside the
+   centring context is the same result without the absolute positioning. */
+.v27-app-header__page {
+  flex: 1 0 0;
+  min-width: 0;
+  padding-block: var(--v27-spacing-xs);
+  text-align: center;
+  font-size: var(--v27-text-lg-size);
+  font-weight: var(--v27-text-lg-weight);
+  line-height: var(--v27-text-lg-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+/* ==========================================================================
    Entity card - Figma `Entity card`, node 7661:13220
    12 variants: content type[4] x selected[3], plus a boolean `tags` property.
 

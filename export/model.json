@@ -23,8 +23,8 @@
     "Check this component list before building anything new."
   ],
   "counts": {
-    "components": 42,
-    "classes": 202,
+    "components": 44,
+    "classes": 214,
     "tokens": 155,
     "themed": 39
   },
@@ -32,8 +32,8 @@
     "sets": 39,
     "variants": 259,
     "standalone": 145,
-    "setsBuilt": 37,
-    "standaloneBuilt": 5
+    "setsBuilt": 38,
+    "standaloneBuilt": 6
   },
   "tokens": [
     {
@@ -1069,6 +1069,40 @@
       ],
       "baseClass": "v27-checkbox",
       "doc": "Checkbox.md"
+    },
+    {
+      "name": "Tab group",
+      "figmaComponentSet": "Tab group",
+      "figmaNode": "2317:69213",
+      "variantCount": null,
+      "variantAxes": null,
+      "classes": [
+        "v27-tab",
+        "v27-tab-group",
+        "v27-tab-group--sub"
+      ],
+      "baseClass": "v27-tab",
+      "doc": "TabGroup.md"
+    },
+    {
+      "name": "App header + top navigation",
+      "figmaComponentSet": "App header + top navigation",
+      "figmaNode": "2317:69137",
+      "variantCount": 2,
+      "variantAxes": "mobile[2], plus three boolean properties - breadcrumbTitle, tabLevel1 and",
+      "classes": [
+        "v27-app-header",
+        "v27-app-header__back",
+        "v27-app-header__bar",
+        "v27-app-header__breadcrumb",
+        "v27-app-header__icon",
+        "v27-app-header__identity",
+        "v27-app-header__page",
+        "v27-app-header__tabs",
+        "v27-app-header__title"
+      ],
+      "baseClass": "v27-app-header",
+      "doc": "AppHeader.md"
     },
     {
       "name": "Entity card",
