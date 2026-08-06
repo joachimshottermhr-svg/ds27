@@ -46,7 +46,7 @@
 | `--v27-border-inverted` | `var(--v27-neutral-0)` | `var(--v27-neutral-900)` |
 | `--v27-chart-1` | `#ffffff` | `#ffffff` |
 
-## typography (24)
+## typography (27)
 
 | Token | Light | Dark |
 |---|---|---|
@@ -65,6 +65,9 @@
 | `--v27-text-sm-bold-size` | `14px` | - |
 | `--v27-text-sm-bold-weight` | `600` | - |
 | `--v27-text-sm-bold-line-height` | `normal` | - |
+| `--v27-text-xs-size` | `12px` | - |
+| `--v27-text-xs-weight` | `400` | - |
+| `--v27-text-xs-line-height` | `normal` | - |
 | `--v27-text-xl-size` | `20px` | - |
 | `--v27-text-xl-weight` | `600` | - |
 | `--v27-text-xl-line-height` | `24px` | - |

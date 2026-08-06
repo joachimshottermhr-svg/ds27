@@ -148,6 +148,11 @@
   --v27-text-sm-bold-weight     : 600;
   --v27-text-sm-bold-line-height: normal;
 
+  /* XS - nodes 7064:47863 */
+  --v27-text-xs-size       : 12px;
+  --v27-text-xs-weight     : 400;
+  --v27-text-xs-line-height: normal;
+
   /* XL - nodes 308:12893 */
   --v27-text-xl-size       : 20px;
   --v27-text-xl-weight     : 600;

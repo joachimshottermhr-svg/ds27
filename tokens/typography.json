@@ -64,6 +64,15 @@
       "verifiedOn": ["289:4419", "2127:54656"],
       "note": "Name confirmed from the Avatar set's variable defs. NOTE the Button component does NOT use this style - it uses a separate style literally named 'Button' with identical metrics (Outfit SemiBold 14 / 600 / AUTO), reported on 7664:11553. Two names, one set of values; see FINDINGS.md #31. Node 243:4085 was previously listed here in error and has been removed."
     },
+    "xs": {
+      "figmaName": "XS",
+      "fontSize": "12px",
+      "fontWeight": 400,
+      "lineHeight": "normal",
+      "letterSpacing": "0",
+      "verifiedOn": ["7064:47863"],
+      "note": "Found on Attachments' hint line. This is the named home for the 12px REGULAR text previously carried as a literal on the chat timestamp. Avatar's small size is 12px SEMIBOLD and still matches no named style - see FINDINGS.md #24."
+    },
     "xl": {
       "figmaName": "XL",
       "fontSize": "20px",

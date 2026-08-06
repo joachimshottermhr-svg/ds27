@@ -513,6 +513,28 @@ is meant to make findable.
 `Sm bold`, or the two are meant to diverge later and currently do not. Until that is
 decided, a change to one will silently fail to reach the components using the other.
 
+## 32. Gradient styles cannot be read, and the flattened colour is not the value
+
+**Figma:** the AI surfaces apply styles named `AI gradient` and `1st (light)/AI gradient`.
+Both are reported by `get_variable_defs` with an **empty** value - gradients do not
+serialise through this toolchain. The generated reference code shows a flat `#007ff3`
+border instead, which is what the flattening produced, not what the style specifies.
+
+Seen on AI chat bubble (`1997:40461`), and the same thing appears on the AI buttons inside
+message box (`2060:43412`).
+
+**Code:** the AI bubble's geometry, padding, radius, toolbar and type are all measured and
+built. The accent colour is **not**. It is exposed as `--v27-ai-accent`, a hook with a
+neutral `Border/Default` fallback, so the component renders sensibly without asserting a
+brand colour nobody measured.
+
+Button's `AI` and `AI bold` types remain unbuilt for the same reason.
+
+**Status:** open. This is the one gap in the library that cannot be closed by reading
+harder - the value has to come from a designer, from the Figma UI, or from a plugin that
+serialises gradient stops. Treating `#007ff3` as the answer would put a flat blue where a
+gradient belongs, across every AI surface in the system.
+
 ---
 
 ## Page inventory

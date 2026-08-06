@@ -418,6 +418,178 @@
 }
 
 /* ==========================================================================
+   AI chat bubble - Figma `AI chat bubble`, node 1997:40463
+   3 variants: type[3] - Text, Entity selector, Form.
+
+   All three are the same frame with different content in the slot, so this is a slot, not
+   three variants. Only Text (1997:40461) was measured; the other two put an entity picker
+   or a form inside the same box.
+
+   THE ACCENT COLOUR IS NOT A MEASURED VALUE. Figma applies a style named `AI gradient`
+   (and `1st (light)/AI gradient`) whose value the tool returns EMPTY - gradients do not
+   serialise. The #007ff3 that appears in the generated reference is what the flattening
+   produced, not what the style says. See FINDINGS.md #32.
+   ========================================================================== */
+
+.v27-ai-message {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--v27-spacing-s);
+  font-family: var(--v27-font-family);
+}
+
+.v27-ai-message__header {
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+}
+
+/* The V27 AI logo, 32px. Not bundled - supply the mark. */
+.v27-ai-message__logo {
+  width: var(--v27-size-l);
+  height: var(--v27-size-l);
+  flex: none;
+}
+
+.v27-ai-message__time {
+  font-size: var(--v27-text-xs-size);
+  font-weight: var(--v27-text-xs-weight);
+  line-height: var(--v27-text-xs-line-height);
+  color: var(--v27-foreground-secondary);
+}
+
+/* The bubble. Everything here except the border COLOUR is measured.
+
+   --v27-ai-accent is a deliberate hook, not a token: the real value is a gradient this
+   toolchain cannot read, so the fallback is a neutral border rather than a guess at brand
+   colours. Set it when the gradient is known. */
+.v27-ai-message__bubble {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--v27-spacing-m);
+  width: 100%;
+  padding: var(--v27-spacing-m);
+  border: 1px solid var(--v27-ai-accent, var(--v27-border-default));
+  border-radius: var(--v27-radius-m);
+  background: var(--v27-background-primary);
+  overflow: clip;
+  font-size: var(--v27-text-base-size);
+  font-weight: var(--v27-text-base-weight);
+  line-height: var(--v27-text-base-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+/* The action row inside the bubble - confirm, dismiss and so on. */
+.v27-ai-message__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-sm);
+}
+
+/* ==========================================================================
+   AI chat tool bar - Figma standalone symbol `AI chat tool bar`, node 1997:40096
+   Measured as an instance inside AI chat bubble.
+   ========================================================================== */
+
+.v27-ai-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+}
+
+.v27-ai-toolbar__action {
+  width: var(--v27-size-m);
+  height: var(--v27-size-m);
+  flex: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--v27-foreground-secondary);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   Attachments - Figma `Attachments`, node 7179:66634
+   2 variants: attachments[2]
+
+   Only attachments=False - the empty dropzone - is built. attachments=True (7179:66633)
+   adds a list of uploaded files below it and was not measured.
+   ========================================================================== */
+
+/* Verified on 7179:66632. */
+.v27-attachments {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--v27-spacing-m);
+  width: 100%;
+  font-family: var(--v27-font-family);
+}
+
+.v27-attachments__field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--v27-spacing-s);
+  width: 100%;
+}
+
+.v27-attachments__labels {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--v27-spacing-xxs);
+  width: 100%;
+}
+
+/* The constraints line - allowed types, max size, max files. XS, and the only place the
+   library uses it besides the chat timestamp. */
+.v27-attachments__hint {
+  width: 100%;
+  font-size: var(--v27-text-xs-size);
+  font-weight: var(--v27-text-xs-weight);
+  line-height: var(--v27-text-xs-line-height);
+  color: var(--v27-foreground-secondary);
+}
+
+/* The dropzone. The only DASHED border in the library, and the only other user of
+   Radius/L besides the chat input.
+
+   Figma binds `Border/Secondary` here - a variable that is NOT in the V27 export, holding
+   the same #c1c1c1 as Border/Bold. Border/Bold is used; see FINDINGS.md #18. */
+.v27-attachments__dropzone {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--v27-spacing-m);
+  width: 100%;
+  padding: var(--v27-spacing-m);
+  border: 1px dashed var(--v27-border-bold);
+  border-radius: var(--v27-radius-l);
+  background: #fff; /* figma-literal: 7063:47683 - raw white, not Background/Primary */
+  overflow: clip;
+}
+
+.v27-attachments__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.v27-attachments__prompt {
+  width: 100%;
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+/* ==========================================================================
    Chat input - Figma `Chat component`, node 1997:43042
    Measured as the body of message box (2060:43412).
    ========================================================================== */
@@ -953,9 +1125,11 @@
   gap: var(--v27-spacing-s);
 }
 
+/* XS - the named style for this was found later, on Attachments (7064:47863). */
 .v27-user-message__time {
-  font-size: 12px; /* figma-literal: 1997:40456 - no named text style */
-  line-height: normal;
+  font-size: var(--v27-text-xs-size);
+  font-weight: var(--v27-text-xs-weight);
+  line-height: var(--v27-text-xs-line-height);
   text-align: right;
   color: var(--v27-foreground-secondary);
 }

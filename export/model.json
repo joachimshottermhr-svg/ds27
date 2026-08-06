@@ -23,17 +23,17 @@
     "Check this component list before building anything new."
   ],
   "counts": {
-    "components": 35,
-    "classes": 174,
-    "tokens": 149,
+    "components": 38,
+    "classes": 189,
+    "tokens": 152,
     "themed": 39
   },
   "coverage": {
     "sets": 39,
     "variants": 259,
     "standalone": 145,
-    "setsBuilt": 31,
-    "standaloneBuilt": 4
+    "setsBuilt": 33,
+    "standaloneBuilt": 5
   },
   "tokens": [
     {
@@ -643,6 +643,24 @@
       "tier": "typography"
     },
     {
+      "name": "--v27-text-xs-size",
+      "value": "12px",
+      "dark": null,
+      "tier": "typography"
+    },
+    {
+      "name": "--v27-text-xs-weight",
+      "value": "400",
+      "dark": null,
+      "tier": "typography"
+    },
+    {
+      "name": "--v27-text-xs-line-height",
+      "value": "normal",
+      "dark": null,
+      "tier": "typography"
+    },
+    {
       "name": "--v27-text-xl-size",
       "value": "20px",
       "dark": null,
@@ -1033,6 +1051,54 @@
       ],
       "baseClass": "v27-checkbox",
       "doc": "Checkbox.md"
+    },
+    {
+      "name": "AI chat bubble",
+      "figmaComponentSet": "AI chat bubble",
+      "figmaNode": "1997:40463",
+      "variantCount": 3,
+      "variantAxes": "type[3] - Text, Entity selector, Form.",
+      "classes": [
+        "v27-ai-message",
+        "v27-ai-message__actions",
+        "v27-ai-message__bubble",
+        "v27-ai-message__header",
+        "v27-ai-message__logo",
+        "v27-ai-message__time"
+      ],
+      "baseClass": "v27-ai-message",
+      "doc": "AiMessage.md"
+    },
+    {
+      "name": "AI chat tool bar",
+      "figmaComponentSet": "AI chat tool bar",
+      "figmaNode": "1997:40096",
+      "variantCount": null,
+      "variantAxes": null,
+      "classes": [
+        "v27-ai-toolbar",
+        "v27-ai-toolbar__action"
+      ],
+      "baseClass": "v27-ai-toolbar",
+      "doc": "AiToolbar.md"
+    },
+    {
+      "name": "Attachments",
+      "figmaComponentSet": "Attachments",
+      "figmaNode": "7179:66634",
+      "variantCount": 2,
+      "variantAxes": "attachments[2]",
+      "classes": [
+        "v27-attachments",
+        "v27-attachments__actions",
+        "v27-attachments__dropzone",
+        "v27-attachments__field",
+        "v27-attachments__hint",
+        "v27-attachments__labels",
+        "v27-attachments__prompt"
+      ],
+      "baseClass": "v27-attachments",
+      "doc": "Attachments.md"
     },
     {
       "name": "Chat input",
