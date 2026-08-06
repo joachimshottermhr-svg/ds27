@@ -138,6 +138,11 @@
   --v27-text-base-weight     : 400;
   --v27-text-base-line-height: 20px;
 
+  /* Lg - nodes 2317:69137 */
+  --v27-text-lg-size       : 18px;
+  --v27-text-lg-weight     : 400;
+  --v27-text-lg-line-height: normal;
+
   /* Lg bold - nodes 138:3280 */
   --v27-text-lg-bold-size       : 18px;
   --v27-text-lg-bold-weight     : 600;

@@ -418,6 +418,57 @@
 }
 
 /* ==========================================================================
+   Entity card - Figma `Entity card`, node 7661:13220
+   12 variants: content type[4] x selected[3], plus a boolean `tags` property.
+
+   Only content type=Person / selected=Default is measured. The other content types put
+   different things in the same box, and the two remaining `selected` states were not read
+   - `Background/Secondary` appears in the set's variables and is very likely the selected
+   fill, but "very likely" is not measured.
+   ========================================================================== */
+
+/* Verified on 7661:13219. The card composes a Header display and an optional Tag; neither
+   is re-implemented here. */
+/* duplicate-ok: .v27-attachment .v27-data-display .v27-config-tile .v27-task .v27-modal
+   .v27-entity-card - the six share one card surface that V27 defines no component for.
+   See FINDINGS.md #30. */
+.v27-entity-card {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+  padding: var(--v27-spacing-sm);
+  border: 1px solid var(--v27-border-default);
+  border-radius: var(--v27-radius-m);
+  background: #fff; /* figma-literal: 7661:13219 - raw white, not Background/Primary */
+  font-family: var(--v27-font-family);
+}
+
+.v27-entity-card__body {
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+  min-width: 0;
+}
+
+/* The name line runs a 16px semibold name and a 12px regular reference on ONE baseline -
+   two type styles inside a single text node, which is why this needs its own class rather
+   than reusing Header display's title. */
+.v27-entity-card__name {
+  font-size: var(--v27-text-base-bold-size);
+  font-weight: var(--v27-text-base-bold-weight);
+  line-height: var(--v27-text-base-bold-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+.v27-entity-card__ref {
+  font-size: var(--v27-text-xs-size);
+  font-weight: var(--v27-font-weight-regular);
+  line-height: var(--v27-text-base-bold-line-height);
+}
+
+/* ==========================================================================
    Nav elements - Figma `nav elements`, node 1997:40997
    39 variants: property 1[12] x status[3]
 
@@ -860,8 +911,9 @@
 
 /* Verified on 7664:11552. Figma binds Spacing/L for the horizontal padding and leaves the
    vertical a bare 32px - the same value, so both are the token here. */
-/* duplicate-ok: .v27-attachment .v27-data-display .v27-config-tile .v27-task .v27-modal -
-   the five share one card surface that V27 defines no component for. See FINDINGS.md #30. */
+/* duplicate-ok: .v27-attachment .v27-data-display .v27-config-tile .v27-task .v27-modal
+   .v27-entity-card - the six share one card surface that V27 defines no component for.
+   See FINDINGS.md #30. */
 .v27-modal {
   box-sizing: border-box;
   position: relative;
@@ -978,8 +1030,9 @@
    The padding is asymmetric and entirely off the Spacing scale - 20px top, bottom and
    left, but 15px right. That is almost certainly the 24px context menu being optically
    centred rather than a deliberate 5px difference, but it is what the node says. */
-/* duplicate-ok: .v27-attachment .v27-data-display .v27-config-tile .v27-task .v27-modal -
-   the five share one card surface that V27 defines no component for. See FINDINGS.md #30. */
+/* duplicate-ok: .v27-attachment .v27-data-display .v27-config-tile .v27-task .v27-modal
+   .v27-entity-card - the six share one card surface that V27 defines no component for.
+   See FINDINGS.md #30. */
 .v27-task {
   box-sizing: border-box;
   display: flex;
@@ -1056,8 +1109,9 @@
 
 /* Verified on 4285:71238. The card fill is a raw white, not Background/Primary, so it does
    not follow dark mode - the same as Step's badge and the Toggle knob. */
-/* duplicate-ok: .v27-attachment .v27-data-display .v27-config-tile .v27-task .v27-modal -
-   the five share one card surface that V27 defines no component for. See FINDINGS.md #30. */
+/* duplicate-ok: .v27-attachment .v27-data-display .v27-config-tile .v27-task .v27-modal
+   .v27-entity-card - the six share one card surface that V27 defines no component for.
+   See FINDINGS.md #30. */
 .v27-config-tile {
   box-sizing: border-box;
   display: flex;
@@ -1189,8 +1243,9 @@
    Not a variant set. Measured as an instance inside User chat bubble (2879:59434).
    ========================================================================== */
 
-/* duplicate-ok: .v27-attachment .v27-data-display .v27-config-tile .v27-task .v27-modal -
-   the five share one card surface that V27 defines no component for. See FINDINGS.md #30. */
+/* duplicate-ok: .v27-attachment .v27-data-display .v27-config-tile .v27-task .v27-modal
+   .v27-entity-card - the six share one card surface that V27 defines no component for.
+   See FINDINGS.md #30. */
 .v27-attachment {
   box-sizing: border-box;
   display: flex;
@@ -1480,8 +1535,9 @@
 
 /* Verified on 232:5312 (default, Default) and 308:12887 (default, Compact). The two differ
    only in the card's padding and the figure's type style - everything else is identical. */
-/* duplicate-ok: .v27-attachment .v27-data-display .v27-config-tile .v27-task .v27-modal -
-   the five share one card surface that V27 defines no component for. See FINDINGS.md #30. */
+/* duplicate-ok: .v27-attachment .v27-data-display .v27-config-tile .v27-task .v27-modal
+   .v27-entity-card - the six share one card surface that V27 defines no component for.
+   See FINDINGS.md #30. */
 .v27-data-display {
   box-sizing: border-box;
   display: flex;

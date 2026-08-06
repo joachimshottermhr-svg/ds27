@@ -46,6 +46,15 @@
       "verifiedOn": ["58:904"],
       "note": "Label content."
     },
+    "lg": {
+      "figmaName": "Lg",
+      "fontSize": "18px",
+      "fontWeight": 400,
+      "lineHeight": "normal",
+      "letterSpacing": "0",
+      "verifiedOn": ["2317:69137"],
+      "note": "Found on the App header set's variables. The regular-weight counterpart to Lg bold."
+    },
     "lg-bold": {
       "figmaName": "Lg bold",
       "fontSize": "18px",

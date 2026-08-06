@@ -23,16 +23,16 @@
     "Check this component list before building anything new."
   ],
   "counts": {
-    "components": 41,
-    "classes": 198,
-    "tokens": 152,
+    "components": 42,
+    "classes": 202,
+    "tokens": 155,
     "themed": 39
   },
   "coverage": {
     "sets": 39,
     "variants": 259,
     "standalone": 145,
-    "setsBuilt": 36,
+    "setsBuilt": 37,
     "standaloneBuilt": 5
   },
   "tokens": [
@@ -607,6 +607,24 @@
       "tier": "typography"
     },
     {
+      "name": "--v27-text-lg-size",
+      "value": "18px",
+      "dark": null,
+      "tier": "typography"
+    },
+    {
+      "name": "--v27-text-lg-weight",
+      "value": "400",
+      "dark": null,
+      "tier": "typography"
+    },
+    {
+      "name": "--v27-text-lg-line-height",
+      "value": "normal",
+      "dark": null,
+      "tier": "typography"
+    },
+    {
       "name": "--v27-text-lg-bold-size",
       "value": "18px",
       "dark": null,
@@ -1051,6 +1069,21 @@
       ],
       "baseClass": "v27-checkbox",
       "doc": "Checkbox.md"
+    },
+    {
+      "name": "Entity card",
+      "figmaComponentSet": "Entity card",
+      "figmaNode": "7661:13220",
+      "variantCount": 12,
+      "variantAxes": "content type[4] x selected[3], plus a boolean `tags` property.",
+      "classes": [
+        "v27-entity-card",
+        "v27-entity-card__body",
+        "v27-entity-card__name",
+        "v27-entity-card__ref"
+      ],
+      "baseClass": "v27-entity-card",
+      "doc": "EntityCard.md"
     },
     {
       "name": "Nav elements",

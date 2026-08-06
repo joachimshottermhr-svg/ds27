@@ -471,17 +471,17 @@ The tokens are not the problem; what components bind to is. A single audit pass 
 Figma file for any fill or stroke NOT bound to a V27 variable would be worth more than any
 further work in this repo.
 
-## 30. Five components hand-roll the same card, and V27 has no Card component
+## 30. Six components hand-roll the same card, and V27 has no Card component
 
 **Figma:** Document attachment, Data display, config tile, Tasks and Confirmation modal all draw the identical
 surface - a 1px `Border/Default`, an 8px radius and a white fill - and each defines it
 independently. There is no Card component in the file for any of them to compose. The
 standalone `Card header` symbol exists, but a header is not the surface.
 
-Two of the five fill with `Background/Primary` and two with a **raw white**, so they already
+Two of the six fill with `Background/Primary` and two with a **raw white**, so they already
 disagree: in dark mode two would flip and two would not.
 
-**Code:** the five are declared as an accepted group in `src/styles.css` so the
+**Code:** the six are declared as an accepted group in `src/styles.css` so the
 duplicate-rules audit does not report them against each other. An undeclared sixth card
 still fails the build - verified.
 
@@ -489,7 +489,7 @@ No `.v27-card` was invented. Extracting one would assert a component the design 
 not have, and the point of this library is that it does not invent structure.
 
 **Status:** open, and the highest-value structural fix available in the Figma file. One Card
-component would remove five independent definitions, settle the white-versus-`Background/
+component would remove six independent definitions, settle the white-versus-`Background/
 Primary` disagreement, and give dark mode a single place to be correct.
 
 ## 31. Two text styles with different names hold identical values
