@@ -418,6 +418,121 @@
 }
 
 /* ==========================================================================
+   Chat input - Figma `Chat component`, node 1997:43042
+   Measured as the body of message box (2060:43412).
+   ========================================================================== */
+
+/* The only place in the library that uses Radius/L (16px) - every other card is 8px. */
+.v27-chat-input {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--v27-spacing-m);
+  width: 100%;
+  padding: var(--v27-spacing-m);
+  border: 1px solid var(--v27-border-default);
+  border-radius: var(--v27-radius-l);
+  background: var(--v27-background-primary);
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-base-size);
+  font-weight: var(--v27-text-base-weight);
+  line-height: var(--v27-text-base-line-height);
+}
+
+.v27-chat-input__field {
+  width: 100%;
+  border: 0;
+  outline: none;
+  background: none;
+  resize: none;
+  color: var(--v27-foreground-primary);
+  font: inherit;
+}
+
+.v27-chat-input__field::placeholder {
+  color: var(--v27-foreground-secondary);
+}
+
+.v27-chat-input__toolbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.v27-chat-input__tools {
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-sm);
+}
+
+.v27-chat-input__tool {
+  width: var(--v27-size-m);
+  height: var(--v27-size-m);
+  flex: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--v27-foreground-secondary);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   Message box - Figma `message box`, node 7694:90192
+   2 variants: mobile[2]. Only mobile=false is built; mobile=true (7694:90193) is a
+   different 375px layout and was not measured.
+   ========================================================================== */
+
+/* Verified on 2060:43412. Suggestion chips above, the chat input, then a legal footer. */
+.v27-message-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--v27-spacing-xs);
+  width: 100%;
+  font-family: var(--v27-font-family);
+}
+
+.v27-message-box__suggestions {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--v27-spacing-sm);
+  padding-bottom: var(--v27-spacing-s);
+}
+
+/* The legal footer - Terms, Privacy, Feedback - separated by 15px rules. */
+.v27-message-box__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-sm);
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+  color: var(--v27-foreground-secondary);
+}
+
+.v27-message-box__footer > a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Figma draws the separators as rotated line assets. A border is the same 1px rule without
+   the asset, and its colour could not be read off the flattened line - so it inherits
+   currentColor rather than asserting a value. */
+.v27-message-box__footer > a + a::before {
+  content: '';
+  display: inline-block;
+  width: 1px;
+  height: 15px; /* figma-literal: 4834:61591 - off every scale */
+  margin-right: var(--v27-spacing-sm);
+  background: currentColor;
+  vertical-align: middle;
+  opacity: 0.5;
+}
+
+/* ==========================================================================
    Confirmation modal - Figma `Confirmation modal`, node 7664:11553
    2 variants: property 1[2] - Risky action and Unsaved changes.
 

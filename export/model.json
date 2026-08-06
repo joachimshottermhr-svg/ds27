@@ -23,8 +23,8 @@
     "Check this component list before building anything new."
   ],
   "counts": {
-    "components": 30,
-    "classes": 166,
+    "components": 32,
+    "classes": 174,
     "tokens": 149,
     "themed": 39
   },
@@ -1031,6 +1031,36 @@
       ],
       "baseClass": "v27-checkbox",
       "doc": "Checkbox.md"
+    },
+    {
+      "name": "Chat input",
+      "figmaComponentSet": "Chat component",
+      "figmaNode": "1997:43042",
+      "variantCount": null,
+      "variantAxes": null,
+      "classes": [
+        "v27-chat-input",
+        "v27-chat-input__field",
+        "v27-chat-input__tool",
+        "v27-chat-input__toolbar",
+        "v27-chat-input__tools"
+      ],
+      "baseClass": "v27-chat-input",
+      "doc": "ChatInput.md"
+    },
+    {
+      "name": "Message box",
+      "figmaComponentSet": "message box",
+      "figmaNode": "7694:90192",
+      "variantCount": 2,
+      "variantAxes": "mobile[2]. Only mobile=false is built; mobile=true (7694:90193) is a",
+      "classes": [
+        "v27-message-box",
+        "v27-message-box__footer",
+        "v27-message-box__suggestions"
+      ],
+      "baseClass": "v27-message-box",
+      "doc": "MessageBox.md"
     },
     {
       "name": "Confirmation modal",
