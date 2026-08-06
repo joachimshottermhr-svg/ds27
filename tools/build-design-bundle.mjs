@@ -280,7 +280,16 @@ function foundations() {
   const file = path.join(dir, 'Tokens.html');
   fs.writeFileSync(file, html, 'utf8');
   const rel = path.relative(OUT, file).split(path.sep).join('/');
-  cards.push({ name: 'Tokens', group: 'Foundations', path: rel, viewport: '1100x2960', examples: 0 });
+
+  /**
+   * UNSHIFT, not push.
+   *
+   * The pane orders groups by where each first appears in the manifest's card list, and
+   * items within a group by that same order - not alphabetically. Appending Tokens put
+   * Foundations last, below every component, which is backwards: the token layer is what
+   * everything else is built from and belongs at the top, directly under the readme.
+   */
+  cards.unshift({ name: 'Tokens', group: 'Foundations', path: rel, viewport: '1100x2960', examples: 0 });
 }
 foundations();
 
@@ -351,9 +360,11 @@ for (const c of manifest.cards) {
  * contingent on a pane rendering it. Open this file and every component is there, in both
  * themes, with its doc a click away.
  */
+// Group order follows the card list, exactly as the Design System pane does it, so the
+// local gallery and the hosted pane present the system in the same order.
 const nav = Object.entries(
   cards.reduce((acc, c) => ((acc[c.group] ??= []).push(c), acc), {}),
-).sort(([a], [b]) => a.localeCompare(b));
+);
 
 const section = ([group, list]) => `
   <section class="g" id="${group.toLowerCase()}">
