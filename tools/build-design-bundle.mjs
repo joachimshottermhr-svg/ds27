@@ -131,10 +131,73 @@ ${stories}
 
   const file = path.join(dir, 'preview.html');
   fs.writeFileSync(file, html, 'utf8');
-  cards.push({ name: c.name, group, path: file.replace(/\\/g, '/'), examples: ex.length });
+
+  // PROJECT-relative, not repo-relative. The manifest and the upload both address files
+  // from the bundle root, so a leading "ds-bundle/" here points at nothing once uploaded.
+  const rel = path.relative(OUT, file).split(path.sep).join('/');
+  cards.push({ name: c.name, group, path: rel, viewport: `900x${height}`, examples: ex.length });
 
   // The doc travels with the card, so the spec is one click away inside Claude Design.
   fs.copyFileSync(path.join('docs', c.doc), path.join(dir, c.doc));
+}
+
+/* ---- _ds_manifest.json --------------------------------------------------
+ * The card index the Design System pane actually reads.
+ *
+ * The `@dsCard` markers in each preview are the SOURCE of this file, not a substitute for
+ * it: something has to compile them, and for a bundle uploaded through the API rather than
+ * built by the design-sync CLI, that something is this script. Without the manifest the
+ * project exists, every file uploads, every path lists - and the pane shows nothing. That
+ * is exactly what happened on the first upload of this bundle.
+ *
+ * Schema taken from the People First project's own manifest rather than guessed.
+ */
+const KIND = (v) =>
+  /^#|^rgb|^hsl|gradient\(/i.test(v) || /^var\(--v27-(neutral|blue|green|red|pink|purple|orange|foreground|background|border|chart)/.test(v) ? 'color'
+    : /^\d+(\.\d+)?px$/.test(v) ? 'size'
+    : 'text';
+
+const manifest = {
+  namespace: 'V27',
+  components: cards.map((c) => ({ name: c.name, sourcePath: c.path })),
+  startingPoints: [],
+  cards: cards.map((c) => ({ path: c.path, group: c.group.toLowerCase(), viewport: c.viewport })),
+  templates: [],
+  hasThumbnailHtml: false,
+  globalCssPaths: ['tokens.css', 'styles.css'],
+  tokens: model.tokens.map((t) => ({
+    name: t.name,
+    value: t.value ?? t.dark ?? '',
+    kind: KIND(t.value ?? ''),
+    definedIn: 'tokens.css',
+  })),
+  themes: [{ selector: '[data-v27-theme="dark"]', label: 'V27 Dark' }],
+  // Outfit is referenced with a system fallback but is not licensed or bundled - see
+  // FINDINGS.md #9 - so there is no font to declare here.
+  fonts: [],
+  brandFonts: [],
+  source: 'ds27/tools/build-design-bundle.mjs',
+};
+fs.writeFileSync(path.join(OUT, '_ds_manifest.json'), JSON.stringify(manifest), 'utf8');
+
+/**
+ * Every path the manifest names must exist in the bundle, and none may carry the bundle
+ * directory as a prefix. Both mistakes were made on the first attempt and neither showed
+ * up as an error - the upload succeeded and the pane was simply empty.
+ */
+for (const c of manifest.cards) {
+  if (c.path.startsWith(`${OUT}/`)) {
+    console.error(`FAIL: card path is repo-relative, not project-relative: ${c.path}`);
+    process.exitCode = 1;
+  }
+  if (!fs.existsSync(path.join(OUT, c.path))) {
+    console.error(`FAIL: manifest names a file that is not in the bundle: ${c.path}`);
+    process.exitCode = 1;
+  }
+  if (!/^\d+x\d+$/.test(c.viewport ?? '')) {
+    console.error(`FAIL: card has no viewport: ${c.path}`);
+    process.exitCode = 1;
+  }
 }
 
 const readme = `# V27 Design System
