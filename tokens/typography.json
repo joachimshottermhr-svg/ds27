@@ -61,8 +61,8 @@
       "fontWeight": 600,
       "lineHeight": "normal",
       "letterSpacing": "0",
-      "verifiedOn": ["243:4085", "289:4419"],
-      "note": "Name confirmed from the Avatar set's variable defs, which report it as 'Sm bold'. Previously carried as UNCONFIRMED when only the Button's raw Font() was known."
+      "verifiedOn": ["289:4419", "2127:54656"],
+      "note": "Name confirmed from the Avatar set's variable defs. NOTE the Button component does NOT use this style - it uses a separate style literally named 'Button' with identical metrics (Outfit SemiBold 14 / 600 / AUTO), reported on 7664:11553. Two names, one set of values; see FINDINGS.md #31. Node 243:4085 was previously listed here in error and has been removed."
     },
     "xl": {
       "figmaName": "XL",

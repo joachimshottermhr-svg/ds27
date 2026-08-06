@@ -83,6 +83,14 @@
   width: 32px;
 }
 
+/* Full width. Not a Figma variant - it is how the Button instances inside Confirmation
+   modal (5034:49885, 5034:49884) are set to fill their container. It adds no value of its
+   own, which is why it lives here rather than the modal reaching in to restyle a button
+   from outside its scope. */
+.v27-btn--block {
+  width: 100%;
+}
+
 /* --- type=Positive - node 243:4068 --- */
 .v27-btn--positive {
   background: var(--v27-background-primary-button);
@@ -410,6 +418,98 @@
 }
 
 /* ==========================================================================
+   Confirmation modal - Figma `Confirmation modal`, node 7664:11553
+   2 variants: property 1[2] - Risky action and Unsaved changes.
+
+   Only Risky action is built. The two share this box; Unsaved changes was not measured,
+   and the difference between them is the glyph and the copy rather than the frame.
+   ========================================================================== */
+
+/* Verified on 7664:11552. Figma binds Spacing/L for the horizontal padding and leaves the
+   vertical a bare 32px - the same value, so both are the token here. */
+/* duplicate-ok: .v27-attachment .v27-data-display .v27-config-tile .v27-task .v27-modal -
+   the five share one card surface that V27 defines no component for. See FINDINGS.md #30. */
+.v27-modal {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--v27-spacing-ml);
+  width: 380px;
+  padding: var(--v27-spacing-l);
+  border: 1px solid var(--v27-border-default);
+  border-radius: var(--v27-radius-m);
+  background: #fff; /* figma-literal: 7664:11552 - raw white, not Background/Primary */
+  overflow: clip;
+  font-family: var(--v27-font-family);
+  color: var(--v27-foreground-primary);
+}
+
+.v27-modal__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--v27-spacing-sm);
+}
+
+/* A 120px illustration glyph - far larger than any Size token, so a literal. */
+.v27-modal__glyph {
+  width: 120px;
+  height: 120px;
+  flex: none;
+}
+
+.v27-modal__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--v27-spacing-xs);
+  width: 237px; /* figma-literal: 5034:49896 - measured text column */
+  text-align: center;
+}
+
+.v27-modal__title {
+  font-size: var(--v27-text-xl-size);
+  font-weight: var(--v27-text-xl-weight);
+  line-height: var(--v27-text-xl-line-height);
+}
+
+/* The body is left-aligned inside a centred column - Figma sets text-center on the title
+   only. Reproduced as measured. */
+.v27-modal__body {
+  width: 100%;
+  text-align: left;
+  font-size: var(--v27-text-base-size);
+  font-weight: var(--v27-text-base-weight);
+  line-height: var(--v27-text-base-line-height);
+}
+
+/* Actions stack full width, confirm above cancel. */
+.v27-modal__actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--v27-spacing-sm);
+  width: 100%;
+}
+
+/* The close control sits 11px from the top and right - off every scale. */
+.v27-modal__close {
+  position: absolute;
+  top: 11px; /* figma-literal: 5034:51635 */
+  right: 11px;
+  width: var(--v27-size-m);
+  height: var(--v27-size-m);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--v27-foreground-secondary);
+  cursor: pointer;
+  overflow: clip;
+}
+
+/* ==========================================================================
    Icon compact with text - Figma standalone symbol `Icon/Compact with text`, node 289:4481
    Not a variant set. Measured as an instance inside Tasks (2127:54656).
    ========================================================================== */
@@ -445,8 +545,8 @@
    The padding is asymmetric and entirely off the Spacing scale - 20px top, bottom and
    left, but 15px right. That is almost certainly the 24px context menu being optically
    centred rather than a deliberate 5px difference, but it is what the node says. */
-/* duplicate-ok: .v27-attachment .v27-data-display .v27-config-tile .v27-task - the four
-   share one card surface that V27 defines no component for. See FINDINGS.md #30. */
+/* duplicate-ok: .v27-attachment .v27-data-display .v27-config-tile .v27-task .v27-modal -
+   the five share one card surface that V27 defines no component for. See FINDINGS.md #30. */
 .v27-task {
   box-sizing: border-box;
   display: flex;
@@ -523,8 +623,8 @@
 
 /* Verified on 4285:71238. The card fill is a raw white, not Background/Primary, so it does
    not follow dark mode - the same as Step's badge and the Toggle knob. */
-/* duplicate-ok: .v27-attachment .v27-data-display .v27-config-tile .v27-task - the four
-   share one card surface that V27 defines no component for. See FINDINGS.md #30. */
+/* duplicate-ok: .v27-attachment .v27-data-display .v27-config-tile .v27-task .v27-modal -
+   the five share one card surface that V27 defines no component for. See FINDINGS.md #30. */
 .v27-config-tile {
   box-sizing: border-box;
   display: flex;
@@ -656,8 +756,8 @@
    Not a variant set. Measured as an instance inside User chat bubble (2879:59434).
    ========================================================================== */
 
-/* duplicate-ok: .v27-attachment .v27-data-display .v27-config-tile .v27-task - the four
-   share one card surface that V27 defines no component for. See FINDINGS.md #30. */
+/* duplicate-ok: .v27-attachment .v27-data-display .v27-config-tile .v27-task .v27-modal -
+   the five share one card surface that V27 defines no component for. See FINDINGS.md #30. */
 .v27-attachment {
   box-sizing: border-box;
   display: flex;
@@ -945,8 +1045,8 @@
 
 /* Verified on 232:5312 (default, Default) and 308:12887 (default, Compact). The two differ
    only in the card's padding and the figure's type style - everything else is identical. */
-/* duplicate-ok: .v27-attachment .v27-data-display .v27-config-tile .v27-task - the four
-   share one card surface that V27 defines no component for. See FINDINGS.md #30. */
+/* duplicate-ok: .v27-attachment .v27-data-display .v27-config-tile .v27-task .v27-modal -
+   the five share one card surface that V27 defines no component for. See FINDINGS.md #30. */
 .v27-data-display {
   box-sizing: border-box;
   display: flex;

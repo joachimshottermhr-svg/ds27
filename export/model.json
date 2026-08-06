@@ -23,8 +23,8 @@
     "Check this component list before building anything new."
   ],
   "counts": {
-    "components": 29,
-    "classes": 157,
+    "components": 30,
+    "classes": 166,
     "tokens": 149,
     "themed": 39
   },
@@ -938,6 +938,7 @@
       "variantAxes": "type[6] x icon[4] x size[2] x state[3]",
       "classes": [
         "v27-btn",
+        "v27-btn--block",
         "v27-btn--icon-only",
         "v27-btn--negative",
         "v27-btn--outline",
@@ -1026,11 +1027,30 @@
       "variantAxes": "property 1[2] - Default and Disabled.",
       "classes": [
         "v27-checkbox",
-        "v27-choice-input",
-        "v27-icon-text"
+        "v27-choice-input"
       ],
       "baseClass": "v27-checkbox",
       "doc": "Checkbox.md"
+    },
+    {
+      "name": "Confirmation modal",
+      "figmaComponentSet": "Confirmation modal",
+      "figmaNode": "7664:11553",
+      "variantCount": 2,
+      "variantAxes": "property 1[2] - Risky action and Unsaved changes.",
+      "classes": [
+        "v27-icon-text",
+        "v27-modal",
+        "v27-modal__actions",
+        "v27-modal__body",
+        "v27-modal__close",
+        "v27-modal__content",
+        "v27-modal__glyph",
+        "v27-modal__text",
+        "v27-modal__title"
+      ],
+      "baseClass": "v27-icon-text",
+      "doc": "ConfirmationModal.md"
     },
     {
       "name": "Tasks",

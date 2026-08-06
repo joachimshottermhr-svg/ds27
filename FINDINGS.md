@@ -471,26 +471,47 @@ The tokens are not the problem; what components bind to is. A single audit pass 
 Figma file for any fill or stroke NOT bound to a V27 variable would be worth more than any
 further work in this repo.
 
-## 30. Four components hand-roll the same card, and V27 has no Card component
+## 30. Five components hand-roll the same card, and V27 has no Card component
 
-**Figma:** Document attachment, Data display, config tile and Tasks all draw the identical
+**Figma:** Document attachment, Data display, config tile, Tasks and Confirmation modal all draw the identical
 surface - a 1px `Border/Default`, an 8px radius and a white fill - and each defines it
 independently. There is no Card component in the file for any of them to compose. The
 standalone `Card header` symbol exists, but a header is not the surface.
 
-Two of the four fill with `Background/Primary` and two with a **raw white**, so they already
+Two of the five fill with `Background/Primary` and two with a **raw white**, so they already
 disagree: in dark mode two would flip and two would not.
 
-**Code:** the four are declared as an accepted group in `src/styles.css` so the
-duplicate-rules audit does not report them against each other. An undeclared fifth card
+**Code:** the five are declared as an accepted group in `src/styles.css` so the
+duplicate-rules audit does not report them against each other. An undeclared sixth card
 still fails the build - verified.
 
 No `.v27-card` was invented. Extracting one would assert a component the design file does
 not have, and the point of this library is that it does not invent structure.
 
 **Status:** open, and the highest-value structural fix available in the Figma file. One Card
-component would remove four independent definitions, settle the white-versus-`Background/
+component would remove five independent definitions, settle the white-versus-`Background/
 Primary` disagreement, and give dark mode a single place to be correct.
+
+## 31. Two text styles with different names hold identical values
+
+**Figma:** the Confirmation modal's variable defs (`7664:11553`) report a style literally
+named **`Button`**: `Outfit SemiBold 14 / 600 / AUTO`. That is byte-for-byte the same as
+**`Sm bold`**, reported on Avatar (`289:4419`) and Tasks (`2127:54656`).
+
+The Button component uses `Button`; Avatar and Tasks use `Sm bold`. Nothing distinguishes
+them but the name.
+
+**Code:** one token trio, `--v27-text-sm-bold-*`. Emitting two identical trios would
+duplicate the values without adding meaning.
+
+This also corrects an earlier error in this repo: `tokens/typography.json` listed the Button
+node `243:4085` as evidence for `Sm bold`. It was evidence for `Button`. The metrics were
+right and the provenance was wrong, which is exactly the kind of mistake recording node ids
+is meant to make findable.
+
+**Status:** open. Either `Button` is a component-specific alias that should point at
+`Sm bold`, or the two are meant to diverge later and currently do not. Until that is
+decided, a change to one will silently fail to reach the components using the other.
 
 ---
 

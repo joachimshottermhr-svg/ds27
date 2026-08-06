@@ -58,4 +58,4 @@ one.
 
 ## All classes in this component
 
-`.v27-btn`, `.v27-btn--icon-only`, `.v27-btn--negative`, `.v27-btn--outline`, `.v27-btn--plain`, `.v27-btn--positive`, `.v27-btn--small`
+`.v27-btn`, `.v27-btn--block`, `.v27-btn--icon-only`, `.v27-btn--negative`, `.v27-btn--outline`, `.v27-btn--plain`, `.v27-btn--positive`, `.v27-btn--small`
