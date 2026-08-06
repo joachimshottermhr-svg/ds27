@@ -410,6 +410,64 @@
 }
 
 /* ==========================================================================
+   Content display - Figma `Content display`, node 368:13923
+   4 variants: property 1[2] x property 2[2]
+
+   Two shapes, not four: Avatar and Icon. Figma's `property 2` values are `Default` and
+   `Default with text` but both rows render a title AND a subtitle, and the axis values
+   are duplicated in the set listing - see FINDINGS.md #27.
+   ========================================================================== */
+
+/* Verified on 368:13922 (Avatar) and 368:13920 (Icon). The two are identical but for what
+   sits in the 32px media slot, so there is one block and a slot rather than two variants.
+
+   Note the text column has NO gap here, unlike Header display's 2px - the two components
+   look near-identical and are spaced differently. Reproduced as measured. */
+.v27-content-display {
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+  font-family: var(--v27-font-family);
+}
+
+/* 32px on both shapes - an avatar or a glyph. */
+.v27-content-display__media {
+  width: var(--v27-size-l);
+  height: var(--v27-size-l);
+  flex: none;
+  overflow: clip;
+}
+
+.v27-content-display__media > img,
+.v27-content-display__media > svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.v27-content-display__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.v27-content-display__title {
+  font-size: var(--v27-text-base-size);
+  font-weight: var(--v27-text-base-weight);
+  line-height: var(--v27-text-base-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+.v27-content-display__subtitle {
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+  color: var(--v27-foreground-secondary);
+}
+
+/* ==========================================================================
    Multi avatar - Figma `Multi avatar`, node 2299:83865
    2 variants: property 1[2]
 

@@ -23,8 +23,8 @@
     "Check this component list before building anything new."
   ],
   "counts": {
-    "components": 18,
-    "classes": 92,
+    "components": 19,
+    "classes": 97,
     "tokens": 143,
     "themed": 39
   },
@@ -994,6 +994,22 @@
       ],
       "baseClass": "v27-checkbox",
       "doc": "Checkbox.md"
+    },
+    {
+      "name": "Content display",
+      "figmaComponentSet": "Content display",
+      "figmaNode": "368:13923",
+      "variantCount": 4,
+      "variantAxes": "property 1[2] x property 2[2]",
+      "classes": [
+        "v27-content-display",
+        "v27-content-display__media",
+        "v27-content-display__subtitle",
+        "v27-content-display__text",
+        "v27-content-display__title"
+      ],
+      "baseClass": "v27-content-display",
+      "doc": "ContentDisplay.md"
     },
     {
       "name": "Multi avatar",

@@ -406,6 +406,31 @@ scale is five named styles, and components reach outside it whenever they want a
 weight it does not offer. Each one that is not brought back into the scale is a value no
 retokenisation will ever reach.
 
+## 27. Content display's second axis does nothing
+
+**Figma:** the set (`368:13923`) reports `property 1[2]` x `property 2[2]` = 4 variants,
+and the inventory lists the axis values as duplicates:
+
+```
+Property 1=Avatar, Property 2=Default          368:13922
+Property 1=Avatar, Property 2=Default          368:13921
+Property 1=Icon,   Property 2=Default with text 368:13920
+Property 1=Icon,   Property 2=Default with text 368:13919
+```
+
+The same combination appears twice, and `Default` versus `Default with text` does not
+describe a difference that exists: both measured nodes render a title **and** a subtitle.
+
+**Code:** built as two shapes with one slot, not four variants.
+
+**Status:** open. Either two variants are redundant and should be deleted, or `property 2`
+was meant to toggle the subtitle and no longer does. Both are worth a minute of a
+designer's time; neither is safe for a developer to resolve by guessing which.
+
+This is the fourth counting problem in the file, after #15 (auto-named `VariantN`
+duplicates), #16 (boolean properties outside the axes) and the duplicated names here. The
+259-variant total should not be used as a measure of anything.
+
 ---
 
 ## Page inventory
