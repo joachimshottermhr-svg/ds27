@@ -17,7 +17,29 @@
 import fs from 'node:fs';
 import { parse } from './lib/css.mjs';
 
-const rules = parse(fs.readFileSync('src/styles.css', 'utf8'))
+const raw = fs.readFileSync('src/styles.css', 'utf8');
+
+/**
+ * A declared exception: two rules that genuinely match but are not a defect.
+ *
+ * Data display and Document attachment are both cards - 1px Border/Default, 8px radius,
+ * Background/Primary - and the audit called them duplicates of each other. They are not.
+ * The defect this catches is a change that FAILS TO PROPAGATE, and both reference the same
+ * tokens, so retokenising reaches both. Nor is there a Card component in V27 for either to
+ * compose; inventing one would assert a relationship the design file does not make.
+ *
+ * The exemption is pairwise and needs a reason on the line:
+ *
+ *     /* duplicate-ok: .v27-attachment - both are token-driven card surfaces *(/
+ *
+ * Widening the GENERIC list instead would have been the easy fix and the wrong one: border,
+ * radius and background ARE the identity of a card, and blinding the audit to them is how
+ * a real hand-rolled copy gets through.
+ */
+const OK = new Set();
+for (const m of raw.matchAll(/duplicate-ok:\s*(\.[a-z0-9_-]+)/g)) OK.add(m[1]);
+
+const rules = parse(raw)
   .filter((r) => !r.selector.startsWith('@') && !r.selector.startsWith(':root') && r.decls.length);
 
 // Declarations that carry no identity - every flex row has them, and matching on them
@@ -55,6 +77,7 @@ for (const s of shared) {
     if (r.selector.includes(s.sel)) continue;          // the component and its own variants
     const overlap = s.sig.filter(([p, v]) => r.decls.some((d) => d.prop === p && d.value === v));
     const pct = overlap.length / s.sig.length;
+    if (OK.has(r.selector) && OK.has(s.sel)) continue;   // both sides declared
     if (pct >= 0.7 && overlap.length >= 3) {
       findings.push({ dup: r.selector, line: r.line, of: s.sel, pct: Math.round(pct * 100), props: overlap.map(([p]) => p) });
     }

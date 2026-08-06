@@ -452,6 +452,25 @@ inverted, say so and this decision reverses.
 Worth searching the rest of the file for other `DEPRECATED COLOURS/*` bindings before the
 group is deleted - only the components built so far have been checked.
 
+## 29. A legacy palette style sits next to the semantic token holding the same value
+
+**Figma:** the User chat bubble's border (`1997:40457`) is bound to a style called
+**`2nd (light)/Grey steel`** = `#E5E5E5`. Two levels down inside the *same component*, the
+Document attachment card's border is bound to `Border/Default` - which is also `#e5e5e5`.
+
+One component, one visual treatment, two different sources for it.
+
+**Code:** `Border/Default` is used for both.
+
+**Status:** open. With #28's `DEPRECATED COLOURS/White`, there are now at least two legacy
+style groups still bound on live components - `2nd (light)/*` and `DEPRECATED COLOURS/*` -
+alongside `Text/*`, `Icons/*` and `Charts/*` from the People First library (#18, #25).
+
+That is five distinct colour sources in a system whose token layer is a clean two tiers.
+The tokens are not the problem; what components bind to is. A single audit pass over the
+Figma file for any fill or stroke NOT bound to a V27 variable would be worth more than any
+further work in this repo.
+
 ---
 
 ## Page inventory

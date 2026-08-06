@@ -23,8 +23,8 @@
     "Check this component list before building anything new."
   ],
   "counts": {
-    "components": 25,
-    "classes": 126,
+    "components": 26,
+    "classes": 137,
     "tokens": 149,
     "themed": 39
   },
@@ -1025,11 +1025,33 @@
       "variantCount": 2,
       "variantAxes": "property 1[2] - Default and Disabled.",
       "classes": [
+        "v27-attachment",
+        "v27-attachment__body",
+        "v27-attachment__icon",
+        "v27-attachment__menu",
+        "v27-attachment__meta",
+        "v27-attachment__name",
         "v27-checkbox",
         "v27-choice-input"
       ],
-      "baseClass": "v27-checkbox",
+      "baseClass": "v27-attachment",
       "doc": "Checkbox.md"
+    },
+    {
+      "name": "User chat bubble",
+      "figmaComponentSet": "User chat bubble",
+      "figmaNode": "2879:59398",
+      "variantCount": 2,
+      "variantAxes": "property 1[2] - Default and with file.",
+      "classes": [
+        "v27-user-message",
+        "v27-user-message__avatar",
+        "v27-user-message__bubble",
+        "v27-user-message__header",
+        "v27-user-message__time"
+      ],
+      "baseClass": "v27-user-message",
+      "doc": "UserMessage.md"
     },
     {
       "name": "Image",

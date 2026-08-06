@@ -410,6 +410,137 @@
 }
 
 /* ==========================================================================
+   Document attachment - Figma standalone symbol `Document attachment`, node 58:1073
+   Not a variant set. Measured as an instance inside User chat bubble (2879:59434).
+   ========================================================================== */
+
+/* duplicate-ok: .v27-data-display - both are token-driven card surfaces, and V27 defines
+   no Card component for either to compose. */
+.v27-attachment {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+  padding: var(--v27-spacing-sm);
+  border: 1px solid var(--v27-border-default);
+  border-radius: var(--v27-radius-m);
+  background: var(--v27-background-primary);
+  overflow: clip;
+  font-family: var(--v27-font-family);
+}
+
+.v27-attachment__icon {
+  width: var(--v27-size-l);
+  height: var(--v27-size-l);
+  flex: none;
+}
+
+.v27-attachment__body {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.v27-attachment__name {
+  font-size: var(--v27-text-base-size);
+  font-weight: var(--v27-text-base-weight);
+  line-height: var(--v27-text-base-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+.v27-attachment__meta {
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+  color: var(--v27-foreground-secondary);
+}
+
+/* The trailing context menu is a real button - it opens one. */
+.v27-attachment__menu {
+  width: var(--v27-size-m);
+  height: var(--v27-size-m);
+  flex: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--v27-foreground-secondary);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   User chat bubble - Figma `User chat bubble`, node 2879:59398
+   2 variants: property 1[2] - Default and with file.
+
+   The `with file` variant is the same bubble with a Document attachment inside it, so it
+   is composition rather than a modifier - there is no --with-file class.
+   ========================================================================== */
+
+/* Verified on 1997:40462 (Default) and 2879:59399 (with file). The user's own messages sit
+   right; the AI's counterpart component sits left and is not yet built. */
+.v27-user-message {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--v27-spacing-s);
+  font-family: var(--v27-font-family);
+}
+
+/* Timestamp and avatar above the bubble. The timestamp is a raw 12px belonging to no named
+   text style - the same gap as Avatar's small size, FINDINGS.md #24. */
+.v27-user-message__header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--v27-spacing-s);
+}
+
+.v27-user-message__time {
+  font-size: 12px; /* figma-literal: 1997:40456 - no named text style */
+  line-height: normal;
+  text-align: right;
+  color: var(--v27-foreground-secondary);
+}
+
+.v27-user-message__avatar {
+  width: var(--v27-size-l);
+  height: var(--v27-size-l);
+  flex: none;
+  border-radius: 46px;
+  overflow: clip;
+}
+
+.v27-user-message__avatar > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* The bubble. Figma binds its border to `2nd (light)/Grey steel`, a legacy palette style
+   holding #e5e5e5 - the identical value to Border/Default, which is bound on the
+   attachment card two levels down in the same component. Border/Default is used here; see
+   FINDINGS.md #29. */
+.v27-user-message__bubble {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: var(--v27-spacing-sm);
+  max-width: 985px;
+  padding: var(--v27-spacing-sm) var(--v27-spacing-m);
+  border: 1px solid var(--v27-border-default);
+  border-radius: var(--v27-radius-m);
+  background: var(--v27-background-highlight);
+  font-size: var(--v27-text-base-size);
+  font-weight: var(--v27-text-base-weight);
+  line-height: var(--v27-text-base-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+/* ==========================================================================
    Image - Figma `Image`, node 378:18391
    3 variants: property 1[3] - small, medium, large.
 
@@ -572,6 +703,7 @@
 
 /* Verified on 232:5312 (default, Default) and 308:12887 (default, Compact). The two differ
    only in the card's padding and the figure's type style - everything else is identical. */
+/* duplicate-ok: .v27-attachment - see the note on .v27-attachment. */
 .v27-data-display {
   box-sizing: border-box;
   display: flex;
