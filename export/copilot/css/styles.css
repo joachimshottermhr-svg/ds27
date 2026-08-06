@@ -410,6 +410,64 @@
 }
 
 /* ==========================================================================
+   Progress bar - Figma `Progress bar`, node 405:17846
+   2 variants: property 1[2] - Single category and Multi category.
+
+   ONLY Single category is built. Multi category (405:17844) binds Charts/Chart 1, 2 and 3
+   - a real three-colour palette that is NOT in the V27 variables export and has no V27
+   token to point at. Building it would mean hard-coding three hexes from another library
+   or inventing three tokens. See FINDINGS.md #25, which supersedes #3.
+   ========================================================================== */
+
+/* Verified on 405:17845. The track and the fill carry different radii - 36px and 27px -
+   and both are off the Radius scale; they are Figma's values for a pill at two different
+   heights, so both are literals. */
+.v27-progress {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--v27-spacing-s);
+  width: 100%;
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+/* The unfilled track uses Border/Default as a SURFACE - a border role used as a fill, the
+   same shape of oddity as Toggle's. Reproduced as bound. */
+.v27-progress__track {
+  width: 100%;
+  height: var(--v27-spacing-s);
+  border-radius: 36px;
+  background: var(--v27-border-default);
+  overflow: clip;
+}
+
+/* Width is the data, so it is set inline by the consumer, not by a class. */
+.v27-progress__fill {
+  height: var(--v27-spacing-s);
+  border-radius: 27px;
+  background: var(--v27-foreground-theme);
+}
+
+.v27-progress__legend {
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+}
+
+/* The 8px key dot, matching the fill. */
+.v27-progress__key {
+  width: var(--v27-spacing-s);
+  height: var(--v27-spacing-s);
+  flex: none;
+  border-radius: 27px;
+  background: var(--v27-foreground-theme);
+}
+
+/* ==========================================================================
    Avatar - Figma `Avatar`, node 289:4419
    6 variants: size[3] x profile picture[2]
 

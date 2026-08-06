@@ -23,8 +23,8 @@
     "Check this component list before building anything new."
   ],
   "counts": {
-    "components": 12,
-    "classes": 59,
+    "components": 13,
+    "classes": 64,
     "tokens": 143,
     "themed": 39
   },
@@ -994,6 +994,22 @@
       ],
       "baseClass": "v27-checkbox",
       "doc": "Checkbox.md"
+    },
+    {
+      "name": "Progress bar",
+      "figmaComponentSet": "Progress bar",
+      "figmaNode": "405:17846",
+      "variantCount": 2,
+      "variantAxes": "property 1[2] - Single category and Multi category.",
+      "classes": [
+        "v27-progress",
+        "v27-progress__fill",
+        "v27-progress__key",
+        "v27-progress__legend",
+        "v27-progress__track"
+      ],
+      "baseClass": "v27-progress",
+      "doc": "ProgressBar.md"
     },
     {
       "name": "Avatar",

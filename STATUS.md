@@ -10,19 +10,24 @@ starts from fact rather than from a re-survey.
 | 0 - reusable skill | `~/.claude/skills/figma-to-css-design-system/SKILL.md` |
 | 1 - repo | done |
 | 2 - token layer | done, including the type tier |
-| 3 - components | **12 of 39 component sets** |
+| 3 - components | **13 of 39 component sets** (Progress bar is Single category only) |
 | 4 - audits | 5 audits, all wired and each proven against a fixture |
 | 5 - export | Copilot bundle, generated from one model, verified in a scratch consumer |
 
 ## Components built
 
 Button, Icon, Tags, Coloured circle icons, Avatar, Single Checkbox, Checkbox,
-Single radio button, Radio button, in page message, Toggle, Link.
+Single radio button, Radio button, in page message, Toggle, Link, Progress bar.
+
+Two variants are deliberately unbuilt, both because a value could not be verified rather
+than for want of effort: Button's `AI` and `AI bold` types (gradients, no verified value)
+and Progress bar's `Multi category` (binds a chart palette that is not in the V27 export -
+FINDINGS.md #25).
 
 Every one has a doc in `docs/`, node ids beside every value, and was verified in a browser
 against the measured Figma node.
 
-## Not built - 27 component sets
+## Not built - 26 component sets
 
 Ordered by variant count, which is roughly the work involved. Node ids are in
 `.figma/inventory.json`; nothing needs re-surveying.
@@ -40,7 +45,6 @@ Ordered by variant count, which is roughly the work involved. Node ids are in
 | 4 | Step | see inventory |
 | 3 | Form field | `63:1078` |
 | 3 | Image, AI chat bubble, Tasks | see inventory |
-| 2 | Progress bar | `405:17846` |
 | 2 | Multi avatar, Select button elements, Step connector, User chat bubble, App header + top navigation, Breadcrumb, workspace header, message box, Attachments, AI assistant overlay (mobile), config tile, Confirmation modal | see inventory |
 | 1 | side nav | see inventory |
 

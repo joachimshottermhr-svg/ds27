@@ -43,8 +43,12 @@ invented to point them at, because inventing one would fabricate a design decisi
 one-colour palette that is the same as the light background, and no substitute palette has
 been generated.
 
-**Status:** accepted, and a genuine blocker for charts specifically. Charts stay out of
-scope until real chart tokens exist in Figma.
+**Status:** SUPERSEDED by #25. A real chart palette does exist - it is simply not in the
+V27 export. The conclusion below ("charts are unbuildable") was correct about the V27
+export and wrong about the design system. Read #25 before acting on this entry.
+
+~~Accepted, and a genuine blocker for charts specifically. Charts stay out of scope until
+real chart tokens exist in Figma.~~
 
 ## 4. The theme colour changes hue between modes
 
@@ -355,6 +359,37 @@ not a scale step.
 
 **Status:** open. Either the scale is missing an `Xs bold` step, or the small avatar should
 use `Sm bold` like the medium one. A one-off type size is how a scale erodes.
+
+## 25. A real chart palette exists - it is just not in the V27 export
+
+**This supersedes #3, which was based on the export alone and is wrong about the wider
+design system.**
+
+**Figma:** the Progress bar set (`405:17846`) binds three chart variables with genuinely
+distinct, usable colours:
+
+| Variable | Value |
+|---|---|
+| `Charts/Chart 1` | `#0075be` blue |
+| `Charts/Chart 2` | `#fc8700` orange |
+| `Charts/Chart 3` | `#00ad60` green |
+
+None of them is in `tokens/variables.json`. The V27 export contains a *different* thing - a
+single `Chart/1` that is `#ffffff` in both modes - and the two are not the same group.
+`Charts/*` is another instance of #18: a variable bound on a V27 component that lives in
+the People First library.
+
+**Code:** the multi-category Progress bar, which is where these are used, is **not built** -
+see below. No V27 token points at these values, so building against them would either
+hard-code three hexes or invent three tokens.
+
+**Status:** open, and it changes a decision. Charts are **not** blocked for want of a
+palette; they are blocked for want of that palette being published as V27 variables. That
+is a much smaller problem than #3 described, and it is worth raising - three usable chart
+colours already exist and are already in use on a shipped component.
+
+Note also that `Chart/1` `#ffffff` in the V27 export now looks less like an oversight and
+more like a placeholder nobody replaced, given a real palette existed elsewhere all along.
 
 ---
 
