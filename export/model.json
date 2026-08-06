@@ -23,8 +23,8 @@
     "Check this component list before building anything new."
   ],
   "counts": {
-    "components": 38,
-    "classes": 189,
+    "components": 41,
+    "classes": 198,
     "tokens": 152,
     "themed": 39
   },
@@ -32,7 +32,7 @@
     "sets": 39,
     "variants": 259,
     "standalone": 145,
-    "setsBuilt": 33,
+    "setsBuilt": 36,
     "standaloneBuilt": 5
   },
   "tokens": [
@@ -1051,6 +1051,48 @@
       ],
       "baseClass": "v27-checkbox",
       "doc": "Checkbox.md"
+    },
+    {
+      "name": "Nav elements",
+      "figmaComponentSet": "nav elements",
+      "figmaNode": "1997:40997",
+      "variantCount": 39,
+      "variantAxes": "property 1[12] x status[3]",
+      "classes": [
+        "v27-nav-item"
+      ],
+      "baseClass": "v27-nav-item",
+      "doc": "NavItem.md"
+    },
+    {
+      "name": "Side nav",
+      "figmaComponentSet": "side nav",
+      "figmaNode": "1997:40985",
+      "variantCount": null,
+      "variantAxes": null,
+      "classes": [
+        "v27-side-nav",
+        "v27-side-nav__avatar",
+        "v27-side-nav__items",
+        "v27-side-nav__separator"
+      ],
+      "baseClass": "v27-side-nav",
+      "doc": "SideNav.md"
+    },
+    {
+      "name": "Workspace header",
+      "figmaComponentSet": "workspace header",
+      "figmaNode": "7694:89257",
+      "variantCount": 2,
+      "variantAxes": "mobile[2]. Only mobile=false is built; the 375px variant (7694:89258) was",
+      "classes": [
+        "v27-workspace-header",
+        "v27-workspace-header__actions",
+        "v27-workspace-header__icon",
+        "v27-workspace-header__title"
+      ],
+      "baseClass": "v27-workspace-header",
+      "doc": "WorkspaceHeader.md"
     },
     {
       "name": "AI chat bubble",

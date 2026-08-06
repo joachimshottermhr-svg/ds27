@@ -10,7 +10,7 @@ starts from fact rather than from a re-survey.
 | 0 - reusable skill | `~/.claude/skills/figma-to-css-design-system/SKILL.md` |
 | 1 - repo | done |
 | 2 - token layer | done, including the type tier |
-| 3 - components | **33 of 39 component sets, plus 6 standalone** (Progress bar is Single category only) |
+| 3 - components | **36 of 39 component sets, plus 5 standalone** (Progress bar is Single category only) |
 | 4 - audits | 5 audits, all wired and each proven against a fixture |
 | 5 - export | Copilot bundle, generated from one model, verified in a scratch consumer |
 
@@ -28,7 +28,7 @@ FINDINGS.md #25).
 Every one has a doc in `docs/`, node ids beside every value, and was verified in a browser
 against the measured Figma node.
 
-## Not built - 6 component sets
+## Not built - 3 component sets
 
 Ordered by variant count, which is roughly the work involved. Node ids are in
 `.figma/inventory.json`; nothing needs re-surveying.
@@ -43,7 +43,7 @@ Ordered by variant count, which is roughly the work involved. Node ids are in
 | 4 | Step | see inventory |
 | 3 | Form field | `63:1078` |
 | 3 | AI chat bubble | see inventory |
-| 2 | App header + top navigation, workspace header, AI assistant overlay (mobile), Confirmation modal | see inventory |
+| 2 | App header + top navigation, AI assistant overlay (mobile), Confirmation modal | see inventory |
 | 1 | side nav | see inventory |
 
 Plus, outside the 39 sets:

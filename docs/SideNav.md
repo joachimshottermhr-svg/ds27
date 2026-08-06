@@ -1,0 +1,94 @@
+# Side nav
+
+Figma: `side nav`, node `1997:40985` (page Components, `1:28`). 1 variant - Figma's axis
+value is the auto-generated `Frame 6270940`.
+
+The 64px navigation rail: stacked icon items, group separators, and an avatar pinned at the
+bottom.
+
+## Markup
+
+```html
+<nav class="v27-side-nav" aria-label="Main">
+  <div class="v27-side-nav__items">
+    <button type="button" class="v27-nav-item" aria-current="page" aria-label="Home">
+      <svg viewBox="0 0 24 24" aria-hidden="true"></svg>
+    </button>
+    <button type="button" class="v27-nav-item" aria-label="Inbox">
+      <svg viewBox="0 0 24 24" aria-hidden="true"></svg>
+    </button>
+    <hr class="v27-side-nav__separator" />
+    <button type="button" class="v27-nav-item" aria-label="Payroll">
+      <svg viewBox="0 0 24 24" aria-hidden="true"></svg>
+    </button>
+  </div>
+  <span class="v27-side-nav__avatar"><img src="/me.jpg" alt="Your profile" /></span>
+</nav>
+```
+
+Every item is icon-only, so every item needs an `aria-label`.
+
+## Classes
+
+| Class | What it is |
+|---|---|
+| `.v27-side-nav` | the rail |
+| `.v27-side-nav__items` | the scrolling item column |
+| `.v27-side-nav__separator` | a 40px group rule |
+| `.v27-side-nav__avatar` | the 40px profile face |
+
+## Values
+
+| Property | Value |
+|---|---|
+| background | `Background/Navigation` |
+| trailing rule | 1px `Border/Default` |
+| padding | `--v27-spacing-m` (16px) top and bottom |
+| gap | `--v27-spacing-sm` (12px) |
+| separator | 40px wide |
+| avatar | `--v27-size-xl` (40px), 46px radius |
+
+The item column takes `flex: 1`, so the avatar stays pinned to the bottom however many
+items there are.
+
+The separator is a rotated line asset in Figma and its colour could not be read off the
+flattened shape, so it uses `Border/Default` - the rule already on this component's own
+trailing edge - rather than asserting an unmeasured value.
+
+---
+
+# Nav elements
+
+Figma: `nav elements`, node `1997:40997`. **39 variants** - `property 1[12]` x `status[3]`.
+
+## The 39 variants are one shape
+
+`property 1`'s twelve values are twelve different **glyphs** - Payroll, inbox, bookmark,
+Calendar, id-card, chart-line, book, receipt, clipboard, building-columns, finance insights,
+home - not twelve different styles. The box, the glyph size and the colours are identical
+across all of them.
+
+So this is one class with a glyph slot and a status modifier. It is the largest set in the
+file by variant count and the smallest by actual surface area, which is worth knowing before
+budgeting work from the 259-variant total (FINDINGS.md #15, #16, #27).
+
+| Class | What it is |
+|---|---|
+| `.v27-nav-item` | one 64x48 rail item |
+
+Selection is `aria-current`, not a modifier class, so the accessible state and the visual
+state cannot drift apart.
+
+## Values
+
+| Property | Value |
+|---|---|
+| box | 64 x 48 |
+| glyph | `--v27-size-m` (24px) |
+| selected | 3px `Border/Theme` down the leading edge |
+
+The 3px bar is carried as a transparent border on the base rule, so the glyph does not
+shift by 3px when the item becomes selected.
+
+Of the three statuses, **Default and Selected are measured**. The third was not read, so no
+hover or disabled treatment is asserted.

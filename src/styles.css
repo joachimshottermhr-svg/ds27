@@ -418,6 +418,152 @@
 }
 
 /* ==========================================================================
+   Nav elements - Figma `nav elements`, node 1997:40997
+   39 variants: property 1[12] x status[3]
+
+   The 39 collapse to ONE shape. `property 1`'s twelve values are twelve different GLYPHS -
+   Payroll, inbox, bookmark, Calendar, id-card, chart-line, book, receipt, clipboard,
+   building-columns, finance insights, home - not twelve different styles. The box, the
+   glyph size and the colours are identical across all of them.
+
+   So this is one class with a glyph slot and a status modifier, not 39 variants. Of the
+   three statuses, Default and Selected are measured; the third was not.
+   ========================================================================== */
+
+/* Verified on 1997:41006 (Default) and 1997:41698 (Selected, inside side nav). A 64x48
+   target with a 24px glyph centred in it - both off the Size scale for the box, which is
+   a navigation rail dimension rather than an icon one. */
+.v27-nav-item {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 64px; /* figma-literal: 1997:41006 - rail width, off every scale */
+  height: 48px;
+  padding: 0;
+  border: 0;
+  border-left: 3px solid transparent;
+  background: none;
+  color: var(--v27-foreground-primary);
+  cursor: pointer;
+}
+
+.v27-nav-item > svg {
+  width: var(--v27-size-m);
+  height: var(--v27-size-m);
+  flex: none;
+  fill: currentColor;
+}
+
+/* status=Selected - 1997:41698. A 3px theme bar down the leading edge. It is carried as a
+   transparent border on the base so the glyph does not shift by 3px when selected. */
+.v27-nav-item[aria-current] {
+  border-left-color: var(--v27-border-theme);
+}
+
+/* ==========================================================================
+   Side nav - Figma `side nav`, node 1997:40985
+   1 variant. Figma's axis value is the auto-generated `Frame 6270940`.
+   ========================================================================== */
+
+/* Verified on 1997:40986. The rail: navigation background, a rule down the trailing edge,
+   items stacked from the top and an avatar pinned at the bottom. */
+.v27-side-nav {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--v27-spacing-sm);
+  height: 100%;
+  padding-block: var(--v27-spacing-m);
+  border-right: 1px solid var(--v27-border-default);
+  background: var(--v27-background-navigation);
+}
+
+/* The scrolling item column. Figma gives it flex-1, so the avatar stays at the bottom
+   however many items there are. */
+.v27-side-nav__items {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: center;
+  min-height: 0;
+}
+
+/* A 40px rule between groups. Figma draws it as a rotated line asset whose colour could
+   not be read, so it inherits Border/Default - the rule already used on this component's
+   own trailing edge - rather than asserting an unmeasured value. */
+.v27-side-nav__separator {
+  width: 40px;
+  height: 1px;
+  margin-block: var(--v27-spacing-s);
+  border: 0;
+  background: var(--v27-border-default);
+}
+
+.v27-side-nav__avatar {
+  width: var(--v27-size-xl);
+  height: var(--v27-size-xl);
+  flex: none;
+  border-radius: 46px;
+  overflow: clip;
+}
+
+.v27-side-nav__avatar > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ==========================================================================
+   Workspace header - Figma `workspace header`, node 7694:89257
+   2 variants: mobile[2]. Only mobile=false is built; the 375px variant (7694:89258) was
+   not measured. There is also a boolean `icon` property outside the axes.
+   ========================================================================== */
+
+/* Verified on 3993:72562. A titled bar with a rule under it and a row of plain icon
+   buttons on the right. */
+.v27-workspace-header {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-sm);
+  width: 100%;
+  padding: var(--v27-spacing-sm) var(--v27-spacing-ml);
+  border-bottom: 1px solid var(--v27-border-default);
+  font-family: var(--v27-font-family);
+}
+
+/* The optional leading glyph - Figma's boolean `icon` property. */
+.v27-workspace-header__icon {
+  width: var(--v27-size-l);
+  height: var(--v27-size-l);
+  flex: none;
+  color: var(--v27-foreground-primary);
+}
+
+/* 20px at REGULAR weight. The XL style is 20/600, so this size-weight pair matches no
+   named text style - the same gap as Avatar's 12px semibold. FINDINGS.md #24. */
+.v27-workspace-header__title {
+  flex: 1 0 0;
+  min-width: 0;
+  font-size: var(--v27-text-xl-size);
+  font-weight: var(--v27-font-weight-regular); /* figma-literal: 3993:71746 - 20/400 is not a named style */
+  line-height: var(--v27-text-xl-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+/* The trailing controls are Buttons with no fill and no border - the `Plain` type at the
+   icon-only size. Compose .v27-btn rather than restyling here. */
+.v27-workspace-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-sm);
+}
+
+/* ==========================================================================
    AI chat bubble - Figma `AI chat bubble`, node 1997:40463
    3 variants: type[3] - Text, Entity selector, Form.
 

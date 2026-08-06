@@ -68,7 +68,22 @@ const GENERIC = new Set([
   'font-family', 'font-size', 'font-weight', 'line-height', 'letter-spacing',
 ]);
 
-const identity = (r) => r.decls.filter((d) => !GENERIC.has(d.prop)).map((d) => [d.prop, d.value]);
+/**
+ * A declaration whose value is "nothing" carries no identity either.
+ *
+ * Eight components include a bare icon-button reset - `padding: 0; border: 0; background:
+ * none` - and the audit called them copies of one another. They are not: that is the
+ * ABSENCE of a treatment, the same reasoning that keeps `border: 0` out of the
+ * shared-state audit. A component is identified by the values it sets, not the ones it
+ * clears.
+ *
+ * Cards are unaffected: `border: 1px solid var(--v27-border-default)` is a real value.
+ */
+const NOTHING = /^(0|0px|none|transparent|normal|inherit|initial|unset|auto)$/i;
+
+const identity = (r) => r.decls
+  .filter((d) => !GENERIC.has(d.prop) && !NOTHING.test(d.value))
+  .map((d) => [d.prop, d.value]);
 
 // A shared component is a bare block class with enough identity to be worth composing.
 const shared = [];
