@@ -114,6 +114,36 @@
       <span class="v27-avatar v27-avatar--large">JS</span>
     </div>
 
+    <h3>Toast - positive / negative / warning / info</h3>
+    <div style="display:grid; gap:8px; max-width:384px; margin-bottom:12px;" id="toasts">
+      <div class="v27-toast v27-toast--positive" role="status"><svg class="v27-toast__icon" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="currentColor"/></svg><div class="v27-toast__body"><div>Successfully saved</div><div class="v27-toast__detail">Detail on why it was a success</div></div><button class="v27-toast__close" aria-label="Dismiss">x</button></div>
+      <div class="v27-toast v27-toast--negative" role="alert"><svg class="v27-toast__icon" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="currentColor"/></svg><div class="v27-toast__body"><div>Could not save</div><div class="v27-toast__detail">Detail on the failure</div></div><button class="v27-toast__close" aria-label="Dismiss">x</button></div>
+      <div class="v27-toast v27-toast--warning" role="status"><svg class="v27-toast__icon" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="currentColor"/></svg><div class="v27-toast__body"><div>Check this</div></div><button class="v27-toast__close" aria-label="Dismiss">x</button></div>
+      <div class="v27-toast v27-toast--info" role="status"><svg class="v27-toast__icon" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="currentColor"/></svg><div class="v27-toast__body"><div>For your information</div></div><button class="v27-toast__close" aria-label="Dismiss">x</button></div>
+    </div>
+
+    <h3>Breadcrumb - trail and back</h3>
+    <div class="row" id="crumbs">
+      <nav class="v27-breadcrumb" aria-label="Breadcrumb">
+        <svg class="v27-breadcrumb__icon" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="currentColor"/></svg>
+        <svg class="v27-breadcrumb__separator" viewBox="0 0 16 16"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+        <a class="v27-breadcrumb__link" href="#p">People</a>
+        <svg class="v27-breadcrumb__separator" viewBox="0 0 16 16"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+        <span class="v27-breadcrumb__current" aria-current="page">Current page</span>
+      </nav>
+    </div>
+    <div class="row">
+      <a class="v27-breadcrumb-back" href="#b"><svg class="v27-breadcrumb-back__icon" viewBox="0 0 16 16"><path d="M10 3l-5 5 5 5" stroke="currentColor" stroke-width="2" fill="none"/></svg>Back to people</a>
+    </div>
+
+    <h3>Progress bar - single category</h3>
+    <div style="max-width:397px; margin-bottom:12px;" id="prog">
+      <div class="v27-progress">
+        <div class="v27-progress__track" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" aria-label="Progress"><div class="v27-progress__fill" style="width:15%"></div></div>
+        <div class="v27-progress__legend"><span class="v27-progress__key"></span>Progress (15%)</div>
+      </div>
+    </div>
+
     <h3>Button (already built - regression check)</h3>
     <div class="row">
       <button class="v27-btn v27-btn--positive">Primary positive</button>

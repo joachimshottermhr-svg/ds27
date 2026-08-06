@@ -410,6 +410,145 @@
 }
 
 /* ==========================================================================
+   Breadcrumb - Figma `Breadcrumb`, node 3401:59667
+   2 variants: property 1[2] - breadcrumb and back.
+
+   The two are different components sharing a name: `breadcrumb` is the full trail,
+   `back` is a single return link. They share no geometry, so they get separate blocks.
+   ========================================================================== */
+
+/* property 1=breadcrumb - 2317:68830. A 24px leading glyph, then alternating 20px
+   chevrons and labels, 4px apart throughout. */
+.v27-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-xs);
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+}
+
+/* The leading glyph is 24px; every separator chevron is 20px. */
+.v27-breadcrumb__icon {
+  width: var(--v27-size-m);
+  height: var(--v27-size-m);
+  flex: none;
+  color: var(--v27-foreground-secondary);
+}
+
+.v27-breadcrumb__separator {
+  width: var(--v27-size-s);
+  height: var(--v27-size-s);
+  flex: none;
+  color: var(--v27-foreground-secondary);
+}
+
+/* Ancestor links are secondary; the current page takes the theme colour. Figma gives the
+   ancestors no underline and no hover, so none is invented here. */
+.v27-breadcrumb__link {
+  color: var(--v27-foreground-secondary);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.v27-breadcrumb__current {
+  color: var(--v27-foreground-theme);
+  white-space: nowrap;
+}
+
+/* property 1=back - 3401:59668. A single return link: a 20px chevron, an 8px gap and a
+   secondary label. Note the gap differs from the trail's 4px. */
+.v27-breadcrumb-back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+  color: var(--v27-foreground-secondary);
+  text-decoration: none;
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+}
+
+.v27-breadcrumb-back__icon {
+  width: var(--v27-size-s);
+  height: var(--v27-size-s);
+  flex: none;
+}
+
+/* ==========================================================================
+   Toast - Figma `Toast`, node 347:15144
+   4 variants: property 1[4] - positive, negative, warning, info.
+
+   Unlike in page message, the surface does NOT change per type: every toast is
+   Background/Primary and only the border and the title colour carry the severity.
+   ========================================================================== */
+
+/* Geometry verified on 347:15143 (positive); the set's variable list confirms the other
+   three differ only in their border and title colour.
+
+   Two values are off every scale and are literals with their node id:
+     gap 11px        the Spacing scale is 2/4/8/12/16/24/32/40
+     shadow 9.3px    a blur radius that belongs to no token
+   The shadow colour is Neutral/200, a PRIMITIVE - V27 has no shadow tier to point at,
+   so this is the same class of gap as FINDINGS.md #19. */
+.v27-toast {
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  gap: 11px; /* figma-literal: 347:15143 - off the Spacing scale */
+  padding: var(--v27-spacing-m);
+  border: 1px solid;
+  border-radius: var(--v27-radius-m);
+  background: var(--v27-background-primary);
+  box-shadow: 1px 3px 9.3px 1px var(--v27-neutral-200);
+  overflow: clip;
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+}
+
+/* 24px leading status glyph - takes the title colour. */
+.v27-toast__icon {
+  width: var(--v27-size-m);
+  height: var(--v27-size-m);
+  flex: none;
+}
+
+.v27-toast__body {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: var(--v27-spacing-xs);
+  min-width: 0;
+}
+
+/* The title carries the severity colour; the detail line never does. */
+.v27-toast__detail {
+  color: var(--v27-foreground-secondary);
+}
+
+/* 20px close control. A real button so it is focusable and keyboard-operable, and it
+   inherits the detail colour rather than the severity one. */
+.v27-toast__close {
+  width: var(--v27-size-s);
+  height: var(--v27-size-s);
+  flex: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--v27-foreground-secondary);
+  cursor: pointer;
+}
+
+.v27-toast--positive { border-color: var(--v27-border-positive); color: var(--v27-foreground-positive); }
+.v27-toast--negative { border-color: var(--v27-border-negative); color: var(--v27-foreground-negative); }
+.v27-toast--warning  { border-color: var(--v27-border-warning);  color: var(--v27-foreground-warning); }
+.v27-toast--info     { border-color: var(--v27-border-info);     color: var(--v27-foreground-info); }
+
+/* ==========================================================================
    Progress bar - Figma `Progress bar`, node 405:17846
    2 variants: property 1[2] - Single category and Multi category.
 
