@@ -410,6 +410,85 @@
 }
 
 /* ==========================================================================
+   Image - Figma `Image`, node 378:18391
+   3 variants: property 1[3] - small, medium, large.
+
+   A picture in a rounded box. Figma's axis is "Property 1"; its values name sizes.
+   ========================================================================== */
+
+/* Verified on 378:18389 (medium). The white underlay behind the picture is Figma's
+   transparency backstop, not a design decision, so it is not reproduced - an <img> with
+   object-fit: cover leaves nothing showing through. */
+.v27-image {
+  display: block;
+  flex: none;
+  border-radius: var(--v27-radius-s);
+  overflow: clip;
+}
+
+.v27-image > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Measured boxes: 24 on 378:18390, 32 on 378:18389, 40 on 378:18388 - all on the Size
+   scale. Figma binds Size/L for the medium height and leaves its width a literal 32px,
+   the same inconsistency as the circle icon's (FINDINGS.md #13). */
+.v27-image--small  { width: var(--v27-size-m);  height: var(--v27-size-m); }
+.v27-image--medium { width: var(--v27-size-l);  height: var(--v27-size-l); }
+.v27-image--large  { width: var(--v27-size-xl); height: var(--v27-size-xl); }
+
+/* ==========================================================================
+   Select button elements - Figma `Select button elements`, node 2290:83279
+   2 variants: selected[2]
+
+   One segment of a segmented control. The group itself is the standalone `Select button`
+   symbol, which is not yet built.
+   ========================================================================== */
+
+/* Verified on 2290:83278 (selected) and 2290:83277 (unselected). No corner radius at all -
+   the segments are square, and the containing control presumably rounds the ends.
+
+   The 25px and 9px padding are both off the Spacing scale and are literals. */
+.v27-select-button {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--v27-spacing-s);
+  padding: 9px 25px; /* figma-literal: 2290:83278 - both off the Spacing scale */
+  border: 0;
+  background: none;
+  cursor: pointer;
+  overflow: clip;
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-base-size);
+  font-weight: var(--v27-text-base-weight);
+  line-height: var(--v27-text-base-line-height);
+  color: var(--v27-foreground-theme);
+}
+
+.v27-select-button__icon {
+  width: var(--v27-size-s);
+  height: var(--v27-size-s);
+  flex: none;
+}
+
+/* selected=true - 2290:83278. The fill is Foreground/Theme, a text role used as a surface,
+   which is now the fourth component doing that.
+
+   The label colour is the ONE place this build does not reproduce Figma's binding. Figma
+   binds a style literally named `DEPRECATED COLOURS/White`; Foreground/Inverted is used
+   instead. See FINDINGS.md #28 for the reasoning. */
+.v27-select-button[aria-pressed='true'] {
+  background: var(--v27-foreground-theme);
+  color: var(--v27-foreground-inverted);
+  font-weight: var(--v27-text-base-bold-weight);
+}
+
+/* ==========================================================================
    Step - Figma `Step`, node 347:15717
    4 variants: property 1[4] - Selected, Default, Variant3, Variant4.
 

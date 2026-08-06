@@ -23,8 +23,8 @@
     "Check this component list before building anything new."
   ],
   "counts": {
-    "components": 23,
-    "classes": 120,
+    "components": 25,
+    "classes": 126,
     "tokens": 149,
     "themed": 39
   },
@@ -1030,6 +1030,34 @@
       ],
       "baseClass": "v27-checkbox",
       "doc": "Checkbox.md"
+    },
+    {
+      "name": "Image",
+      "figmaComponentSet": "Image",
+      "figmaNode": "378:18391",
+      "variantCount": 3,
+      "variantAxes": "property 1[3] - small, medium, large.",
+      "classes": [
+        "v27-image",
+        "v27-image--large",
+        "v27-image--medium",
+        "v27-image--small"
+      ],
+      "baseClass": "v27-image",
+      "doc": "Image.md"
+    },
+    {
+      "name": "Select button elements",
+      "figmaComponentSet": "Select button elements",
+      "figmaNode": "2290:83279",
+      "variantCount": 2,
+      "variantAxes": "selected[2]",
+      "classes": [
+        "v27-select-button",
+        "v27-select-button__icon"
+      ],
+      "baseClass": "v27-select-button",
+      "doc": "SelectButton.md"
     },
     {
       "name": "Step",

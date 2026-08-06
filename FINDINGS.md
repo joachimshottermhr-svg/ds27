@@ -431,6 +431,27 @@ This is the fourth counting problem in the file, after #15 (auto-named `VariantN
 duplicates), #16 (boolean properties outside the axes) and the duplicated names here. The
 259-variant total should not be used as a measure of anything.
 
+## 28. A style named "DEPRECATED COLOURS" is still bound on a shipped component
+
+**Figma:** `Select button elements/Selected=true` (`2290:83278`) sets its label colour from
+a style called **`DEPRECATED COLOURS/White`** (`#FFFFFF`). The name says the group should
+not be used; the component uses it anyway.
+
+`Foreground/Inverted` exists in the V27 semantic tier and is white in light mode, which is
+almost certainly what this was meant to be - the Button's positive type already uses it.
+
+**Code:** `--v27-foreground-inverted` is used, **not** a literal white. This is the one
+place the build does not reproduce a binding exactly, and the reasoning is that the binding
+is explicitly marked as wrong by its own name. Reproducing it would carry a deprecation
+into new code and freeze the label white in dark mode.
+
+**Status:** open, and the clearest single action in this file: rebind that layer to
+`Foreground/Inverted` and delete the deprecated group. If white was deliberate rather than
+inverted, say so and this decision reverses.
+
+Worth searching the rest of the file for other `DEPRECATED COLOURS/*` bindings before the
+group is deleted - only the components built so far have been checked.
+
 ---
 
 ## Page inventory
