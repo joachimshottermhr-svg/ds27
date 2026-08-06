@@ -65,4 +65,4 @@ existing token is used and flagged here rather than invented silently.
 
 ## All classes in this component
 
-`.v27-avatar-compact`, `.v27-avatar-compact__face`, `.v27-checkbox`, `.v27-choice-input`
+`.v27-checkbox`, `.v27-choice-input`

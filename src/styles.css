@@ -410,6 +410,75 @@
 }
 
 /* ==========================================================================
+   Config tile - Figma `config tile`, node 4338:67656
+   2 variants: property 1[2] - Default and Variant2.
+
+   Only Default is built. Variant2 (4338:67657) adds the file's Drop shadow effect and
+   binds Foreground/Theme, but which element takes the theme colour was not measured, so
+   it is not built - see the note below.
+   ========================================================================== */
+
+/* Verified on 4285:71238. The card fill is a raw white, not Background/Primary, so it does
+   not follow dark mode - the same as Step's badge and the Toggle knob. */
+.v27-config-tile {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--v27-spacing-m);
+  padding: var(--v27-spacing-m) var(--v27-spacing-ml);
+  border: 1px solid var(--v27-border-default);
+  border-radius: var(--v27-radius-m);
+  background: #fff; /* figma-literal: 4285:71238 - raw white, not Background/Primary */
+  overflow: clip;
+  text-align: center;
+  font-family: var(--v27-font-family);
+  color: var(--v27-foreground-primary);
+}
+
+/* The icon disc binds the Pink/100 PRIMITIVE, like Coloured circle icons - so it does not
+   change between themes either. FINDINGS.md #17 and #22. */
+.v27-config-tile__disc {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  padding: var(--v27-spacing-sm);
+  border-radius: 49px;
+  background: var(--v27-pink-100);
+  overflow: clip;
+}
+
+.v27-config-tile__disc > svg {
+  width: var(--v27-size-xl);
+  height: var(--v27-size-xl);
+  display: block;
+  fill: currentColor;
+}
+
+.v27-config-tile__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--v27-spacing-xs);
+  width: 100%;
+}
+
+.v27-config-tile__heading {
+  font-size: var(--v27-text-lg-bold-size);
+  font-weight: var(--v27-text-lg-bold-weight);
+  line-height: var(--v27-text-lg-bold-line-height);
+}
+
+/* Note the sub text is Foreground/Primary here, not Secondary - unusual for a sub line,
+   and reproduced as bound. */
+.v27-config-tile__sub {
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+}
+
+/* ==========================================================================
    Avatar compact - Figma standalone symbol `Avatar compact`, node 289:4416
    Not a variant set. Measured as an instance inside Label (58:916).
    ========================================================================== */

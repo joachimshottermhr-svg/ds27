@@ -23,8 +23,8 @@
     "Check this component list before building anything new."
   ],
   "counts": {
-    "components": 27,
-    "classes": 142,
+    "components": 28,
+    "classes": 147,
     "tokens": 149,
     "themed": 39
   },
@@ -1025,13 +1025,29 @@
       "variantCount": 2,
       "variantAxes": "property 1[2] - Default and Disabled.",
       "classes": [
-        "v27-avatar-compact",
-        "v27-avatar-compact__face",
         "v27-checkbox",
         "v27-choice-input"
       ],
-      "baseClass": "v27-avatar-compact",
+      "baseClass": "v27-checkbox",
       "doc": "Checkbox.md"
+    },
+    {
+      "name": "Config tile",
+      "figmaComponentSet": "config tile",
+      "figmaNode": "4338:67656",
+      "variantCount": 2,
+      "variantAxes": "property 1[2] - Default and Variant2.",
+      "classes": [
+        "v27-avatar-compact",
+        "v27-avatar-compact__face",
+        "v27-config-tile",
+        "v27-config-tile__disc",
+        "v27-config-tile__heading",
+        "v27-config-tile__sub",
+        "v27-config-tile__text"
+      ],
+      "baseClass": "v27-avatar-compact",
+      "doc": "ConfigTile.md"
     },
     {
       "name": "Label",
