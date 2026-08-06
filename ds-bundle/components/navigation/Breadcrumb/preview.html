@@ -1,0 +1,62 @@
+<!-- @dsCard group="Navigation" viewport="900x640" -->
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Breadcrumb - V27</title>
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../styles.css">
+<style>
+  body { margin:0; font-family:system-ui,sans-serif; }
+  .ds-pane { padding:24px; background:var(--v27-background-primary); color:var(--v27-foreground-primary); }
+  .ds-head { font-size:11px; text-transform:uppercase; letter-spacing:.09em;
+             color:var(--v27-foreground-secondary); margin:0 0 4px; }
+  .ds-meta { font-size:12px; color:var(--v27-foreground-secondary); margin:0 0 18px; }
+  .ds-story { display:flex; gap:12px; align-items:flex-start; flex-wrap:wrap; margin:0 0 18px; }
+  .ds-split { display:grid; grid-template-columns:1fr 1fr; }
+</style>
+</head>
+<body>
+<div class="ds-split">
+  <div class="ds-pane">
+    <p class="ds-head">Breadcrumb - light</p>
+    <p class="ds-meta">Figma 3401:59667 &middot; 2 variants &middot; 7 classes</p>
+      <div class="ds-story">
+        <nav class="v27-breadcrumb" aria-label="Breadcrumb">
+          <svg class="v27-breadcrumb__icon" viewBox="0 0 24 24" aria-hidden="true"><!-- glyph --></svg>
+          <svg class="v27-breadcrumb__separator" viewBox="0 0 20 20" aria-hidden="true"><!-- chevron --></svg>
+          <a class="v27-breadcrumb__link" href="/people">People</a>
+          <svg class="v27-breadcrumb__separator" viewBox="0 0 20 20" aria-hidden="true"><!-- chevron --></svg>
+          <a class="v27-breadcrumb__link" href="/people/teams">Teams</a>
+          <svg class="v27-breadcrumb__separator" viewBox="0 0 20 20" aria-hidden="true"><!-- chevron --></svg>
+          <span class="v27-breadcrumb__current" aria-current="page">Current page</span>
+        </nav>
+      </div>
+      <div class="ds-story">
+        <a class="v27-breadcrumb-back" href="/people">
+          <svg class="v27-breadcrumb-back__icon" viewBox="0 0 20 20" aria-hidden="true"><!-- chevron --></svg>
+          Back to people
+        </a>
+      </div>
+  </div>
+  <div class="ds-pane" data-v27-theme="dark">
+    <p class="ds-head">dark</p>
+    <p class="ds-meta">&nbsp;</p>
+      <div class="ds-story">
+        <nav class="v27-breadcrumb" aria-label="Breadcrumb">
+          <svg class="v27-breadcrumb__icon" viewBox="0 0 24 24" aria-hidden="true"><!-- glyph --></svg>
+          <svg class="v27-breadcrumb__separator" viewBox="0 0 20 20" aria-hidden="true"><!-- chevron --></svg>
+          <a class="v27-breadcrumb__link" href="/people">People</a>
+          <svg class="v27-breadcrumb__separator" viewBox="0 0 20 20" aria-hidden="true"><!-- chevron --></svg>
+          <a class="v27-breadcrumb__link" href="/people/teams">Teams</a>
+          <svg class="v27-breadcrumb__separator" viewBox="0 0 20 20" aria-hidden="true"><!-- chevron --></svg>
+          <span class="v27-breadcrumb__current" aria-current="page">Current page</span>
+        </nav>
+      </div>
+      <div class="ds-story">
+        <a class="v27-breadcrumb-back" href="/people">
+          <svg class="v27-breadcrumb-back__icon" viewBox="0 0 20 20" aria-hidden="true"><!-- chevron --></svg>
+          Back to people
+        </a>
+      </div>
+  </div>
+</div>
+</body></html>

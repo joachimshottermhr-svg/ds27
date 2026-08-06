@@ -1,0 +1,82 @@
+# AI assistant overlay (mobile)
+
+Figma: `AI assistant overlay (mobile)`, node `7694:96652` (page Components, `1:28`).
+2 variants - `property 1[2]`: full height and Small.
+
+A bottom sheet holding the assistant conversation. Only the frame is new - everything
+inside it is already built.
+
+**`Small` (`7694:96650`) is measured.** `full height` (`7694:96651`) is the same sheet at
+752px rather than 505px, and the height is set by the consumer anyway.
+
+## Markup
+
+```html
+<section class="v27-ai-sheet" aria-label="Assistant">
+  <button type="button" class="v27-ai-sheet__header" aria-expanded="true">
+    <span class="v27-ai-sheet__handle"></span>
+    <span class="v27-ai-sheet__title">
+      <svg class="v27-icon v27-icon--large" viewBox="0 0 32 32" aria-hidden="true"></svg>
+      Assistant
+    </span>
+  </button>
+
+  <div class="v27-ai-sheet__body">
+    <div class="v27-ai-message"> ... </div>
+    <div class="v27-user-message"> ... </div>
+    <div class="v27-message-box"> ... </div>
+  </div>
+</section>
+```
+
+The header is a real button in Figma - the whole thing collapses and expands the sheet - so
+it carries `aria-expanded`. The drag handle is decorative; dragging must not be the only way
+to resize.
+
+Composes [AI chat bubble](AiMessage.md), [User chat bubble](UserMessage.md) and
+[message box](MessageBox.md).
+
+## Classes
+
+| Class | What it is |
+|---|---|
+| `.v27-ai-sheet` | the sheet |
+| `.v27-ai-sheet__header` | grab handle and title, sticky |
+| `.v27-ai-sheet__handle` | the drag affordance |
+| `.v27-ai-sheet__title` | Lg bold with a 32px glyph |
+| `.v27-ai-sheet__body` | the conversation, pinned to the bottom |
+
+## Values
+
+| Property | Value |
+|---|---|
+| top radius | 30px |
+| shadow | `0 0 20px rgb(0 0 0 / 0.3)` |
+| background | `linear-gradient(90deg, Blue/50, Pink/100)` over `Pink/50` |
+| header padding | `--v27-spacing-sm` / **15px** |
+| header gap | `--v27-spacing-s` (8px) |
+| handle | 49 x 5, `--v27-radius-s`, `Border/Bold` |
+| title | Lg bold - Outfit 18 / 600 / auto |
+| body padding | `--v27-spacing-sm` (12px) |
+| body gap | `--v27-spacing-m` (16px) |
+
+The 30px radius, the 15px padding and the shadow are all off every scale and carry their
+node ids. Figma measures the handle at 48.911 x 5.231 - a rotation artefact rather than a
+designed value - so it is rounded to 49x5.
+
+The body is `justify-content: flex-end`, so the newest message sits directly above the
+composer and the conversation grows upward.
+
+## This gradient is readable, unlike the AI bubble's
+
+Worth being precise about, because the two look like the same problem and are not.
+
+This sheet's background is a **fill**: Figma binds `Blue/50` and `Pink/100` directly, and
+the stops come through intact. The [AI chat bubble](AiMessage.md)'s border is a **style**
+named `AI gradient`, which serialises as empty - see FINDINGS.md #32.
+
+So this component is fully built and that one is not.
+
+The trade-off is that binding primitives makes this the eighth component that will not
+follow dark mode: `Blue/50`, `Pink/100` and `Pink/50` have a single mode each
+(FINDINGS.md #17 and #22). A pink-to-blue sheet on a dark background is the likely result.

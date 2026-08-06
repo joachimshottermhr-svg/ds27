@@ -1,0 +1,55 @@
+# Button
+
+Figma: `Button`, node `243:4085` (page Components, `1:28`).
+60 variants - `type[6]` x `icon[4]` x `size[2]` x `state[3]`.
+
+## Markup
+
+```html
+<button type="button" class="v27-btn v27-btn--positive">Save</button>
+```
+
+Icon-only buttons must still be labelled:
+
+```html
+<button type="button" class="v27-btn v27-btn--positive v27-btn--icon-only" aria-label="Add">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><!-- glyph --></svg>
+</button>
+```
+
+## Classes
+
+| Class | What it is | Figma node |
+|---|---|---|
+| `.v27-btn` | required base | `243:4085` |
+| `.v27-btn--positive` | filled, the primary action | `243:4068` |
+| `.v27-btn--negative` | outlined destructive | `243:4060` |
+| `.v27-btn--outline` | outlined neutral | `243:4077` |
+| `.v27-btn--plain` | no fill, no border, hugs its text | `243:4059` |
+| `.v27-btn--small` | 32px high | |
+| `.v27-btn--icon-only` | square, no minimum width | |
+
+## Values
+
+| Property | Value | Note |
+|---|---|---|
+| height | 42px | literal - the Size scale is 16/20/24/32/40 |
+| min-width | 100px | literal - no dimension token matches |
+| border-radius | 207px | literal - Figma's value for a full pill |
+| padding | `--v27-spacing-s` `--v27-spacing-m` | maps exactly |
+| type | Sm bold - Outfit 14 / 600 / auto | |
+
+The three literals are recorded in FINDINGS.md #10. Worth asking whether 42 and 100 should
+join the scale.
+
+Only `--positive` has a hover Figma names explicitly (`Background/Primary button hover`).
+
+## Two types are deliberately not built
+
+`type=AI` (`243:4070`) and `type=AI bold` (`3993:71960`) are **unbuilt**. Both are expected
+to carry a gradient, which cannot be read from geometry, and no value for either has been
+verified. Building them from the token names alone would be a guess.
+
+The small size's type scale is also unverified - Figma reports one font for the whole
+component set - so `.v27-btn--small` inherits the base type rather than guessing a smaller
+one.

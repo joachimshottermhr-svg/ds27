@@ -1,0 +1,91 @@
+# Message box
+
+Figma: `message box`, node `7694:90192` (page Components, `1:28`).
+2 variants - `mobile[2]`.
+
+The AI prompt composer: suggestion chips, the chat input, and a legal footer.
+
+**Only `mobile=false` is built.** `mobile=true` (`7694:90193`) is a different 375px layout
+and was not measured.
+
+## Markup
+
+```html
+<div class="v27-message-box">
+  <div class="v27-message-box__suggestions">
+    <button type="button" class="v27-btn v27-btn--small">Suggestion</button>
+    <button type="button" class="v27-btn v27-btn--small v27-btn--icon-only" aria-label="More">
+      <svg viewBox="0 0 20 20" aria-hidden="true"></svg>
+    </button>
+  </div>
+
+  <div class="v27-chat-input">
+    <textarea class="v27-chat-input__field" rows="1" placeholder="Ask People First..."></textarea>
+    <div class="v27-chat-input__toolbar">
+      <div class="v27-chat-input__tools">
+        <button type="button" class="v27-chat-input__tool" aria-label="Attach a file">
+          <svg viewBox="0 0 24 24" aria-hidden="true"></svg>
+        </button>
+        <button type="button" class="v27-chat-input__tool" aria-label="Dictate">
+          <svg viewBox="0 0 24 24" aria-hidden="true"></svg>
+        </button>
+      </div>
+      <button type="button" class="v27-btn v27-btn--positive v27-btn--icon-only" aria-label="Send">
+        <svg viewBox="0 0 24 24" aria-hidden="true"></svg>
+      </button>
+    </div>
+  </div>
+
+  <nav class="v27-message-box__footer">
+    <a href="/terms">Terms</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/feedback">Feedback</a>
+  </nav>
+</div>
+```
+
+The send control is a [Button](Button.md) instance, not a restyled copy.
+
+## Classes
+
+| Class | What it is |
+|---|---|
+| `.v27-message-box` | the stack |
+| `.v27-message-box__suggestions` | the chip row |
+| `.v27-message-box__footer` | Terms / Privacy / Feedback |
+| `.v27-chat-input` | the composer - Figma's `Chat component` |
+| `.v27-chat-input__field` | the text area |
+| `.v27-chat-input__toolbar` | tools and send |
+| `.v27-chat-input__tools` | attach, dictate |
+| `.v27-chat-input__tool` | one 24px tool button |
+
+## Values
+
+| Property | Value |
+|---|---|
+| stack gap | `--v27-spacing-xs` (4px) |
+| suggestion gap | `--v27-spacing-sm` (12px) |
+| chat padding / gap | `--v27-spacing-m` (16px) |
+| chat radius | **`--v27-radius-l` (16px)** |
+| chat border | 1px `Border/Default` |
+| placeholder | Base, `Foreground/Secondary` |
+| tools | 24px, 12px apart |
+| footer | Sm, `Foreground/Secondary`, 15px separators |
+
+The chat input is the **only** component in the library using `Radius/L` - every other card
+is 8px.
+
+The footer separators are rotated line assets in Figma; their colour could not be read off
+the flattened line, so the rule inherits `currentColor` at reduced opacity rather than
+asserting a value.
+
+## The suggestion chips are AI buttons
+
+Figma's instances here are `Button type=AI`, which is one of the two Button types this
+library does **not** build (see [Button](Button.md)). The instances show a raw `#007ff3`
+border and a `Foreground/Theme` label, plus a style named `AI gradient` whose value the
+tool returns empty.
+
+This markup therefore uses ordinary small buttons as a placeholder. That is a **known
+substitution, not a measurement** - when the AI type is built from its own node
+(`243:4070`), these chips should change with it.

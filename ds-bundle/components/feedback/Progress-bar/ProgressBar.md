@@ -1,0 +1,67 @@
+# Progress bar
+
+Figma: `Progress bar`, node `405:17846` (page Components, `1:28`).
+2 variants - `property 1[2]`: Single category and Multi category.
+
+**Only Single category is built.** See below.
+
+## Markup
+
+The fill width is data, so it is set inline by the consumer rather than by a class:
+
+```html
+<div class="v27-progress">
+  <div class="v27-progress__track" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" aria-label="Onboarding progress">
+    <div class="v27-progress__fill" style="width: 15%"></div>
+  </div>
+  <div class="v27-progress__legend">
+    <span class="v27-progress__key"></span>
+    Progress (15%)
+  </div>
+</div>
+```
+
+`role="progressbar"` with `aria-valuenow` goes on the track. Without it the bar is
+invisible to assistive technology - the fill is a styled `div`, not a real control.
+
+## Classes
+
+| Class | What it is |
+|---|---|
+| `.v27-progress` | column wrapper, 8px gap |
+| `.v27-progress__track` | the 8px unfilled bar |
+| `.v27-progress__fill` | the filled portion; set `width` inline |
+| `.v27-progress__legend` | the key row |
+| `.v27-progress__key` | the 8px key dot |
+
+## Values
+
+Verified on `405:17845`.
+
+| Property | Value |
+|---|---|
+| track height | 8px (`--v27-spacing-s`) |
+| track fill | `Border/Default` |
+| bar fill and key | `Foreground/Theme` |
+| track radius | 36px - off the Radius scale |
+| fill and key radius | 27px - off the Radius scale |
+| label | Sm, `Foreground/Primary` |
+
+The track uses **`Border/Default` as a surface** - a border role used as a fill, the same
+shape of oddity as Toggle's. Reproduced as bound.
+
+The bar uses the theme role, so it is pink in light and blue in dark.
+
+## Multi category is not built
+
+`Multi category` (`405:17844`) binds `Charts/Chart 1`, `Charts/Chart 2` and
+`Charts/Chart 3` - `#0075be`, `#fc8700`, `#00ad60`. Those are real, usable colours, but
+**none of them is in the V27 variables export**; they come from the People First library.
+
+There is no V27 token to point at, so building this variant would mean hard-coding three
+hexes from another library or inventing three tokens. Both are guesses about a design
+decision that has not been made in V27.
+
+This matters beyond this component: it means a real chart palette exists, which contradicts
+the earlier conclusion that charts were unbuildable. See FINDINGS.md #25, which supersedes
+#3.

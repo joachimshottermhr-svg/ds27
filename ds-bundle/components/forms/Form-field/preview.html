@@ -1,0 +1,72 @@
+<!-- @dsCard group="Forms" viewport="900x830" -->
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Form field - V27</title>
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../styles.css">
+<style>
+  body { margin:0; font-family:system-ui,sans-serif; }
+  .ds-pane { padding:24px; background:var(--v27-background-primary); color:var(--v27-foreground-primary); }
+  .ds-head { font-size:11px; text-transform:uppercase; letter-spacing:.09em;
+             color:var(--v27-foreground-secondary); margin:0 0 4px; }
+  .ds-meta { font-size:12px; color:var(--v27-foreground-secondary); margin:0 0 18px; }
+  .ds-story { display:flex; gap:12px; align-items:flex-start; flex-wrap:wrap; margin:0 0 18px; }
+  .ds-split { display:grid; grid-template-columns:1fr 1fr; }
+</style>
+</head>
+<body>
+<div class="ds-split">
+  <div class="ds-pane">
+    <p class="ds-head">Form field - light</p>
+    <p class="ds-meta">Figma 63:1078 &middot; 3 variants &middot; 9 classes</p>
+      <div class="ds-story">
+        <div class="v27-field">
+          <label class="v27-field__label" for="dob">Field label</label>
+          <div class="v27-field__control">
+            <input class="v27-field__input" id="dob" type="text" placeholder="Placeholder text (optional)" />
+            <svg class="v27-field__icon" viewBox="0 0 16 16" aria-hidden="true"><!-- calendar --></svg>
+          </div>
+        </div>
+      </div>
+      <div class="ds-story">
+        <label class="v27-field__label v27-field__required" for="name">Field label</label>
+      </div>
+      <div class="ds-story">
+        <div class="v27-field v27-field--error">
+          <label class="v27-field__label" for="email">Field label</label>
+          <div class="v27-field__control">
+            <input class="v27-field__input" id="email" aria-invalid="true" aria-describedby="email-err" />
+            <svg class="v27-field__icon" viewBox="0 0 16 16" aria-hidden="true"><!-- warning --></svg>
+          </div>
+          <span class="v27-field__message" id="email-err">Error message here</span>
+        </div>
+      </div>
+  </div>
+  <div class="ds-pane" data-v27-theme="dark">
+    <p class="ds-head">dark</p>
+    <p class="ds-meta">&nbsp;</p>
+      <div class="ds-story">
+        <div class="v27-field">
+          <label class="v27-field__label" for="dob">Field label</label>
+          <div class="v27-field__control">
+            <input class="v27-field__input" id="dob" type="text" placeholder="Placeholder text (optional)" />
+            <svg class="v27-field__icon" viewBox="0 0 16 16" aria-hidden="true"><!-- calendar --></svg>
+          </div>
+        </div>
+      </div>
+      <div class="ds-story">
+        <label class="v27-field__label v27-field__required" for="name">Field label</label>
+      </div>
+      <div class="ds-story">
+        <div class="v27-field v27-field--error">
+          <label class="v27-field__label" for="email">Field label</label>
+          <div class="v27-field__control">
+            <input class="v27-field__input" id="email" aria-invalid="true" aria-describedby="email-err" />
+            <svg class="v27-field__icon" viewBox="0 0 16 16" aria-hidden="true"><!-- warning --></svg>
+          </div>
+          <span class="v27-field__message" id="email-err">Error message here</span>
+        </div>
+      </div>
+  </div>
+</div>
+</body></html>

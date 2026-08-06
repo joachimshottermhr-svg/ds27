@@ -1,0 +1,90 @@
+# Form field
+
+Figma: `Form field`, node `63:1078` (page Components, `1:28`).
+3 variants - `property 1[3]`: Default, Disabled, Error.
+
+A labelled text input with an optional trailing affordance and an error message.
+
+## Markup
+
+```html
+<div class="v27-field">
+  <label class="v27-field__label" for="dob">Field label</label>
+  <div class="v27-field__control">
+    <input class="v27-field__input" id="dob" type="text" placeholder="Placeholder text (optional)" />
+    <svg class="v27-field__icon" viewBox="0 0 16 16" aria-hidden="true"><!-- calendar --></svg>
+  </div>
+</div>
+```
+
+Required, with the marker:
+
+```html
+<label class="v27-field__label v27-field__required" for="name">Field label</label>
+```
+
+Error - the message must be tied to the input, or a screen reader never hears it:
+
+```html
+<div class="v27-field v27-field--error">
+  <label class="v27-field__label" for="email">Field label</label>
+  <div class="v27-field__control">
+    <input class="v27-field__input" id="email" aria-invalid="true" aria-describedby="email-err" />
+    <svg class="v27-field__icon" viewBox="0 0 16 16" aria-hidden="true"><!-- warning --></svg>
+  </div>
+  <span class="v27-field__message" id="email-err">Error message here</span>
+</div>
+```
+
+Disabled: add `.v27-field--disabled` **and** the `disabled` attribute on the input. The
+class styles it; the attribute is what actually stops interaction.
+
+## Classes
+
+| Class | What it is |
+|---|---|
+| `.v27-field` | the wrapper |
+| `.v27-field__label` | the label row |
+| `.v27-field__required` | adds the 6px required marker |
+| `.v27-field__control` | the bordered box |
+| `.v27-field__input` | the real input |
+| `.v27-field__icon` | 16px trailing glyph |
+| `.v27-field__message` | the error message |
+| `.v27-field--disabled` / `--error` | state |
+
+## Values
+
+| Property | Value |
+|---|---|
+| wrapper gap | `--v27-spacing-xs` (4px) |
+| control height | `--v27-size-xl` (40px) |
+| control padding | `--v27-spacing-sm` (12px) each side |
+| control gap | `--v27-spacing-s` (8px) |
+| radius | `--v27-radius-s` (4px) |
+| label / placeholder / message | Sm |
+| label to marker gap | **5px literal** - off the Spacing scale |
+
+| State | Border | Background |
+|---|---|---|
+| Default | `Border/Input` | `Background/Primary` |
+| Disabled | `Border/Input disabled` | `Background/Tertiary` |
+| Error | `Border/Negative` | `Background/Primary` |
+
+The error message is `Foreground/Negative`; the placeholder is `Foreground/Secondary`.
+
+Figma writes the default's padding as left-only 12px with the trailing icon block carrying
+its own 12px right padding, and the error's as a uniform 12px. The rendered box is the same
+12px each side, so it is expressed once.
+
+## Two things are not measured values
+
+- **Focus.** Figma defines no focus state. `Border/Input active` exists in the token layer
+  but is bound nowhere on this component. It is used on `:focus-within` rather than
+  shipping a field with no focus ring at all - flagged so it is not mistaken for measured.
+- **The divider is not built.** The default variant has a thin vertical rule between the
+  input and its trailing icon (`60:1366`, asset "Line 5241"). It is a flattened line asset,
+  so its colour could not be read off the node, and no value was guessed.
+
+The required marker binds `Icons/Icon - Required field` (`#be2028`), which is **not** a V27
+variable - it comes from the People First library, like the Form header's dot.
+FINDINGS.md #18.

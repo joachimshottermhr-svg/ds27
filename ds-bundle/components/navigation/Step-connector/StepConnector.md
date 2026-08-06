@@ -1,0 +1,39 @@
+# Step connector
+
+Figma: `Step connector`, node `347:15723` (page Components, `1:28`).
+2 variants - `property 1[2]`: Default and Variant2.
+
+The 2px rule that joins one [Step](Step.md) to the next. `Variant2` is Figma's
+auto-generated name for the incomplete state - the same pattern as Link's, FINDINGS.md #15.
+
+## Markup
+
+```html
+<span class="v27-step-connector"></span>
+<span class="v27-step-connector v27-step-connector--incomplete"></span>
+```
+
+Decorative. It carries no text and needs no accessible name - the step order comes from the
+list the steps sit in.
+
+## Classes
+
+| Class | What it is | Figma node |
+|---|---|---|
+| `.v27-step-connector` | a completed segment, `Foreground/Primary` | `347:15722` |
+| `.v27-step-connector--incomplete` | not yet reached, `Border/Default` | `347:15724` |
+
+## Values
+
+| Property | Value |
+|---|---|
+| height | 2px |
+| complete | `Foreground/Primary` |
+| incomplete | `Border/Default` |
+
+Figma gives both variants a width of 89px. That is the width of that particular instance on
+the canvas, not a property of the component, so the class stretches to fill whatever space
+the stepper gives it instead of hard-coding 89px.
+
+The complete segment uses `Foreground/Primary` - a text role used as a surface, which is the
+same oddity as Toggle's and Checkbox's. Reproduced as bound.

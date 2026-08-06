@@ -1,0 +1,56 @@
+<!-- @dsCard group="Feedback" viewport="900x640" -->
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>In page message - V27</title>
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../styles.css">
+<style>
+  body { margin:0; font-family:system-ui,sans-serif; }
+  .ds-pane { padding:24px; background:var(--v27-background-primary); color:var(--v27-foreground-primary); }
+  .ds-head { font-size:11px; text-transform:uppercase; letter-spacing:.09em;
+             color:var(--v27-foreground-secondary); margin:0 0 4px; }
+  .ds-meta { font-size:12px; color:var(--v27-foreground-secondary); margin:0 0 18px; }
+  .ds-story { display:flex; gap:12px; align-items:flex-start; flex-wrap:wrap; margin:0 0 18px; }
+  .ds-split { display:grid; grid-template-columns:1fr 1fr; }
+</style>
+</head>
+<body>
+<div class="ds-split">
+  <div class="ds-pane">
+    <p class="ds-head">In page message - light</p>
+    <p class="ds-meta">Figma 548:22140 &middot; 10 variants &middot; 9 classes</p>
+      <div class="ds-story">
+        <div class="v27-message v27-message--info" role="status">
+          <svg class="v27-message__icon" viewBox="0 0 20 20" aria-hidden="true"><!-- glyph --></svg>
+          <div class="v27-message__body">
+            <p>Lorem ipsum dolor sit amet consectetur.</p>
+          </div>
+        </div>
+      </div>
+      <div class="ds-story">
+        <div class="v27-message v27-message--negative v27-message--subtle" role="alert">
+          <svg class="v27-message__icon" viewBox="0 0 20 20" aria-hidden="true"><!-- glyph --></svg>
+          <div class="v27-message__body"><p>Something went wrong.</p></div>
+        </div>
+      </div>
+  </div>
+  <div class="ds-pane" data-v27-theme="dark">
+    <p class="ds-head">dark</p>
+    <p class="ds-meta">&nbsp;</p>
+      <div class="ds-story">
+        <div class="v27-message v27-message--info" role="status">
+          <svg class="v27-message__icon" viewBox="0 0 20 20" aria-hidden="true"><!-- glyph --></svg>
+          <div class="v27-message__body">
+            <p>Lorem ipsum dolor sit amet consectetur.</p>
+          </div>
+        </div>
+      </div>
+      <div class="ds-story">
+        <div class="v27-message v27-message--negative v27-message--subtle" role="alert">
+          <svg class="v27-message__icon" viewBox="0 0 20 20" aria-hidden="true"><!-- glyph --></svg>
+          <div class="v27-message__body"><p>Something went wrong.</p></div>
+        </div>
+      </div>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,56 @@
+# Multi avatar
+
+Figma: `Multi avatar`, node `2299:83865` (page Components, `1:28`).
+2 variants - `property 1[2]`.
+
+A stack of overlapping faces with an overflow count on the end.
+
+## Markup
+
+```html
+<div class="v27-multi-avatar">
+  <span class="v27-multi-avatar__item"><img src="/p1.jpg" alt="Jane Smith" /></span>
+  <span class="v27-multi-avatar__item"><img src="/p2.jpg" alt="Kianna Herwitz" /></span>
+  <span class="v27-multi-avatar__item"><img src="/p3.jpg" alt="Unten Wilson" /></span>
+  <span class="v27-multi-avatar__more">+1</span>
+</div>
+```
+
+Give each `<img>` a real `alt`, or - if the group as a whole is the meaningful thing - mark
+the faces `aria-hidden` and put one accessible name on the container. What you must not do
+is ship four unlabelled images.
+
+The overflow chip should not be the only place the hidden people are named; put the full
+list somewhere reachable.
+
+## Classes
+
+| Class | What it is |
+|---|---|
+| `.v27-multi-avatar` | the row; applies the overlap |
+| `.v27-multi-avatar__item` | one 32px face with its ring |
+| `.v27-multi-avatar__more` | the overflow count chip |
+
+## Values
+
+Verified on `2299:83864`.
+
+| Property | Value |
+|---|---|
+| face | 32px (`--v27-size-l`), radius **46px**, 1px `Border/Border inverted` ring |
+| overlap | -5px right margin on every item but the last |
+| count chip | 32px, radius **17px**, `Background/Tertiary`, `Foreground/Secondary` |
+| count type | Base - Outfit 16 / 400 / 20 |
+
+## These faces are not the Avatar component
+
+They are a separate `People` symbol: **46px radius with a white ring**, where
+[Avatar](Avatar.md) is 29px radius with a `Border/Default` ring and a themed background.
+`.v27-avatar` is deliberately **not** reused here - composing it would have produced a
+visibly different component.
+
+The count chip uses a third radius again (17px) and no ring.
+
+Three different corner radii for three circles in one component is worth querying with
+design - all three clamp to a circle at 32px, so the differences are invisible today and
+only diverge if the box size changes.

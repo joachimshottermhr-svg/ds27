@@ -1,0 +1,80 @@
+<!-- @dsCard group="Content" viewport="900x640" -->
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Tasks - V27</title>
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../styles.css">
+<style>
+  body { margin:0; font-family:system-ui,sans-serif; }
+  .ds-pane { padding:24px; background:var(--v27-background-primary); color:var(--v27-foreground-primary); }
+  .ds-head { font-size:11px; text-transform:uppercase; letter-spacing:.09em;
+             color:var(--v27-foreground-secondary); margin:0 0 4px; }
+  .ds-meta { font-size:12px; color:var(--v27-foreground-secondary); margin:0 0 18px; }
+  .ds-story { display:flex; gap:12px; align-items:flex-start; flex-wrap:wrap; margin:0 0 18px; }
+  .ds-split { display:grid; grid-template-columns:1fr 1fr; }
+</style>
+</head>
+<body>
+<div class="ds-split">
+  <div class="ds-pane">
+    <p class="ds-head">Tasks - light</p>
+    <p class="ds-meta">Figma 2129:54674 &middot; 3 variants &middot; 9 classes</p>
+      <div class="ds-story">
+        <div class="v27-task">
+          <div class="v27-task__row">
+            <span class="v27-task__priority"><span class="v27-tag v27-tag--warning">Medium</span></span>
+            <div class="v27-task__text">
+              <span class="v27-task__area">Task area</span>
+              <span class="v27-task__summary">Task summary text</span>
+            </div>
+            <span class="v27-task__assignees">
+              <span class="v27-multi-avatar"> ... </span>
+            </span>
+            <span class="v27-task__due">
+              <span class="v27-icon-text"><svg viewBox="0 0 24 24" aria-hidden="true"></svg>Monday</span>
+            </span>
+            <button type="button" class="v27-task__menu" aria-label="Task actions">
+              <svg viewBox="0 0 24 24" aria-hidden="true"></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="ds-story">
+        <span class="v27-icon-text">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><!-- glyph --></svg>
+          Monday
+        </span>
+      </div>
+  </div>
+  <div class="ds-pane" data-v27-theme="dark">
+    <p class="ds-head">dark</p>
+    <p class="ds-meta">&nbsp;</p>
+      <div class="ds-story">
+        <div class="v27-task">
+          <div class="v27-task__row">
+            <span class="v27-task__priority"><span class="v27-tag v27-tag--warning">Medium</span></span>
+            <div class="v27-task__text">
+              <span class="v27-task__area">Task area</span>
+              <span class="v27-task__summary">Task summary text</span>
+            </div>
+            <span class="v27-task__assignees">
+              <span class="v27-multi-avatar"> ... </span>
+            </span>
+            <span class="v27-task__due">
+              <span class="v27-icon-text"><svg viewBox="0 0 24 24" aria-hidden="true"></svg>Monday</span>
+            </span>
+            <button type="button" class="v27-task__menu" aria-label="Task actions">
+              <svg viewBox="0 0 24 24" aria-hidden="true"></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="ds-story">
+        <span class="v27-icon-text">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><!-- glyph --></svg>
+          Monday
+        </span>
+      </div>
+  </div>
+</div>
+</body></html>

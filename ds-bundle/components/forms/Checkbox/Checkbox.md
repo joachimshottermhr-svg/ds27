@@ -1,0 +1,62 @@
+# Checkbox
+
+Figma: `Checkbox`, node `66:1687` (page Components, `1:28`) - 2 variants, `property 1[2]`.
+Composes `Single Checkbox`, node `66:1391` - 4 variants, `selected[2]` x `state[3]`.
+
+Figma ships the box as its own component set, so it has its own class here and Checkbox
+references it rather than redeclaring it.
+
+## Markup
+
+```html
+<label class="v27-checkbox">
+  <input type="checkbox" class="v27-checkbox__input" />
+  <span class="v27-checkbox-box">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><!-- tick --></svg>
+  </span>
+  Checkbox choice
+</label>
+```
+
+The `<label>` host makes the whole row clickable with no script, and the real `<input>`
+keeps the accessible state and the visual state from drifting apart. Add `disabled` to the
+input; the label and box follow.
+
+The box on its own, without a label:
+
+```html
+<span class="v27-checkbox-box">
+  <svg viewBox="0 0 16 16" aria-hidden="true"><!-- tick --></svg>
+</span>
+```
+
+## Classes
+
+| Class | What it is |
+|---|---|
+| `.v27-checkbox` | the label row |
+| `.v27-choice-input` | the real input, visually hidden but focusable |
+| `.v27-checkbox-box` | the 20px box - the `Single Checkbox` component |
+
+## Values
+
+| State | Box | Figma node |
+|---|---|---|
+| unselected | `Background/Primary`, 1px `Border/Input bold` | `66:1390` |
+| selected | `Foreground/Primary` fill, no border, 16px tick | `66:1389` |
+| unselected, disabled | `Background/Tertiary`, 1px `Border/Bold` | `66:1628` |
+| selected, disabled | `Neutral/400` fill, `Neutral/0` tick | `66:1630` |
+
+Box is 20px (`--v27-size-s`), radius 4px (`--v27-radius-s`), gap to label 12px
+(`--v27-spacing-sm`), label type Sm.
+
+Two things Figma does that the code reproduces rather than corrects:
+
+- The selected fill is **`Foreground/Primary`** - a text role used as a surface, the same
+  pattern as Toggle.
+- The disabled states bind **primitives** (`Neutral/400`, `Neutral/0`, `Neutral/600`) where
+  semantic roles holding the same values exist. FINDINGS.md #22.
+
+`:focus-visible` draws an outline from `Border/Input active`. Figma defines no focus state
+for this component; without one a keyboard user gets no affordance at all, so the nearest
+existing token is used and flagged here rather than invented silently.

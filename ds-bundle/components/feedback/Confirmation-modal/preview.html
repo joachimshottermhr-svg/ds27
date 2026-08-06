@@ -1,0 +1,64 @@
+<!-- @dsCard group="Feedback" viewport="900x450" -->
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Confirmation modal - V27</title>
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../styles.css">
+<style>
+  body { margin:0; font-family:system-ui,sans-serif; }
+  .ds-pane { padding:24px; background:var(--v27-background-primary); color:var(--v27-foreground-primary); }
+  .ds-head { font-size:11px; text-transform:uppercase; letter-spacing:.09em;
+             color:var(--v27-foreground-secondary); margin:0 0 4px; }
+  .ds-meta { font-size:12px; color:var(--v27-foreground-secondary); margin:0 0 18px; }
+  .ds-story { display:flex; gap:12px; align-items:flex-start; flex-wrap:wrap; margin:0 0 18px; }
+  .ds-split { display:grid; grid-template-columns:1fr 1fr; }
+</style>
+</head>
+<body>
+<div class="ds-split">
+  <div class="ds-pane">
+    <p class="ds-head">Confirmation modal - light</p>
+    <p class="ds-meta">Figma 7664:11553 &middot; 2 variants &middot; 8 classes</p>
+      <div class="ds-story">
+        <div class="v27-modal" role="dialog" aria-modal="true" aria-labelledby="m-title">
+          <button type="button" class="v27-modal__close" aria-label="Close">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><!-- close --></svg>
+          </button>
+          <div class="v27-modal__content">
+            <svg class="v27-modal__glyph" viewBox="0 0 120 120" aria-hidden="true"><!-- warning --></svg>
+            <div class="v27-modal__text">
+              <span class="v27-modal__title" id="m-title">Are you sure?</span>
+              <span class="v27-modal__body">Items will be permanently deleted</span>
+            </div>
+          </div>
+          <div class="v27-modal__actions">
+            <button type="button" class="v27-btn v27-btn--positive v27-btn--block">Confirm</button>
+            <button type="button" class="v27-btn v27-btn--outline v27-btn--block">Cancel</button>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="ds-pane" data-v27-theme="dark">
+    <p class="ds-head">dark</p>
+    <p class="ds-meta">&nbsp;</p>
+      <div class="ds-story">
+        <div class="v27-modal" role="dialog" aria-modal="true" aria-labelledby="m-title">
+          <button type="button" class="v27-modal__close" aria-label="Close">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><!-- close --></svg>
+          </button>
+          <div class="v27-modal__content">
+            <svg class="v27-modal__glyph" viewBox="0 0 120 120" aria-hidden="true"><!-- warning --></svg>
+            <div class="v27-modal__text">
+              <span class="v27-modal__title" id="m-title">Are you sure?</span>
+              <span class="v27-modal__body">Items will be permanently deleted</span>
+            </div>
+          </div>
+          <div class="v27-modal__actions">
+            <button type="button" class="v27-btn v27-btn--positive v27-btn--block">Confirm</button>
+            <button type="button" class="v27-btn v27-btn--outline v27-btn--block">Cancel</button>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+</body></html>

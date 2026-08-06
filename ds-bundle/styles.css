@@ -1,0 +1,2747 @@
+/* V27 Design System - component styles.
+ *
+ * Requires tokens.css. Every value here either references a semantic token or is a literal
+ * measured off a Figma node, with that node id recorded beside it. Nothing is approximated.
+ *
+ * Class naming: .v27-<block>, .v27-<block>--<modifier>, .v27-<block>__<part>.
+ * Figma's variant axes are inconsistently cased (size / Size, state / State); modifiers are
+ * lowercase here and the original casing is recorded in FINDINGS.md.
+ *
+ * ON TOKENS VS LITERALS - the rule this file follows, stated once.
+ *
+ * Figma binds some values to a variable and leaves others as bare numbers, and it is not
+ * consistent about which: on Tags it binds the padding to Spacing/S and Spacing/XS but
+ * leaves the gap, the corner radius and the icon box as literals, all three of which sit
+ * exactly on a published scale (FINDINGS.md #13).
+ *
+ * Where Figma leaves a literal that is exactly on the Dimensions scale, this file uses the
+ * token. The value is identical today, and a literal is guaranteed to drift the moment the
+ * scale moves - which is the whole failure the token layer exists to prevent.
+ *
+ * Where the value is OFF the scale - the Button's 42px height, its 207px radius, the
+ * circle icon's 35px radius - it stays a literal with its node id beside it, because
+ * rounding it onto the scale would change the design.
+ *
+ * Colours are never inferred. Every colour here is the variable Figma binds on the node.
+ */
+
+/* ==========================================================================
+   Button - Figma `Button`, node 243:4085
+   60 variants: type[6] x icon[4] x size[2] x state[3]
+   ========================================================================== */
+
+/* Geometry is shared by every type. Verified on 243:4068 (Positive), 243:4060 (Negative),
+   243:4077 (Outline) and 243:4059 (Plain) - all four return the same box.
+   Three values here are literals, not tokens, because V27 has no token for them:
+     height 42px       the Size scale is 16/20/24/32/40; 42 is not on it
+     radius 207px      Figma's value for a full pill; the Radius scale is 4/8/16
+     min-width 100px   no dimension token matches
+   The padding does map exactly: 16px is --v27-spacing-m, 8px is --v27-spacing-s. */
+.v27-btn {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  min-width: 100px;
+  padding: var(--v27-spacing-s) var(--v27-spacing-m);
+  border: 0;
+  border-radius: 207px;
+  background: transparent;
+  overflow: clip;
+  cursor: pointer;
+  text-align: center;
+  /* Outfit SemiBold 14 / weight 600 / line-height 100 / letter-spacing 0.
+     Reported by Figma on every Button variant. There is no type token in the variables
+     export - see FINDINGS.md #1 - so these are literals until the type tier exists. */
+  font-family: var(--v27-font-family, "Outfit"), system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0;
+}
+
+.v27-btn:disabled {
+  cursor: not-allowed;
+}
+
+/* Figma's Icon=Icon only variants are square: 42px at Default, 32px at small. */
+.v27-btn--icon-only {
+  min-width: 0;
+  width: 42px;
+  padding-inline: 0;
+}
+
+/* size=small. Height measured across every small variant on 1:28. The type size for small
+   is UNVERIFIED - Figma reports one font for the component set - so it is left inherited
+   rather than guessed at. */
+.v27-btn--small {
+  height: 32px;
+}
+
+.v27-btn--small.v27-btn--icon-only {
+  width: 32px;
+}
+
+/* Full width. Not a Figma variant - it is how the Button instances inside Confirmation
+   modal (5034:49885, 5034:49884) are set to fill their container. It adds no value of its
+   own, which is why it lives here rather than the modal reaching in to restyle a button
+   from outside its scope. */
+.v27-btn--block {
+  width: 100%;
+}
+
+/* --- type=Positive - node 243:4068 --- */
+.v27-btn--positive {
+  background: var(--v27-background-primary-button);
+  color: var(--v27-foreground-inverted);
+}
+
+/* The only hover Figma names explicitly: the token is Background/Primary button hover. */
+.v27-btn--positive:hover:not(:disabled) {
+  background: var(--v27-background-primary-button-hover);
+}
+
+/* --- type=Negative - node 243:4060 --- */
+.v27-btn--negative {
+  border: 1px solid var(--v27-border-negative);
+  color: var(--v27-foreground-negative);
+}
+
+/* --- type=Outline - node 243:4077 --- */
+.v27-btn--outline {
+  border: 1px solid var(--v27-border-bold);
+  color: var(--v27-foreground-primary);
+}
+
+/* --- type=Plain - node 243:4059 ---
+   No fill and no border. Figma also drops the 100px minimum and sets the label to
+   whitespace-nowrap, so the button hugs its text. */
+.v27-btn--plain {
+  min-width: 0;
+  color: var(--v27-foreground-primary);
+  white-space: nowrap;
+}
+
+/* type=AI and type=AI bold are NOT implemented. Their nodes are 243:4070 and 3993:71960.
+   Both are expected to carry a gradient, which cannot be read from geometry, and no value
+   for them has been verified. Building them from the token names alone would be a guess. */
+
+/* ==========================================================================
+   Icon - Figma `Icon`, node 289:4504
+   3 variants: property 1[3]. Figma's axis is "Property 1"; the values name sizes.
+   ========================================================================== */
+
+/* A sizing box only. The glyph inherits its colour from the surrounding text, which is how
+   every icon in the file is used - Figma binds the icon's fill on the PARENT component
+   (the tag, the button), never on the Icon component itself. */
+.v27-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  color: inherit;
+}
+
+.v27-icon > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+/* Measured boxes: 20x20 on 289:4501, 24x24 on 289:4503, 32x32 on 289:4502. All three sit
+   on the Size scale, so they are tokens rather than repeated literals. */
+.v27-icon--small  { width: var(--v27-size-s); height: var(--v27-size-s); }
+.v27-icon--medium { width: var(--v27-size-m); height: var(--v27-size-m); }
+.v27-icon--large  { width: var(--v27-size-l); height: var(--v27-size-l); }
+
+/* ==========================================================================
+   Coloured circle icons - Figma `Coloured circle icons`, node 7840:19951
+   21 variants: size[3] x colour[7]
+
+   THIS COMPONENT BREAKS THE TWO-TIER RULE, and it does so because Figma does.
+   Every other component binds a semantic role; this one binds PRIMITIVES directly -
+   Green/100 behind a Green/700 glyph, and so on for all seven ramps. There is no
+   semantic role for "the green circle", so there is nothing to point at. The consequence
+   is real and is not a bug in this file: these circles do NOT change between light and
+   dark, because primitives have one mode. See FINDINGS.md #17.
+   ========================================================================== */
+
+/* Geometry verified on 7840:19941 (medium, Green). Figma binds Size/L for the height but
+   leaves the width a literal 32px - both are the same value and both are the token here.
+   The 35px radius is off every scale; it is Figma's value for a full circle and browsers
+   clamp it to one at all three box sizes, so it is reproduced exactly. */
+.v27-circle-icon {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  padding: var(--v27-spacing-xs);
+  border-radius: 35px;
+  overflow: clip;
+}
+
+.v27-circle-icon > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+/* Box and glyph move together: 24/16, 32/20, 40/24. Both sit on the Size scale. */
+.v27-circle-icon--small  { width: var(--v27-size-m);  height: var(--v27-size-m); }
+.v27-circle-icon--medium { width: var(--v27-size-l);  height: var(--v27-size-l); }
+.v27-circle-icon--large  { width: var(--v27-size-xl); height: var(--v27-size-xl); }
+
+.v27-circle-icon--small  > svg { width: var(--v27-size-xs); height: var(--v27-size-xs); }
+.v27-circle-icon--medium > svg { width: var(--v27-size-s);  height: var(--v27-size-s); }
+.v27-circle-icon--large  > svg { width: var(--v27-size-m);  height: var(--v27-size-m); }
+
+/* The seven ramps. Confirmed per variant on 7840:19938 (Pink), 7840:19940 (Grey) and
+   7840:19939 (Orange); the remaining four are unambiguous because the set's full variable
+   list contains exactly one dark step per ramp.
+
+   Note Pink, Orange and Grey use the 600 step while Green, Blue, Purple and Red use 700.
+   That is what Figma binds - the set exposes no Pink/700, Orange/700 or Neutral/700 at
+   all - so it is reproduced rather than regularised. */
+.v27-circle-icon--green  { background: var(--v27-green-100);  color: var(--v27-green-700); }
+.v27-circle-icon--grey   { background: var(--v27-neutral-100); color: var(--v27-neutral-600); }
+.v27-circle-icon--blue   { background: var(--v27-blue-100);   color: var(--v27-blue-700); }
+.v27-circle-icon--pink   { background: var(--v27-pink-100);   color: var(--v27-pink-600); }
+.v27-circle-icon--purple { background: var(--v27-purple-100); color: var(--v27-purple-700); }
+.v27-circle-icon--orange { background: var(--v27-orange-100); color: var(--v27-orange-600); }
+.v27-circle-icon--red    { background: var(--v27-red-100);    color: var(--v27-red-700); }
+
+/* ==========================================================================
+   Tags - Figma `Tags`, node 232:4878
+   12 variants: property 1[6] x with icon[2].
+
+   Figma also exposes a boolean component property `removeable` that is NOT one of the
+   variant axes, so the set reports 12 variants while the component actually has 24
+   states. Counting variants alone would have missed the close affordance entirely.
+   ========================================================================== */
+
+/* Geometry is identical across all six types - verified on 232:4873 (info), 232:4877
+   (negative), 232:4874 (warning), 232:4876 (positive), 232:4875 (expired) and
+   7961:123360 (AI). Figma binds the padding to Spacing/S and Spacing/XS but leaves the
+   gap and the radius as bare 4px; both are on the scale, so both are tokens here. */
+.v27-tag {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--v27-spacing-xs);
+  padding: var(--v27-spacing-xs) var(--v27-spacing-s);
+  border-radius: var(--v27-radius-s);
+  overflow: clip;
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+}
+
+/* Both the leading icon and the trailing remove control are 16px on every variant. */
+.v27-tag__icon {
+  width: var(--v27-size-xs);
+  height: var(--v27-size-xs);
+  flex: none;
+}
+
+/* The remove affordance is a real button, so it is focusable and keyboard-operable. It
+   carries no colour of its own - it inherits the tag's, which is what Figma shows. */
+.v27-tag__remove {
+  width: var(--v27-size-xs);
+  height: var(--v27-size-xs);
+  flex: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* --- type=info - node 232:4873 --- */
+.v27-tag--info {
+  background: var(--v27-background-info);
+  color: var(--v27-foreground-info);
+}
+
+/* --- type=negative - node 232:4877 --- */
+.v27-tag--negative {
+  background: var(--v27-background-negative);
+  color: var(--v27-foreground-negative);
+}
+
+/* --- type=warning - node 232:4874 --- */
+.v27-tag--warning {
+  background: var(--v27-background-warning);
+  color: var(--v27-foreground-warning);
+}
+
+/* --- type=positive - node 232:4876 --- */
+.v27-tag--positive {
+  background: var(--v27-background-positive);
+  color: var(--v27-foreground-positive);
+}
+
+/* --- type=expired - node 232:4875 ---
+   Note this one does NOT use a dedicated pair: Figma binds Background/Tertiary and
+   Foreground/Secondary, the same neutral roles used elsewhere. Reproduced as bound. */
+.v27-tag--expired {
+  background: var(--v27-background-tertiary);
+  color: var(--v27-foreground-secondary);
+}
+
+/* --- type=AI - node 7961:123360 ---
+   The only tag with no background token. Figma stacks two gradients: a 5%-opacity brand
+   sweep over a solid white base. Both are raw literals in the file, so both are literals
+   here - see FINDINGS.md #14. The white base means this variant does NOT follow dark
+   mode; that is what Figma specifies and it is recorded rather than corrected. */
+.v27-tag--ai {
+  background-image:
+    linear-gradient(90deg, rgba(0, 127, 243, 0.05) 0%, rgba(169, 34, 193, 0.05) 31.5%, rgba(255, 0, 152, 0.05) 58.5%, rgba(255, 0, 41, 0.05) 100%),
+    linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);
+  color: var(--v27-foreground-theme);
+}
+
+/* ==========================================================================
+   Single Checkbox - Figma `Single Checkbox`, node 66:1391
+   4 variants: selected[2] x state[3]
+
+   The box on its own. Figma ships it as its own component set and Checkbox composes an
+   instance of it, so it gets a shared class here and Checkbox references that class
+   rather than redeclaring the box. A private copy is what the duplicate-rules audit
+   exists to catch.
+   ========================================================================== */
+
+/* Unselected, enabled - 66:1390. 20x20, on the Size scale. */
+.v27-checkbox-box {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: var(--v27-size-s);
+  height: var(--v27-size-s);
+  border: 1px solid var(--v27-border-input-bold);
+  border-radius: var(--v27-radius-s);
+  background: var(--v27-background-primary);
+  overflow: clip;
+}
+
+/* The 16px tick, hidden until checked. */
+.v27-checkbox-box > svg {
+  display: block;
+  width: var(--v27-size-xs);
+  height: var(--v27-size-xs);
+  fill: currentColor;
+  visibility: hidden;
+}
+
+/* Selected, enabled - 66:1389. The fill is Foreground/Primary, a text role used as a
+   surface (the same pattern as Toggle), and Figma drops the border entirely. */
+.v27-choice-input:checked + .v27-checkbox-box {
+  border-color: transparent;
+  background: var(--v27-foreground-primary);
+  color: var(--v27-background-primary);
+}
+
+.v27-choice-input:checked + .v27-checkbox-box > svg {
+  visibility: visible;
+}
+
+/* Unselected, disabled - 66:1628. */
+.v27-choice-input:disabled + .v27-checkbox-box {
+  border-color: var(--v27-border-bold);
+  background: var(--v27-background-tertiary);
+}
+
+/* Selected, disabled - 66:1630. Figma binds PRIMITIVES here - Neutral/400 for the box and
+   Neutral/0 for the tick - not the semantic roles that carry the same values. Reproduced
+   as bound; see FINDINGS.md #22. */
+.v27-choice-input:checked:disabled + .v27-checkbox-box {
+  border-color: transparent;
+  background: var(--v27-neutral-400);
+  color: var(--v27-neutral-0);
+}
+
+.v27-choice-input:focus-visible + .v27-checkbox-box {
+  outline: 2px solid var(--v27-border-input-active);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Checkbox - Figma `Checkbox`, node 66:1687
+   2 variants: property 1[2] - Default and Disabled.
+   ========================================================================== */
+
+/* The box plus its label, 12px apart - verified on 66:1367. A <label> host means the
+   whole row is clickable without any script, and the real <input> keeps the accessible
+   state and the visual state from drifting apart. */
+.v27-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--v27-spacing-sm);
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+  color: var(--v27-foreground-primary);
+  cursor: pointer;
+}
+
+/* Visually hidden, still focusable and still announced. Not display:none, which would
+   remove it from the tab order and from the accessibility tree.
+
+   Shared by Checkbox and Radio button rather than duplicated per component. A second copy
+   under a different name would be byte-identical, would be invisible to any change made to
+   the first, and is exactly what the duplicate-rules audit flags. */
+.v27-choice-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* Disabled - 66:1688. The label colour Figma binds is the Neutral/600 PRIMITIVE, not
+   Foreground/Secondary, even though the two hold the same value. FINDINGS.md #22. */
+.v27-checkbox:has(.v27-choice-input:disabled) {
+  color: var(--v27-neutral-600);
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   AI assistant overlay (mobile) - Figma `AI assistant overlay (mobile)`, node 7694:96652
+   2 variants: property 1[2] - full height and Small.
+
+   A bottom sheet that composes AI chat bubble, User chat bubble and the mobile message
+   box. Only the frame itself is new; everything inside it is already built.
+
+   Only `Small` (7694:96650) is measured. `full height` (7694:96651) is the same sheet at
+   752px rather than 505px, but the height is set by the consumer anyway.
+   ========================================================================== */
+
+/* Verified on 7694:96650.
+
+   Note this gradient IS readable - it is a fill on the sheet, not the unserialisable
+   `AI gradient` STYLE that defeats the AI bubble (FINDINGS.md #32). Figma binds Blue/50
+   and Pink/100 directly, so this is another component reaching into the primitive tier
+   and another surface that will not follow dark mode. */
+.v27-ai-sheet {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  border-top-left-radius: 30px; /* figma-literal: 7694:96650 - off the Radius scale */
+  border-top-right-radius: 30px;
+  background-image:
+    linear-gradient(90deg, var(--v27-blue-50) 0%, var(--v27-pink-100) 100%),
+    linear-gradient(90deg, var(--v27-pink-50) 0%, var(--v27-pink-50) 100%);
+  box-shadow: 0 0 20px 0 rgb(0 0 0 / 0.3); /* figma-literal: 7694:96650 - no shadow tier */
+  overflow: clip;
+}
+
+/* The sheet's grab handle and title. It is a button in Figma - the whole header collapses
+   and expands the sheet. */
+.v27-ai-sheet__header {
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+  width: 100%;
+  padding: var(--v27-spacing-sm) 15px; /* figma-literal: 7694:96408 - 15px is off the scale */
+  border: 0;
+  border-bottom: 1px solid var(--v27-border-default);
+  background: none;
+  cursor: pointer;
+}
+
+/* The drag affordance. Figma's measurements are sub-pixel - 48.911 x 5.231 - which is a
+   rotation artefact rather than a designed value, so it is rounded to 49x5. */
+.v27-ai-sheet__handle {
+  width: 49px;
+  height: 5px;
+  flex: none;
+  border-radius: var(--v27-radius-s);
+  background: var(--v27-border-bold);
+}
+
+.v27-ai-sheet__title {
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+  font-size: var(--v27-text-lg-bold-size);
+  font-weight: var(--v27-text-lg-bold-weight);
+  line-height: var(--v27-text-lg-bold-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+/* The conversation. Pinned to the bottom so the newest message sits above the composer. */
+.v27-ai-sheet__body {
+  box-sizing: border-box;
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--v27-spacing-m);
+  width: 100%;
+  min-height: 0;
+  padding: var(--v27-spacing-sm);
+  overflow: clip;
+}
+
+/* ==========================================================================
+   Tab group - Figma standalone symbol `Tab group`, node 2317:69213
+   Measured as an instance inside App header (2317:69206).
+   ========================================================================== */
+
+/* A wrapping row of Tab single. The gap is asymmetric on purpose: 0 down, 24 across, so
+   wrapped rows sit flush and the underlines form a continuous rule. */
+.v27-tab-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  align-items: flex-start;
+  gap: 0 var(--v27-spacing-ml);
+}
+
+/* Level 2 tabs drop to Sm. Figma applies this as an instance override on the nested group
+   rather than as a variant of Tab single, so it is a modifier on the GROUP - the tab
+   itself has no size axis. */
+.v27-tab-group--sub .v27-tab {
+  font-size: var(--v27-text-sm-size);
+  line-height: var(--v27-text-sm-line-height);
+}
+
+/* ==========================================================================
+   App header + top navigation - Figma `App header + top navigation`, node 2317:69137
+   2 variants: mobile[2], plus three boolean properties - breadcrumbTitle, tabLevel1 and
+   tabLevel2 - so the real state count is 16, not 2.
+
+   Only mobile=True (2317:69206) is measured. The desktop variant (2317:68864) is a
+   1860x209 frame that was not read.
+   ========================================================================== */
+
+.v27-app-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  overflow: clip;
+  font-family: var(--v27-font-family);
+}
+
+/* The bar: app identity, an AI action, and up to two levels of tabs. */
+.v27-app-header__bar {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--v27-spacing-s);
+  width: 100%;
+  padding: var(--v27-spacing-sm) var(--v27-spacing-sm) 0;
+  border-bottom: 1px solid var(--v27-border-default);
+}
+
+.v27-app-header__identity {
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-sm);
+  width: 100%;
+}
+
+.v27-app-header__icon {
+  width: var(--v27-size-l);
+  height: var(--v27-size-l);
+  flex: none;
+  color: var(--v27-foreground-primary);
+}
+
+/* 20px REGULAR - the same size-weight pair as the workspace header's title, and the same
+   gap: the size is on the scale, the weight is not, and the pair is named nowhere.
+   FINDINGS.md #24. */
+.v27-app-header__title {
+  flex: 1 0 0;
+  min-width: 0;
+  font-size: var(--v27-text-xl-size);
+  font-weight: var(--v27-font-weight-regular); /* figma-literal: 2317:69210 - 20/400 is not a named style */
+  line-height: var(--v27-text-xl-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+.v27-app-header__tabs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--v27-spacing-s);
+  width: 100%;
+}
+
+/* The optional breadcrumb row below the bar - Figma's boolean `breadcrumbTitle`. */
+.v27-app-header__breadcrumb {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 10px; /* figma-literal: 7694:89642 - off the Spacing scale */
+  width: 100%;
+  padding: var(--v27-spacing-sm) var(--v27-spacing-sm) 0;
+  overflow: clip;
+}
+
+.v27-app-header__back {
+  width: var(--v27-size-m);
+  height: var(--v27-size-m);
+  flex: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--v27-foreground-primary);
+  cursor: pointer;
+}
+
+/* Lg, and centred. Figma absolutely positions this to centre it against the full width
+   while the back arrow sits on the left; a flex-1 label with the arrow outside the
+   centring context is the same result without the absolute positioning. */
+.v27-app-header__page {
+  flex: 1 0 0;
+  min-width: 0;
+  padding-block: var(--v27-spacing-xs);
+  text-align: center;
+  font-size: var(--v27-text-lg-size);
+  font-weight: var(--v27-text-lg-weight);
+  line-height: var(--v27-text-lg-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+/* ==========================================================================
+   Entity card - Figma `Entity card`, node 7661:13220
+   12 variants: content type[4] x selected[3], plus a boolean `tags` property.
+
+   Only content type=Person / selected=Default is measured. The other content types put
+   different things in the same box, and the two remaining `selected` states were not read
+   - `Background/Secondary` appears in the set's variables and is very likely the selected
+   fill, but "very likely" is not measured.
+   ========================================================================== */
+
+/* Verified on 7661:13219. The card composes a Header display and an optional Tag; neither
+   is re-implemented here. */
+/* duplicate-ok: .v27-attachment .v27-data-display .v27-config-tile .v27-task .v27-modal
+   .v27-entity-card - the six share one card surface that V27 defines no component for.
+   See FINDINGS.md #30. */
+.v27-entity-card {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+  padding: var(--v27-spacing-sm);
+  border: 1px solid var(--v27-border-default);
+  border-radius: var(--v27-radius-m);
+  background: #fff; /* figma-literal: 7661:13219 - raw white, not Background/Primary */
+  font-family: var(--v27-font-family);
+}
+
+.v27-entity-card__body {
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+  min-width: 0;
+}
+
+/* The name line runs a 16px semibold name and a 12px regular reference on ONE baseline -
+   two type styles inside a single text node, which is why this needs its own class rather
+   than reusing Header display's title. */
+.v27-entity-card__name {
+  font-size: var(--v27-text-base-bold-size);
+  font-weight: var(--v27-text-base-bold-weight);
+  line-height: var(--v27-text-base-bold-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+.v27-entity-card__ref {
+  font-size: var(--v27-text-xs-size);
+  font-weight: var(--v27-font-weight-regular);
+  line-height: var(--v27-text-base-bold-line-height);
+}
+
+/* ==========================================================================
+   Nav elements - Figma `nav elements`, node 1997:40997
+   39 variants: property 1[12] x status[3]
+
+   The 39 collapse to ONE shape. `property 1`'s twelve values are twelve different GLYPHS -
+   Payroll, inbox, bookmark, Calendar, id-card, chart-line, book, receipt, clipboard,
+   building-columns, finance insights, home - not twelve different styles. The box, the
+   glyph size and the colours are identical across all of them.
+
+   So this is one class with a glyph slot and a status modifier, not 39 variants. Of the
+   three statuses, Default and Selected are measured; the third was not.
+   ========================================================================== */
+
+/* Verified on 1997:41006 (Default) and 1997:41698 (Selected, inside side nav). A 64x48
+   target with a 24px glyph centred in it - both off the Size scale for the box, which is
+   a navigation rail dimension rather than an icon one. */
+.v27-nav-item {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 64px; /* figma-literal: 1997:41006 - rail width, off every scale */
+  height: 48px;
+  padding: 0;
+  border: 0;
+  border-left: 3px solid transparent;
+  background: none;
+  color: var(--v27-foreground-primary);
+  cursor: pointer;
+}
+
+.v27-nav-item > svg {
+  width: var(--v27-size-m);
+  height: var(--v27-size-m);
+  flex: none;
+  fill: currentColor;
+}
+
+/* status=Selected - 1997:41698. A 3px theme bar down the leading edge. It is carried as a
+   transparent border on the base so the glyph does not shift by 3px when selected. */
+.v27-nav-item[aria-current] {
+  border-left-color: var(--v27-border-theme);
+}
+
+/* ==========================================================================
+   Side nav - Figma `side nav`, node 1997:40985
+   1 variant. Figma's axis value is the auto-generated `Frame 6270940`.
+   ========================================================================== */
+
+/* Verified on 1997:40986. The rail: navigation background, a rule down the trailing edge,
+   items stacked from the top and an avatar pinned at the bottom. */
+.v27-side-nav {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--v27-spacing-sm);
+  height: 100%;
+  padding-block: var(--v27-spacing-m);
+  border-right: 1px solid var(--v27-border-default);
+  background: var(--v27-background-navigation);
+}
+
+/* The scrolling item column. Figma gives it flex-1, so the avatar stays at the bottom
+   however many items there are. */
+.v27-side-nav__items {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: center;
+  min-height: 0;
+}
+
+/* A 40px rule between groups. Figma draws it as a rotated line asset whose colour could
+   not be read, so it inherits Border/Default - the rule already used on this component's
+   own trailing edge - rather than asserting an unmeasured value. */
+.v27-side-nav__separator {
+  width: 40px;
+  height: 1px;
+  margin-block: var(--v27-spacing-s);
+  border: 0;
+  background: var(--v27-border-default);
+}
+
+.v27-side-nav__avatar {
+  width: var(--v27-size-xl);
+  height: var(--v27-size-xl);
+  flex: none;
+  border-radius: 46px;
+  overflow: clip;
+}
+
+.v27-side-nav__avatar > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ==========================================================================
+   Workspace header - Figma `workspace header`, node 7694:89257
+   2 variants: mobile[2]. Only mobile=false is built; the 375px variant (7694:89258) was
+   not measured. There is also a boolean `icon` property outside the axes.
+   ========================================================================== */
+
+/* Verified on 3993:72562. A titled bar with a rule under it and a row of plain icon
+   buttons on the right. */
+.v27-workspace-header {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-sm);
+  width: 100%;
+  padding: var(--v27-spacing-sm) var(--v27-spacing-ml);
+  border-bottom: 1px solid var(--v27-border-default);
+  font-family: var(--v27-font-family);
+}
+
+/* The optional leading glyph - Figma's boolean `icon` property. */
+.v27-workspace-header__icon {
+  width: var(--v27-size-l);
+  height: var(--v27-size-l);
+  flex: none;
+  color: var(--v27-foreground-primary);
+}
+
+/* 20px at REGULAR weight. The XL style is 20/600, so this size-weight pair matches no
+   named text style - the same gap as Avatar's 12px semibold. FINDINGS.md #24. */
+.v27-workspace-header__title {
+  flex: 1 0 0;
+  min-width: 0;
+  font-size: var(--v27-text-xl-size);
+  font-weight: var(--v27-font-weight-regular); /* figma-literal: 3993:71746 - 20/400 is not a named style */
+  line-height: var(--v27-text-xl-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+/* The trailing controls are Buttons with no fill and no border - the `Plain` type at the
+   icon-only size. Compose .v27-btn rather than restyling here. */
+.v27-workspace-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-sm);
+}
+
+/* ==========================================================================
+   AI chat bubble - Figma `AI chat bubble`, node 1997:40463
+   3 variants: type[3] - Text, Entity selector, Form.
+
+   All three are the same frame with different content in the slot, so this is a slot, not
+   three variants. Only Text (1997:40461) was measured; the other two put an entity picker
+   or a form inside the same box.
+
+   THE ACCENT COLOUR IS NOT A MEASURED VALUE. Figma applies a style named `AI gradient`
+   (and `1st (light)/AI gradient`) whose value the tool returns EMPTY - gradients do not
+   serialise. The #007ff3 that appears in the generated reference is what the flattening
+   produced, not what the style says. See FINDINGS.md #32.
+   ========================================================================== */
+
+.v27-ai-message {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--v27-spacing-s);
+  font-family: var(--v27-font-family);
+}
+
+.v27-ai-message__header {
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+}
+
+/* The V27 AI logo, 32px. Not bundled - supply the mark. */
+.v27-ai-message__logo {
+  width: var(--v27-size-l);
+  height: var(--v27-size-l);
+  flex: none;
+}
+
+.v27-ai-message__time {
+  font-size: var(--v27-text-xs-size);
+  font-weight: var(--v27-text-xs-weight);
+  line-height: var(--v27-text-xs-line-height);
+  color: var(--v27-foreground-secondary);
+}
+
+/* The bubble. Everything here except the border COLOUR is measured.
+
+   --v27-ai-accent is a deliberate hook, not a token: the real value is a gradient this
+   toolchain cannot read, so the fallback is a neutral border rather than a guess at brand
+   colours. Set it when the gradient is known. */
+.v27-ai-message__bubble {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--v27-spacing-m);
+  width: 100%;
+  padding: var(--v27-spacing-m);
+  border: 1px solid var(--v27-ai-accent, var(--v27-border-default));
+  border-radius: var(--v27-radius-m);
+  background: var(--v27-background-primary);
+  overflow: clip;
+  font-size: var(--v27-text-base-size);
+  font-weight: var(--v27-text-base-weight);
+  line-height: var(--v27-text-base-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+/* The action row inside the bubble - confirm, dismiss and so on. */
+.v27-ai-message__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-sm);
+}
+
+/* ==========================================================================
+   AI chat tool bar - Figma standalone symbol `AI chat tool bar`, node 1997:40096
+   Measured as an instance inside AI chat bubble.
+   ========================================================================== */
+
+.v27-ai-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+}
+
+.v27-ai-toolbar__action {
+  width: var(--v27-size-m);
+  height: var(--v27-size-m);
+  flex: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--v27-foreground-secondary);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   Attachments - Figma `Attachments`, node 7179:66634
+   2 variants: attachments[2]
+
+   Only attachments=False - the empty dropzone - is built. attachments=True (7179:66633)
+   adds a list of uploaded files below it and was not measured.
+   ========================================================================== */
+
+/* Verified on 7179:66632. */
+.v27-attachments {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--v27-spacing-m);
+  width: 100%;
+  font-family: var(--v27-font-family);
+}
+
+.v27-attachments__field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--v27-spacing-s);
+  width: 100%;
+}
+
+.v27-attachments__labels {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--v27-spacing-xxs);
+  width: 100%;
+}
+
+/* The constraints line - allowed types, max size, max files. XS, and the only place the
+   library uses it besides the chat timestamp. */
+.v27-attachments__hint {
+  width: 100%;
+  font-size: var(--v27-text-xs-size);
+  font-weight: var(--v27-text-xs-weight);
+  line-height: var(--v27-text-xs-line-height);
+  color: var(--v27-foreground-secondary);
+}
+
+/* The dropzone. The only DASHED border in the library, and the only other user of
+   Radius/L besides the chat input.
+
+   Figma binds `Border/Secondary` here - a variable that is NOT in the V27 export, holding
+   the same #c1c1c1 as Border/Bold. Border/Bold is used; see FINDINGS.md #18. */
+.v27-attachments__dropzone {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--v27-spacing-m);
+  width: 100%;
+  padding: var(--v27-spacing-m);
+  border: 1px dashed var(--v27-border-bold);
+  border-radius: var(--v27-radius-l);
+  background: #fff; /* figma-literal: 7063:47683 - raw white, not Background/Primary */
+  overflow: clip;
+}
+
+.v27-attachments__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.v27-attachments__prompt {
+  width: 100%;
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+/* ==========================================================================
+   Chat input - Figma `Chat component`, node 1997:43042
+   Measured as the body of message box (2060:43412).
+   ========================================================================== */
+
+/* The only place in the library that uses Radius/L (16px) - every other card is 8px. */
+.v27-chat-input {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--v27-spacing-m);
+  width: 100%;
+  padding: var(--v27-spacing-m);
+  border: 1px solid var(--v27-border-default);
+  border-radius: var(--v27-radius-l);
+  background: var(--v27-background-primary);
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-base-size);
+  font-weight: var(--v27-text-base-weight);
+  line-height: var(--v27-text-base-line-height);
+}
+
+.v27-chat-input__field {
+  width: 100%;
+  border: 0;
+  outline: none;
+  background: none;
+  resize: none;
+  color: var(--v27-foreground-primary);
+  font: inherit;
+}
+
+.v27-chat-input__field::placeholder {
+  color: var(--v27-foreground-secondary);
+}
+
+.v27-chat-input__toolbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.v27-chat-input__tools {
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-sm);
+}
+
+.v27-chat-input__tool {
+  width: var(--v27-size-m);
+  height: var(--v27-size-m);
+  flex: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--v27-foreground-secondary);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   Message box - Figma `message box`, node 7694:90192
+   2 variants: mobile[2]. Only mobile=false is built; mobile=true (7694:90193) is a
+   different 375px layout and was not measured.
+   ========================================================================== */
+
+/* Verified on 2060:43412. Suggestion chips above, the chat input, then a legal footer. */
+.v27-message-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--v27-spacing-xs);
+  width: 100%;
+  font-family: var(--v27-font-family);
+}
+
+.v27-message-box__suggestions {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--v27-spacing-sm);
+  padding-bottom: var(--v27-spacing-s);
+}
+
+/* The legal footer - Terms, Privacy, Feedback - separated by 15px rules. */
+.v27-message-box__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-sm);
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+  color: var(--v27-foreground-secondary);
+}
+
+.v27-message-box__footer > a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Figma draws the separators as rotated line assets. A border is the same 1px rule without
+   the asset, and its colour could not be read off the flattened line - so it inherits
+   currentColor rather than asserting a value. */
+.v27-message-box__footer > a + a::before {
+  content: '';
+  display: inline-block;
+  width: 1px;
+  height: 15px; /* figma-literal: 4834:61591 - off every scale */
+  margin-right: var(--v27-spacing-sm);
+  background: currentColor;
+  vertical-align: middle;
+  opacity: 0.5;
+}
+
+/* ==========================================================================
+   Confirmation modal - Figma `Confirmation modal`, node 7664:11553
+   2 variants: property 1[2] - Risky action and Unsaved changes.
+
+   Only Risky action is built. The two share this box; Unsaved changes was not measured,
+   and the difference between them is the glyph and the copy rather than the frame.
+   ========================================================================== */
+
+/* Verified on 7664:11552. Figma binds Spacing/L for the horizontal padding and leaves the
+   vertical a bare 32px - the same value, so both are the token here. */
+/* duplicate-ok: .v27-attachment .v27-data-display .v27-config-tile .v27-task .v27-modal
+   .v27-entity-card - the six share one card surface that V27 defines no component for.
+   See FINDINGS.md #30. */
+.v27-modal {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--v27-spacing-ml);
+  width: 380px;
+  padding: var(--v27-spacing-l);
+  border: 1px solid var(--v27-border-default);
+  border-radius: var(--v27-radius-m);
+  background: #fff; /* figma-literal: 7664:11552 - raw white, not Background/Primary */
+  overflow: clip;
+  font-family: var(--v27-font-family);
+  color: var(--v27-foreground-primary);
+}
+
+.v27-modal__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--v27-spacing-sm);
+}
+
+/* A 120px illustration glyph - far larger than any Size token, so a literal. */
+.v27-modal__glyph {
+  width: 120px;
+  height: 120px;
+  flex: none;
+}
+
+.v27-modal__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--v27-spacing-xs);
+  width: 237px; /* figma-literal: 5034:49896 - measured text column */
+  text-align: center;
+}
+
+.v27-modal__title {
+  font-size: var(--v27-text-xl-size);
+  font-weight: var(--v27-text-xl-weight);
+  line-height: var(--v27-text-xl-line-height);
+}
+
+/* The body is left-aligned inside a centred column - Figma sets text-center on the title
+   only. Reproduced as measured. */
+.v27-modal__body {
+  width: 100%;
+  text-align: left;
+  font-size: var(--v27-text-base-size);
+  font-weight: var(--v27-text-base-weight);
+  line-height: var(--v27-text-base-line-height);
+}
+
+/* Actions stack full width, confirm above cancel. */
+.v27-modal__actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--v27-spacing-sm);
+  width: 100%;
+}
+
+/* The close control sits 11px from the top and right - off every scale. */
+.v27-modal__close {
+  position: absolute;
+  top: 11px; /* figma-literal: 5034:51635 */
+  right: 11px;
+  width: var(--v27-size-m);
+  height: var(--v27-size-m);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--v27-foreground-secondary);
+  cursor: pointer;
+  overflow: clip;
+}
+
+/* ==========================================================================
+   Icon compact with text - Figma standalone symbol `Icon/Compact with text`, node 289:4481
+   Not a variant set. Measured as an instance inside Tasks (2127:54656).
+   ========================================================================== */
+
+.v27-icon-text {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-sm-bold-size);
+  font-weight: var(--v27-text-sm-bold-weight);
+  line-height: var(--v27-text-sm-bold-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+.v27-icon-text > svg {
+  width: var(--v27-size-m);
+  height: var(--v27-size-m);
+  flex: none;
+  fill: currentColor;
+}
+
+/* ==========================================================================
+   Tasks - Figma `Tasks`, node 2129:54674
+   3 variants: property 1[3] - Default, Selected, No one assigned.
+
+   Only Default is built; the other two were not measured.
+   ========================================================================== */
+
+/* Verified on 2129:54672. A wide row: a priority tag, a two-line summary, the assignees,
+   a due date and a context menu.
+
+   The padding is asymmetric and entirely off the Spacing scale - 20px top, bottom and
+   left, but 15px right. That is almost certainly the 24px context menu being optically
+   centred rather than a deliberate 5px difference, but it is what the node says. */
+/* duplicate-ok: .v27-attachment .v27-data-display .v27-config-tile .v27-task .v27-modal
+   .v27-entity-card - the six share one card surface that V27 defines no component for.
+   See FINDINGS.md #30. */
+.v27-task {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: 20px 15px 20px 20px; /* figma-literal: 2129:54672 - all off the Spacing scale */
+  border: 1px solid var(--v27-border-default);
+  border-radius: var(--v27-radius-m);
+  background: #fff; /* figma-literal: 2129:54672 - raw white, not Background/Primary */
+  font-family: var(--v27-font-family);
+}
+
+.v27-task__row {
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  gap: var(--v27-spacing-ml);
+  min-width: 0;
+}
+
+/* The priority slot is a fixed 80px so the summaries line up down a list, whatever the
+   tag's own width. Compose a .v27-tag into it. */
+.v27-task__priority {
+  width: 80px; /* figma-literal: 2129:54671 - column width, off every scale */
+  flex: none;
+}
+
+.v27-task__text {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px; /* figma-literal: 2127:54652 - off the Spacing scale */
+  min-width: 0;
+}
+
+.v27-task__area {
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+  color: var(--v27-foreground-secondary);
+}
+
+.v27-task__summary {
+  width: 100%;
+  font-size: var(--v27-text-base-size);
+  font-weight: var(--v27-text-base-weight);
+  line-height: var(--v27-text-base-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+/* Fixed columns so a list of tasks aligns. */
+.v27-task__assignees { width: 140px; flex: none; }
+.v27-task__due       { width: 100px; flex: none; }
+
+.v27-task__menu {
+  width: var(--v27-size-m);
+  height: var(--v27-size-m);
+  flex: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--v27-foreground-primary);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   Config tile - Figma `config tile`, node 4338:67656
+   2 variants: property 1[2] - Default and Variant2.
+
+   Only Default is built. Variant2 (4338:67657) adds the file's Drop shadow effect and
+   binds Foreground/Theme, but which element takes the theme colour was not measured, so
+   it is not built - see the note below.
+   ========================================================================== */
+
+/* Verified on 4285:71238. The card fill is a raw white, not Background/Primary, so it does
+   not follow dark mode - the same as Step's badge and the Toggle knob. */
+/* duplicate-ok: .v27-attachment .v27-data-display .v27-config-tile .v27-task .v27-modal
+   .v27-entity-card - the six share one card surface that V27 defines no component for.
+   See FINDINGS.md #30. */
+.v27-config-tile {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--v27-spacing-m);
+  padding: var(--v27-spacing-m) var(--v27-spacing-ml);
+  border: 1px solid var(--v27-border-default);
+  border-radius: var(--v27-radius-m);
+  background: #fff; /* figma-literal: 4285:71238 - raw white, not Background/Primary */
+  overflow: clip;
+  text-align: center;
+  font-family: var(--v27-font-family);
+  color: var(--v27-foreground-primary);
+}
+
+/* The icon disc binds the Pink/100 PRIMITIVE, like Coloured circle icons - so it does not
+   change between themes either. FINDINGS.md #17 and #22. */
+.v27-config-tile__disc {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  padding: var(--v27-spacing-sm);
+  border-radius: 49px;
+  background: var(--v27-pink-100);
+  overflow: clip;
+}
+
+.v27-config-tile__disc > svg {
+  width: var(--v27-size-xl);
+  height: var(--v27-size-xl);
+  display: block;
+  fill: currentColor;
+}
+
+.v27-config-tile__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--v27-spacing-xs);
+  width: 100%;
+}
+
+.v27-config-tile__heading {
+  font-size: var(--v27-text-lg-bold-size);
+  font-weight: var(--v27-text-lg-bold-weight);
+  line-height: var(--v27-text-lg-bold-line-height);
+}
+
+/* Note the sub text is Foreground/Primary here, not Secondary - unusual for a sub line,
+   and reproduced as bound. */
+.v27-config-tile__sub {
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+}
+
+/* ==========================================================================
+   Avatar compact - Figma standalone symbol `Avatar compact`, node 289:4416
+   Not a variant set. Measured as an instance inside Label (58:916).
+   ========================================================================== */
+
+.v27-avatar-compact {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-base-size);
+  font-weight: var(--v27-text-base-weight);
+  line-height: var(--v27-text-base-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+/* A 24px face. Like Multi avatar's, this is the `People` symbol with a 46px radius, NOT
+   the Avatar component - so .v27-avatar is not reused. */
+.v27-avatar-compact__face {
+  width: var(--v27-size-m);
+  height: var(--v27-size-m);
+  flex: none;
+  border-radius: 46px;
+  overflow: clip;
+}
+
+.v27-avatar-compact__face > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ==========================================================================
+   Label - Figma `Label`, node 58:919
+   6 variants: property 1[6] - text, icon + text, Variant5, Multi person, status, person.
+
+   All six are ONE shape: a caption above a slot. Only the slot's contents change - plain
+   text, a Tag, an Avatar compact, a multi-avatar stack. So this is a caption and a slot,
+   not six variants, and `Variant5` is another auto-generated name (FINDINGS.md #15).
+   ========================================================================== */
+
+/* Verified on 58:918 (text), 58:917 (status - the slot holds a Tag) and 58:916 (person -
+   the slot holds an Avatar compact). The column gap is 4px on all three. */
+.v27-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--v27-spacing-xs);
+  font-family: var(--v27-font-family);
+}
+
+.v27-label__caption {
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+  color: var(--v27-foreground-secondary);
+}
+
+/* The default slot content: plain text. For the other variants, put a .v27-tag or a
+   .v27-avatar-compact here instead. */
+.v27-label__value {
+  font-size: var(--v27-text-base-size);
+  font-weight: var(--v27-text-base-weight);
+  line-height: var(--v27-text-base-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+/* ==========================================================================
+   Document attachment - Figma standalone symbol `Document attachment`, node 58:1073
+   Not a variant set. Measured as an instance inside User chat bubble (2879:59434).
+   ========================================================================== */
+
+/* duplicate-ok: .v27-attachment .v27-data-display .v27-config-tile .v27-task .v27-modal
+   .v27-entity-card - the six share one card surface that V27 defines no component for.
+   See FINDINGS.md #30. */
+.v27-attachment {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+  padding: var(--v27-spacing-sm);
+  border: 1px solid var(--v27-border-default);
+  border-radius: var(--v27-radius-m);
+  background: var(--v27-background-primary);
+  overflow: clip;
+  font-family: var(--v27-font-family);
+}
+
+.v27-attachment__icon {
+  width: var(--v27-size-l);
+  height: var(--v27-size-l);
+  flex: none;
+}
+
+.v27-attachment__body {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.v27-attachment__name {
+  font-size: var(--v27-text-base-size);
+  font-weight: var(--v27-text-base-weight);
+  line-height: var(--v27-text-base-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+.v27-attachment__meta {
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+  color: var(--v27-foreground-secondary);
+}
+
+/* The trailing context menu is a real button - it opens one. */
+.v27-attachment__menu {
+  width: var(--v27-size-m);
+  height: var(--v27-size-m);
+  flex: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--v27-foreground-secondary);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   User chat bubble - Figma `User chat bubble`, node 2879:59398
+   2 variants: property 1[2] - Default and with file.
+
+   The `with file` variant is the same bubble with a Document attachment inside it, so it
+   is composition rather than a modifier - there is no --with-file class.
+   ========================================================================== */
+
+/* Verified on 1997:40462 (Default) and 2879:59399 (with file). The user's own messages sit
+   right; the AI's counterpart component sits left and is not yet built. */
+.v27-user-message {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--v27-spacing-s);
+  font-family: var(--v27-font-family);
+}
+
+/* Timestamp and avatar above the bubble. The timestamp is a raw 12px belonging to no named
+   text style - the same gap as Avatar's small size, FINDINGS.md #24. */
+.v27-user-message__header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--v27-spacing-s);
+}
+
+/* XS - the named style for this was found later, on Attachments (7064:47863). */
+.v27-user-message__time {
+  font-size: var(--v27-text-xs-size);
+  font-weight: var(--v27-text-xs-weight);
+  line-height: var(--v27-text-xs-line-height);
+  text-align: right;
+  color: var(--v27-foreground-secondary);
+}
+
+.v27-user-message__avatar {
+  width: var(--v27-size-l);
+  height: var(--v27-size-l);
+  flex: none;
+  border-radius: 46px;
+  overflow: clip;
+}
+
+.v27-user-message__avatar > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* The bubble. Figma binds its border to `2nd (light)/Grey steel`, a legacy palette style
+   holding #e5e5e5 - the identical value to Border/Default, which is bound on the
+   attachment card two levels down in the same component. Border/Default is used here; see
+   FINDINGS.md #29. */
+.v27-user-message__bubble {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: var(--v27-spacing-sm);
+  max-width: 985px;
+  padding: var(--v27-spacing-sm) var(--v27-spacing-m);
+  border: 1px solid var(--v27-border-default);
+  border-radius: var(--v27-radius-m);
+  background: var(--v27-background-highlight);
+  font-size: var(--v27-text-base-size);
+  font-weight: var(--v27-text-base-weight);
+  line-height: var(--v27-text-base-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+/* ==========================================================================
+   Image - Figma `Image`, node 378:18391
+   3 variants: property 1[3] - small, medium, large.
+
+   A picture in a rounded box. Figma's axis is "Property 1"; its values name sizes.
+   ========================================================================== */
+
+/* Verified on 378:18389 (medium). The white underlay behind the picture is Figma's
+   transparency backstop, not a design decision, so it is not reproduced - an <img> with
+   object-fit: cover leaves nothing showing through. */
+.v27-image {
+  display: block;
+  flex: none;
+  border-radius: var(--v27-radius-s);
+  overflow: clip;
+}
+
+.v27-image > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Measured boxes: 24 on 378:18390, 32 on 378:18389, 40 on 378:18388 - all on the Size
+   scale. Figma binds Size/L for the medium height and leaves its width a literal 32px,
+   the same inconsistency as the circle icon's (FINDINGS.md #13). */
+.v27-image--small  { width: var(--v27-size-m);  height: var(--v27-size-m); }
+.v27-image--medium { width: var(--v27-size-l);  height: var(--v27-size-l); }
+.v27-image--large  { width: var(--v27-size-xl); height: var(--v27-size-xl); }
+
+/* ==========================================================================
+   Select button elements - Figma `Select button elements`, node 2290:83279
+   2 variants: selected[2]
+
+   One segment of a segmented control. The group itself is the standalone `Select button`
+   symbol, which is not yet built.
+   ========================================================================== */
+
+/* Verified on 2290:83278 (selected) and 2290:83277 (unselected). No corner radius at all -
+   the segments are square, and the containing control presumably rounds the ends.
+
+   The 25px and 9px padding are both off the Spacing scale and are literals. */
+.v27-select-button {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--v27-spacing-s);
+  padding: 9px 25px; /* figma-literal: 2290:83278 - both off the Spacing scale */
+  border: 0;
+  background: none;
+  cursor: pointer;
+  overflow: clip;
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-base-size);
+  font-weight: var(--v27-text-base-weight);
+  line-height: var(--v27-text-base-line-height);
+  color: var(--v27-foreground-theme);
+}
+
+.v27-select-button__icon {
+  width: var(--v27-size-s);
+  height: var(--v27-size-s);
+  flex: none;
+}
+
+/* selected=true - 2290:83278. The fill is Foreground/Theme, a text role used as a surface,
+   which is now the fourth component doing that.
+
+   The label colour is the ONE place this build does not reproduce Figma's binding. Figma
+   binds a style literally named `DEPRECATED COLOURS/White`; Foreground/Inverted is used
+   instead. See FINDINGS.md #28 for the reasoning. */
+.v27-select-button[aria-pressed='true'] {
+  background: var(--v27-foreground-theme);
+  color: var(--v27-foreground-inverted);
+  font-weight: var(--v27-text-base-bold-weight);
+}
+
+/* ==========================================================================
+   Step - Figma `Step`, node 347:15717
+   4 variants: property 1[4] - Selected, Default, Variant3, Variant4.
+
+   Only two states exist. `Variant3` and `Variant4` are Figma's auto-generated names, the
+   same pattern as Link's - see FINDINGS.md #15.
+   ========================================================================== */
+
+/* Verified on 347:15716 (Selected) and 347:15715 (Default).
+
+   The badge's shadow is the file's `Drop shadow` effect style, whose colour is
+   `Border/Border - Drop shadow` - NOT a V27 variable (FINDINGS.md #18/#19). The badge
+   fill is a raw white rather than Background/Primary, so it does not follow dark mode. */
+.v27-step {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+  color: var(--v27-foreground-secondary);
+}
+
+.v27-step__badge {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: var(--v27-size-m);
+  /* 4px is Spacing/XS; 9px is on no scale, so only that one is a literal. */
+  padding: var(--v27-spacing-xs) 9px;
+  border-radius: var(--v27-radius-l);
+  background: #fff; /* figma-literal: 347:15711 - raw white, not Background/Primary */
+  box-shadow: 0 0 4px 0 #c1c1c1; /* figma-literal: 347:15711 - Border/Border - Drop shadow, not a V27 variable */
+  overflow: clip;
+}
+
+/* property 1=Selected - 347:15716. The type steps up to Sm bold and the colour to primary.
+   Figma also trims the badge's vertical padding from 4px to 3px, because the bold glyph is
+   taller - the badge stays the same height either way. */
+.v27-step--selected {
+  font-weight: var(--v27-text-sm-bold-weight);
+  color: var(--v27-foreground-primary);
+}
+
+.v27-step--selected .v27-step__badge {
+  padding-block: 3px; /* figma-literal: 347:15703 */
+}
+
+/* ==========================================================================
+   Step connector - Figma `Step connector`, node 347:15723
+   2 variants: property 1[2] - Default and Variant2.
+
+   The two are complete and incomplete. `Variant2` is another auto-generated name.
+   ========================================================================== */
+
+/* Verified on 347:15722 (Default, complete) and 347:15724 (Variant2, incomplete). A 2px
+   rule that stretches to fill whatever space the stepper gives it - Figma's 89px width is
+   that instance's layout, not a property of the component. */
+.v27-step-connector {
+  flex: 1 0 0;
+  min-width: 0;
+  height: 2px;
+  background: var(--v27-foreground-primary);
+}
+
+/* Variant2 - 347:15724. The not-yet-reached segment. */
+.v27-step-connector--incomplete {
+  background: var(--v27-border-default);
+}
+
+/* ==========================================================================
+   Data display - Figma `Data display`, node 232:5313
+   8 variants: property 1[4] x size[2]
+
+   The SIZE axis is built - Default and Compact, both measured. The property 1 axis
+   (default / icon / coloured / view all) is built only as `default`; see the note at the
+   end of this block.
+   ========================================================================== */
+
+/* Verified on 232:5312 (default, Default) and 308:12887 (default, Compact). The two differ
+   only in the card's padding and the figure's type style - everything else is identical. */
+/* duplicate-ok: .v27-attachment .v27-data-display .v27-config-tile .v27-task .v27-modal
+   .v27-entity-card - the six share one card surface that V27 defines no component for.
+   See FINDINGS.md #30. */
+.v27-data-display {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--v27-spacing-m);
+  padding: var(--v27-spacing-ml);
+  border: 1px solid var(--v27-border-default);
+  border-radius: var(--v27-radius-m);
+  background: var(--v27-background-primary);
+  overflow: clip;
+  font-family: var(--v27-font-family);
+}
+
+/* size=Compact - 308:12887. 12px padding instead of 24px. */
+.v27-data-display--compact {
+  padding: var(--v27-spacing-sm);
+}
+
+.v27-data-display__body {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--v27-spacing-xs);
+  min-width: 0;
+}
+
+.v27-data-display__label {
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+  color: var(--v27-foreground-secondary);
+}
+
+/* The figure, its unit and the trend chip share a baseline - Figma aligns this row to its
+   end, not its centre, so a 28px number and a 14px unit sit on the same line. */
+.v27-data-display__row {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--v27-spacing-s);
+  width: 100%;
+}
+
+/* 2XL at the default size, XL at compact. Both are named Figma styles. */
+.v27-data-display__value {
+  font-size: var(--v27-text-2xl-size);
+  font-weight: var(--v27-text-2xl-weight);
+  line-height: var(--v27-text-2xl-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+.v27-data-display--compact .v27-data-display__value {
+  font-size: var(--v27-text-xl-size);
+  font-weight: var(--v27-text-xl-weight);
+  line-height: var(--v27-text-xl-line-height);
+}
+
+.v27-data-display__unit {
+  flex: 1 0 0;
+  min-width: 0;
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+  color: var(--v27-foreground-secondary);
+}
+
+/* The trend chip. Figma names this layer "Tags" but it is NOT the Tags component - it has
+   no background and no padding, only the 4px gap and the 4px radius. .v27-tag is
+   deliberately not reused. */
+.v27-data-display__trend {
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--v27-spacing-xs);
+  flex: none;
+  border-radius: var(--v27-radius-s);
+  overflow: clip;
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+  color: var(--v27-foreground-positive);
+}
+
+.v27-data-display__trend--negative {
+  color: var(--v27-foreground-negative);
+}
+
+.v27-data-display__trend > svg {
+  width: var(--v27-size-xs);
+  height: var(--v27-size-xs);
+  flex: none;
+  fill: currentColor;
+}
+
+/* NOT BUILT: property 1 = icon, coloured and view all. The `coloured` variant's variables
+   (308:12246) show Background/Theme, Border/Theme and Size/L, so it is a themed card with
+   a 32px glyph - but which element takes which role was not measured, and the icon and
+   view-all variants were not read at all. Building them from a variable list alone would
+   be a guess about layout, not a reading of it. */
+
+/* ==========================================================================
+   Form field - Figma `Form field`, node 63:1078
+   3 variants: property 1[3] - Default, Disabled, Error.
+   ========================================================================== */
+
+/* Verified on 60:1366 (Default), 69:14155 (Disabled) and 63:1079 (Error). */
+.v27-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--v27-spacing-xs);
+  width: 100%;
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+}
+
+/* The label sits 5px from its required marker - off the Spacing scale, so a literal. */
+.v27-field__label {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px; /* figma-literal: 60:1358 - off the Spacing scale */
+  color: var(--v27-foreground-primary);
+}
+
+/* The required marker binds Icons/Icon - Required field (#be2028), which is not a V27
+   variable - it comes from the People First library. Same value and same reason as the
+   Form header's dot; see FINDINGS.md #18. */
+.v27-field__required::after {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 6px;
+  background: #be2028; /* figma-literal: 60:1358 - Icons/Icon - Required field, not a V27 variable */
+}
+
+/* The control. Figma writes the default's padding as a left-only 12px with the trailing
+   icon block carrying its own 12px right padding, and the error's as a uniform 12px. The
+   rendered box is identical - 12px each side - so it is expressed once here. */
+.v27-field__control {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+  width: 100%;
+  height: var(--v27-size-xl);
+  padding-inline: var(--v27-spacing-sm);
+  border: 1px solid var(--v27-border-input);
+  border-radius: var(--v27-radius-s);
+  background: var(--v27-background-primary);
+  overflow: clip;
+}
+
+/* A real input, unstyled, so the control's border is the only frame. */
+.v27-field__input {
+  flex: 1 0 0;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: none;
+  color: var(--v27-foreground-primary);
+  font: inherit;
+}
+
+.v27-field__input::placeholder {
+  color: var(--v27-foreground-secondary);
+}
+
+/* Trailing affordance - a calendar glyph on the default, a warning on the error. */
+.v27-field__icon {
+  width: var(--v27-size-xs);
+  height: var(--v27-size-xs);
+  flex: none;
+}
+
+/* property 1=Disabled - 69:14155. */
+.v27-field--disabled .v27-field__control {
+  border-color: var(--v27-border-input-disabled);
+  background: var(--v27-background-tertiary);
+}
+
+/* property 1=Error - 63:1079. The border turns, and a message is added below. */
+.v27-field--error .v27-field__control {
+  border-color: var(--v27-border-negative);
+}
+
+.v27-field__message {
+  color: var(--v27-foreground-negative);
+}
+
+/* Focus. Figma defines NO focus state for this component, and Border/Input active exists
+   but is bound nowhere here. It is used rather than leaving a field with no focus ring at
+   all, and flagged so it is not mistaken for a measured value. */
+.v27-field__control:focus-within {
+  border-color: var(--v27-border-input-active);
+}
+
+/* NOT BUILT: the default variant has a thin vertical rule between the input and its
+   trailing icon (60:1366, asset "Line 5241"). It is a flattened line asset, so its colour
+   could not be read off the node, and no value is guessed. */
+
+/* ==========================================================================
+   Content display - Figma `Content display`, node 368:13923
+   4 variants: property 1[2] x property 2[2]
+
+   Two shapes, not four: Avatar and Icon. Figma's `property 2` values are `Default` and
+   `Default with text` but both rows render a title AND a subtitle, and the axis values
+   are duplicated in the set listing - see FINDINGS.md #27.
+   ========================================================================== */
+
+/* Verified on 368:13922 (Avatar) and 368:13920 (Icon). The two are identical but for what
+   sits in the 32px media slot, so there is one block and a slot rather than two variants.
+
+   Note the text column has NO gap here, unlike Header display's 2px - the two components
+   look near-identical and are spaced differently. Reproduced as measured. */
+.v27-content-display {
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+  font-family: var(--v27-font-family);
+}
+
+/* 32px on both shapes - an avatar or a glyph. */
+.v27-content-display__media {
+  width: var(--v27-size-l);
+  height: var(--v27-size-l);
+  flex: none;
+  overflow: clip;
+}
+
+.v27-content-display__media > img,
+.v27-content-display__media > svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.v27-content-display__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.v27-content-display__title {
+  font-size: var(--v27-text-base-size);
+  font-weight: var(--v27-text-base-weight);
+  line-height: var(--v27-text-base-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+.v27-content-display__subtitle {
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+  color: var(--v27-foreground-secondary);
+}
+
+/* ==========================================================================
+   Multi avatar - Figma `Multi avatar`, node 2299:83865
+   2 variants: property 1[2]
+
+   A stack of overlapping 32px faces with an overflow count on the end.
+
+   NOTE the faces here are NOT the Avatar component. They are a separate `People` symbol
+   with a 46px radius and a white ring, where Avatar uses 29px and no ring - so
+   .v27-avatar is deliberately not reused. Composing it would have been wrong.
+   ========================================================================== */
+
+/* Verified on 2299:83864. Each face overlaps the previous by 5px, applied as a negative
+   right margin on every item including the count chip. -5px is off every scale, and a
+   negative overlap could not be a token anyway, so it is a literal. */
+.v27-multi-avatar {
+  display: flex;
+  align-items: center;
+  font-family: var(--v27-font-family);
+}
+
+.v27-multi-avatar > * {
+  margin-right: -5px; /* figma-literal: 2299:83877 - overlap, off every scale */
+}
+
+.v27-multi-avatar > :last-child {
+  margin-right: 0;
+}
+
+/* The white ring is what separates one face from the one beneath it. Border/Border
+   inverted is white in light mode and stays legible against the faces in both. */
+.v27-multi-avatar__item {
+  box-sizing: border-box;
+  width: var(--v27-size-l);
+  height: var(--v27-size-l);
+  flex: none;
+  border: 1px solid var(--v27-border-inverted);
+  border-radius: 46px;
+  overflow: clip;
+}
+
+.v27-multi-avatar__item > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* The overflow count. A different radius again - 17px, not 46px - and it carries no ring.
+   Type is Base, not the Sm bold the faces' initials use. */
+.v27-multi-avatar__more {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--v27-size-l);
+  height: var(--v27-size-l);
+  flex: none;
+  border-radius: 17px;
+  background: var(--v27-background-tertiary);
+  color: var(--v27-foreground-secondary);
+  overflow: clip;
+  font-size: var(--v27-text-base-size);
+  font-weight: var(--v27-text-base-weight);
+  line-height: var(--v27-text-base-line-height);
+}
+
+/* ==========================================================================
+   Header display - Figma `Header display`, node 60:1151
+   5 variants: type[5] - Person, Image, Icon, Text only, Form header.
+
+   All five are the same thing: an optional leading slot beside a title/subtitle column.
+   Only what goes in the slot changes, so the slot is a container the consumer fills with
+   an existing component rather than five separate blocks.
+   ========================================================================== */
+
+/* Verified on 138:3276 (Text only), 138:2859 (Person) and 1227:24260 (Form header).
+   The row gap is 8px and the title/subtitle gap is 2px on all three. */
+.v27-header-display {
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+  font-family: var(--v27-font-family);
+}
+
+/* The leading slot. Person puts a 40px avatar here, Icon a 32px glyph, Image a picture;
+   Text only and Form header omit it entirely. It carries no size of its own - compose
+   .v27-avatar or .v27-icon inside it rather than restyling from here. */
+.v27-header-display__media {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.v27-header-display__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--v27-spacing-xxs);
+  min-width: 0;
+}
+
+/* Lg bold on every variant. */
+.v27-header-display__title {
+  font-size: var(--v27-text-lg-bold-size);
+  font-weight: var(--v27-text-lg-bold-weight);
+  line-height: var(--v27-text-lg-bold-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+.v27-header-display__subtitle {
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+  color: var(--v27-foreground-secondary);
+}
+
+/* type=Form header - 1227:24260. Instead of a subtitle it carries a "required field" key:
+   a 6px dot and a Sm label 8px apart.
+
+   The label binds `Text/Text - Primary`, and the dot's colour is `Icons/Icon - Required
+   field` (#be2028) - the only candidate in the set's variable list. NEITHER is in the V27
+   export; both come from the People First library. See FINDINGS.md #18. The label resolves
+   to the same value as Foreground/Primary today, so that token is used; the dot has no V27
+   equivalent at all and is a literal. */
+.v27-header-display__required {
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+.v27-header-display__required::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  flex: none;
+  border-radius: 6px;
+  background: #be2028; /* figma-literal: 1227:24268 - Icons/Icon - Required field, not a V27 variable */
+}
+
+/* ==========================================================================
+   Tab single - Figma `Tab single`, node 347:15180
+   6 variants: state[2] x style[3]
+
+   One tab, not the group. `style` adds a leading glyph or image; it does not change the
+   box, so it is a slot rather than a modifier.
+   ========================================================================== */
+
+/* Verified on 347:15178 (Default) and 347:15179 (Selected). The box is identical - 8px
+   top and bottom, no horizontal padding - and only the underline, the colour and the
+   WEIGHT change.
+
+   The transparent bottom border is carried on the base rather than added on selection, so
+   the tab does not shift by a pixel when it becomes selected. Figma draws no border on the
+   unselected variant, which is the same rendered result. */
+.v27-tab {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--v27-spacing-xs);
+  padding-block: var(--v27-spacing-s);
+  padding-inline: 0;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  background: none;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-base-size);
+  font-weight: var(--v27-text-base-weight);
+  line-height: var(--v27-text-base-line-height);
+  color: var(--v27-foreground-secondary);
+}
+
+/* state=Selected - 347:15179. The weight steps up to Outfit Medium, which is 500 - a
+   weight that belongs to NO named text style in the file and has no token, so it is a
+   literal with its node id. See FINDINGS.md #26. */
+.v27-tab[aria-selected='true'] {
+  border-bottom-color: var(--v27-border-theme);
+  color: var(--v27-foreground-theme);
+  font-weight: 500; /* figma-literal: 347:15174 - Outfit Medium, no named style */
+}
+
+/* style=Icon - 347:15206. A 20px leading glyph that takes the tab's colour. */
+.v27-tab__icon {
+  width: var(--v27-size-s);
+  height: var(--v27-size-s);
+  flex: none;
+}
+
+/* style=Image. Same slot, a 24px picture rather than a glyph. */
+.v27-tab__image {
+  width: var(--v27-size-m);
+  height: var(--v27-size-m);
+  flex: none;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   Breadcrumb - Figma `Breadcrumb`, node 3401:59667
+   2 variants: property 1[2] - breadcrumb and back.
+
+   The two are different components sharing a name: `breadcrumb` is the full trail,
+   `back` is a single return link. They share no geometry, so they get separate blocks.
+   ========================================================================== */
+
+/* property 1=breadcrumb - 2317:68830. A 24px leading glyph, then alternating 20px
+   chevrons and labels, 4px apart throughout. */
+.v27-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-xs);
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+}
+
+/* The leading glyph is 24px; every separator chevron is 20px. */
+.v27-breadcrumb__icon {
+  width: var(--v27-size-m);
+  height: var(--v27-size-m);
+  flex: none;
+  color: var(--v27-foreground-secondary);
+}
+
+.v27-breadcrumb__separator {
+  width: var(--v27-size-s);
+  height: var(--v27-size-s);
+  flex: none;
+  color: var(--v27-foreground-secondary);
+}
+
+/* Ancestor links are secondary; the current page takes the theme colour. Figma gives the
+   ancestors no underline and no hover, so none is invented here. */
+.v27-breadcrumb__link {
+  color: var(--v27-foreground-secondary);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.v27-breadcrumb__current {
+  color: var(--v27-foreground-theme);
+  white-space: nowrap;
+}
+
+/* property 1=back - 3401:59668. A single return link: a 20px chevron, an 8px gap and a
+   secondary label. Note the gap differs from the trail's 4px. */
+.v27-breadcrumb-back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+  color: var(--v27-foreground-secondary);
+  text-decoration: none;
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+}
+
+.v27-breadcrumb-back__icon {
+  width: var(--v27-size-s);
+  height: var(--v27-size-s);
+  flex: none;
+}
+
+/* ==========================================================================
+   Toast - Figma `Toast`, node 347:15144
+   4 variants: property 1[4] - positive, negative, warning, info.
+
+   Unlike in page message, the surface does NOT change per type: every toast is
+   Background/Primary and only the border and the title colour carry the severity.
+   ========================================================================== */
+
+/* Geometry verified on 347:15143 (positive); the set's variable list confirms the other
+   three differ only in their border and title colour.
+
+   Two values are off every scale and are literals with their node id:
+     gap 11px        the Spacing scale is 2/4/8/12/16/24/32/40
+     shadow 9.3px    a blur radius that belongs to no token
+   The shadow colour is Neutral/200, a PRIMITIVE - V27 has no shadow tier to point at,
+   so this is the same class of gap as FINDINGS.md #19. */
+.v27-toast {
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  gap: 11px; /* figma-literal: 347:15143 - off the Spacing scale */
+  padding: var(--v27-spacing-m);
+  border: 1px solid;
+  border-radius: var(--v27-radius-m);
+  background: var(--v27-background-primary);
+  box-shadow: 1px 3px 9.3px 1px var(--v27-neutral-200);
+  overflow: clip;
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+}
+
+/* 24px leading status glyph - takes the title colour. */
+.v27-toast__icon {
+  width: var(--v27-size-m);
+  height: var(--v27-size-m);
+  flex: none;
+}
+
+.v27-toast__body {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: var(--v27-spacing-xs);
+  min-width: 0;
+}
+
+/* The title carries the severity colour; the detail line never does. */
+.v27-toast__detail {
+  color: var(--v27-foreground-secondary);
+}
+
+/* 20px close control. A real button so it is focusable and keyboard-operable, and it
+   inherits the detail colour rather than the severity one. */
+.v27-toast__close {
+  width: var(--v27-size-s);
+  height: var(--v27-size-s);
+  flex: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--v27-foreground-secondary);
+  cursor: pointer;
+}
+
+.v27-toast--positive { border-color: var(--v27-border-positive); color: var(--v27-foreground-positive); }
+.v27-toast--negative { border-color: var(--v27-border-negative); color: var(--v27-foreground-negative); }
+.v27-toast--warning  { border-color: var(--v27-border-warning);  color: var(--v27-foreground-warning); }
+.v27-toast--info     { border-color: var(--v27-border-info);     color: var(--v27-foreground-info); }
+
+/* ==========================================================================
+   Progress bar - Figma `Progress bar`, node 405:17846
+   2 variants: property 1[2] - Single category and Multi category.
+
+   ONLY Single category is built. Multi category (405:17844) binds Charts/Chart 1, 2 and 3
+   - a real three-colour palette that is NOT in the V27 variables export and has no V27
+   token to point at. Building it would mean hard-coding three hexes from another library
+   or inventing three tokens. See FINDINGS.md #25, which supersedes #3.
+   ========================================================================== */
+
+/* Verified on 405:17845. The track and the fill carry different radii - 36px and 27px -
+   and both are off the Radius scale; they are Figma's values for a pill at two different
+   heights, so both are literals. */
+.v27-progress {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--v27-spacing-s);
+  width: 100%;
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+  color: var(--v27-foreground-primary);
+}
+
+/* The unfilled track uses Border/Default as a SURFACE - a border role used as a fill, the
+   same shape of oddity as Toggle's. Reproduced as bound. */
+.v27-progress__track {
+  width: 100%;
+  height: var(--v27-spacing-s);
+  border-radius: 36px;
+  background: var(--v27-border-default);
+  overflow: clip;
+}
+
+/* Width is the data, so it is set inline by the consumer, not by a class. */
+.v27-progress__fill {
+  height: var(--v27-spacing-s);
+  border-radius: 27px;
+  background: var(--v27-foreground-theme);
+}
+
+.v27-progress__legend {
+  display: flex;
+  align-items: center;
+  gap: var(--v27-spacing-s);
+}
+
+/* The 8px key dot, matching the fill. */
+.v27-progress__key {
+  width: var(--v27-spacing-s);
+  height: var(--v27-spacing-s);
+  flex: none;
+  border-radius: 27px;
+  background: var(--v27-foreground-theme);
+}
+
+/* ==========================================================================
+   Avatar - Figma `Avatar`, node 289:4419
+   6 variants: size[3] x profile picture[2]
+
+   Initials on a themed disc, or a photograph filling it. Both share the same box, so the
+   photo variant is a modifier rather than a second component.
+   ========================================================================== */
+
+/* Verified on 4326:67570 (small), 4326:67566 (medium) and 4326:67440 (large) - identical
+   but for the box and the type. The 29px radius is off the Radius scale; it is Figma's
+   value for a circle and browsers clamp it to one at all three sizes. */
+.v27-avatar {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  border: 1px solid var(--v27-border-default);
+  border-radius: 29px;
+  background: var(--v27-background-theme);
+  color: var(--v27-foreground-theme);
+  overflow: clip;
+  font-family: var(--v27-font-family);
+  font-weight: var(--v27-font-weight-semibold);
+}
+
+/* The three sizes carry three DIFFERENT type sizes, and only two of them are named styles
+   in Figma. Small is a raw 12px semibold that belongs to no style in the scale, so it is a
+   literal with its node id - see FINDINGS.md #24. */
+.v27-avatar--small {
+  width: var(--v27-size-m);
+  height: var(--v27-size-m);
+  font-size: 12px; /* figma-literal: 4326:67571 - unnamed 12px, not in the type scale */
+  line-height: normal;
+}
+
+/* medium - Sm bold */
+.v27-avatar--medium {
+  width: var(--v27-size-l);
+  height: var(--v27-size-l);
+  font-size: var(--v27-text-sm-bold-size);
+  line-height: var(--v27-text-sm-bold-line-height);
+}
+
+/* large - Base bold */
+.v27-avatar--large {
+  width: var(--v27-size-xl);
+  height: var(--v27-size-xl);
+  font-size: var(--v27-text-base-bold-size);
+  line-height: var(--v27-text-base-bold-line-height);
+}
+
+/* profile picture=True. The image fills the disc; the initials are simply not rendered. */
+.v27-avatar__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ==========================================================================
+   Single radio button - Figma `Single radio button`, node 66:1541
+   4 variants: selected[2] x state[2]
+
+   The dial on its own, composed by Radio button. Same arrangement as Single Checkbox.
+   ========================================================================== */
+
+/* Unselected, enabled - 66:1539. 20x20 on the Size scale; the 15px radius is off the
+   Radius scale (4/8/16) and is Figma's value for a circle, so it is a literal.
+
+   The fill is the one value the file disagrees with itself about: the component's own
+   variant leaves it a raw white, while the instance inside Radio button (66:1592) binds
+   Background/Primary. Background/Primary is used here - see FINDINGS.md #23. */
+.v27-radio-box {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: var(--v27-size-s);
+  height: var(--v27-size-s);
+  border: 1px solid var(--v27-border-input-bold);
+  border-radius: 15px;
+  background: var(--v27-background-primary);
+  overflow: clip;
+}
+
+/* The 14px dot, hidden until selected. Unlike the checkbox tick this is a filled shape
+   rather than a glyph, so it is drawn in CSS and needs no asset. */
+.v27-radio-box::after {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border-radius: 15px;
+  background: currentColor;
+  visibility: hidden;
+}
+
+/* Selected, enabled - 66:1540. The border stays; only the dot appears. */
+.v27-choice-input:checked + .v27-radio-box {
+  color: var(--v27-foreground-primary);
+}
+
+.v27-choice-input:checked + .v27-radio-box::after {
+  visibility: visible;
+}
+
+/* Disabled, either state - 66:1670 (unselected) and 66:1668 (selected). The selected dot
+   binds the Neutral/400 PRIMITIVE, not a semantic role - FINDINGS.md #22. */
+.v27-choice-input:disabled + .v27-radio-box {
+  border-color: var(--v27-border-bold);
+  background: var(--v27-background-tertiary);
+  color: var(--v27-neutral-400);
+}
+
+.v27-choice-input:focus-visible + .v27-radio-box {
+  outline: 2px solid var(--v27-border-input-active);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Radio button - Figma `Radio button`, node 66:1697
+   2 variants: property 1[2] - Default and Disabled.
+   ========================================================================== */
+
+/* The dial plus its label, 12px apart - verified on 66:1602. Identical arrangement to
+   Checkbox, and it shares the hidden-input class with it. */
+.v27-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--v27-spacing-sm);
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+  color: var(--v27-foreground-primary);
+  cursor: pointer;
+}
+
+/* Disabled - 66:1698 reports the same Neutral/600 label colour as the Checkbox's. */
+.v27-radio:has(.v27-choice-input:disabled) {
+  color: var(--v27-neutral-600);
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   In page message - Figma `in page message`, node 548:22140
+   10 variants: property 1[5] x importance[2]
+
+   The two importance levels are structurally different, not a shade apart:
+   Bold   - the type's own background, border and text colour
+   Subtle - a plain surface with a neutral border, and PRIMARY text regardless of type
+   So on Subtle the only thing carrying the message's severity is the icon.
+   ========================================================================== */
+
+/* Geometry verified on 548:22135 (info, Bold) and 7533:8907 (info, Subtle) - identical.
+   Figma fixes the height at 56px; that is a single-line box, so it is a min-height here
+   rather than a height, or a two-line message would clip. Recorded in FINDINGS.md #20. */
+.v27-message {
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--v27-spacing-s);
+  min-height: 56px;
+  padding: var(--v27-spacing-sm) var(--v27-spacing-m);
+  border: 1px solid;
+  border-radius: var(--v27-radius-m);
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+}
+
+.v27-message__icon {
+  width: var(--v27-size-s);
+  height: var(--v27-size-s);
+  flex: none;
+}
+
+/* The text column. Figma gives it a 4px gap so a heading and body can stack. */
+.v27-message__body {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: var(--v27-spacing-xs);
+  min-width: 0;
+}
+
+/* --- importance=Bold - 548:22135 (info) and the matching node per type --- */
+.v27-message--info {
+  background: var(--v27-background-info);
+  border-color: var(--v27-border-info);
+  color: var(--v27-foreground-info);
+}
+
+.v27-message--positive {
+  background: var(--v27-background-positive);
+  border-color: var(--v27-border-positive);
+  color: var(--v27-foreground-positive);
+}
+
+.v27-message--warning {
+  background: var(--v27-background-warning);
+  border-color: var(--v27-border-warning);
+  color: var(--v27-foreground-warning);
+}
+
+.v27-message--negative {
+  background: var(--v27-background-negative);
+  border-color: var(--v27-border-negative);
+  color: var(--v27-foreground-negative);
+}
+
+/* expired reuses the neutral roles, exactly as Tags does. */
+.v27-message--expired {
+  background: var(--v27-background-tertiary);
+  border-color: var(--v27-border-bold);
+  color: var(--v27-foreground-secondary);
+}
+
+/* --- importance=Subtle - 7533:8907 ---
+   Applied alongside the type modifier. It overrides the surface and the text and leaves
+   the icon to carry the severity, so the icon opts back out to the type colour. */
+.v27-message--subtle {
+  background: var(--v27-background-primary);
+  border-color: var(--v27-border-default);
+  color: var(--v27-foreground-primary);
+}
+
+.v27-message--subtle.v27-message--info     .v27-message__icon { color: var(--v27-foreground-info); }
+.v27-message--subtle.v27-message--positive .v27-message__icon { color: var(--v27-foreground-positive); }
+.v27-message--subtle.v27-message--warning  .v27-message__icon { color: var(--v27-foreground-warning); }
+.v27-message--subtle.v27-message--negative .v27-message__icon { color: var(--v27-foreground-negative); }
+.v27-message--subtle.v27-message--expired  .v27-message__icon { color: var(--v27-foreground-secondary); }
+
+/* ==========================================================================
+   Toggle - Figma `Toggle`, node 4634:77833
+   2 variants: state[2], plus a boolean `icon` property outside the axes.
+   ========================================================================== */
+
+/* Verified on 4634:77832 (on) and 4634:77831 (off). The track is 39x20 with 2px padding
+   and a 13px radius; the knob is 16px with a 17px radius. Both radii are off the Radius
+   scale (4/8/16) and are Figma's values for a pill and a circle, so both are literals. */
+.v27-toggle {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  /* A fixed-size control must never be a shrinkable flex item. Without this the track
+     collapses to its 20px min-content - the knob plus its padding - as soon as it sits in
+     a flex row with enough siblings to trigger shrinking, and the switch becomes a circle.
+     Found by the scratch-consumer check, not by the component's own render page, because
+     that page never put enough in one row to make the line shrink. */
+  flex: none;
+  width: 39px;
+  height: var(--v27-size-s);
+  padding: var(--v27-spacing-xxs);
+  border: 0;
+  border-radius: 13px;
+  background: var(--v27-border-input);
+  overflow: clip;
+  cursor: pointer;
+}
+
+/* state=on - 4634:77832. Figma binds Foreground/Positive as a BACKGROUND here, the only
+   place in the library a foreground role is used as a surface. Reproduced as bound;
+   see FINDINGS.md #21. */
+.v27-toggle[aria-checked='true'] {
+  justify-content: flex-end;
+  background: var(--v27-foreground-positive);
+}
+
+/* The knob is a raw white in Figma, not Background/Primary, so it stays white in dark
+   mode. That is what the file specifies. */
+.v27-toggle__knob {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--v27-size-xs);
+  height: var(--v27-size-xs);
+  flex: none;
+  border-radius: 17px;
+  background: #fff; /* figma-literal: 4634:80745 - raw white, not Background/Primary */
+  overflow: clip;
+}
+
+/* The optional 12px glyph inside the knob - a tick when on, a cross when off. */
+.v27-toggle__knob > svg {
+  display: block;
+  width: 12px;
+  height: 12px;
+  fill: currentColor;
+}
+
+.v27-toggle[aria-checked='true'] .v27-toggle__knob { color: var(--v27-foreground-positive); }
+.v27-toggle[aria-checked='false'] .v27-toggle__knob { color: var(--v27-border-input); }
+
+/* ==========================================================================
+   Link - Figma `Link`, node 27:543
+   6 variants: property 1[6] x state[2].
+
+   The property-1 axis has six values but only three shapes: "No icon", "Icon left" and
+   "Icon right", plus "Variant4", "Variant5" and "Variant6" - Figma's auto-generated names
+   for the same three shapes on the Hover row. The CSS therefore has three modifiers and a
+   real :hover, not six modifiers. See FINDINGS.md #15.
+   ========================================================================== */
+
+/* Verified on 27:541 (No icon, Default) and 27:550 (Variant5 = No icon, Hover). The colour
+   is Foreground/Link in both states; only the underline changes. */
+.v27-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--v27-spacing-xs);
+  color: var(--v27-foreground-link);
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+  text-decoration: none;
+}
+
+/* state=Hover - node 27:550. Figma sets the underline from the font metrics. */
+.v27-link:hover,
+.v27-link:focus-visible {
+  text-decoration: underline;
+  text-underline-position: from-font;
+}
+
+.v27-link__icon {
+  width: var(--v27-size-xs);
+  height: var(--v27-size-xs);
+  flex: none;
+}
+
+/* Icon side is ordering only - the gap and the box are identical on both. */
+.v27-link--icon-left .v27-link__icon { order: -1; }
+.v27-link--icon-right .v27-link__icon { order: 1; }

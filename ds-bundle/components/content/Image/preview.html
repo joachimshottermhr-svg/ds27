@@ -1,0 +1,38 @@
+<!-- @dsCard group="Content" viewport="900x450" -->
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Image - V27</title>
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../styles.css">
+<style>
+  body { margin:0; font-family:system-ui,sans-serif; }
+  .ds-pane { padding:24px; background:var(--v27-background-primary); color:var(--v27-foreground-primary); }
+  .ds-head { font-size:11px; text-transform:uppercase; letter-spacing:.09em;
+             color:var(--v27-foreground-secondary); margin:0 0 4px; }
+  .ds-meta { font-size:12px; color:var(--v27-foreground-secondary); margin:0 0 18px; }
+  .ds-story { display:flex; gap:12px; align-items:flex-start; flex-wrap:wrap; margin:0 0 18px; }
+  .ds-split { display:grid; grid-template-columns:1fr 1fr; }
+</style>
+</head>
+<body>
+<div class="ds-split">
+  <div class="ds-pane">
+    <p class="ds-head">Image - light</p>
+    <p class="ds-meta">Figma 378:18391 &middot; 3 variants &middot; 4 classes</p>
+      <div class="ds-story">
+        <span class="v27-image v27-image--medium">
+          <img src="/company-logo.png" alt="Acme Ltd" />
+        </span>
+      </div>
+  </div>
+  <div class="ds-pane" data-v27-theme="dark">
+    <p class="ds-head">dark</p>
+    <p class="ds-meta">&nbsp;</p>
+      <div class="ds-story">
+        <span class="v27-image v27-image--medium">
+          <img src="/company-logo.png" alt="Acme Ltd" />
+        </span>
+      </div>
+  </div>
+</div>
+</body></html>

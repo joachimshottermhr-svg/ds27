@@ -109,6 +109,26 @@ itself. The always-on instructions file is deliberately small (under 3 KB) becau
 loads it on every request; the per-component detail is read on demand, so the always-on
 cost does not grow as the library does.
 
+## Claude Design
+
+```bash
+node tools/build-design-bundle.mjs   # -> ds-bundle/
+```
+
+One card per component, grouped into Actions, Forms, Feedback, Navigation, Content and AI.
+Each card renders the component in **both themes** side by side, and its doc sits in the
+same folder so the spec is one click from the preview.
+
+The preview markup is not written for the bundle - it is lifted from the ```html fences
+already in `docs/`. Those are the examples a consumer is told to copy, and the
+nested-interactive audit already parses them, so a card cannot show markup the
+documentation does not endorse and a broken example fails the audit before it becomes a
+card.
+
+Every component must appear in the group map; an unmapped name fails the build rather than
+falling into a default section, because a default that hides a typo is the same failure as
+an audit that never fires.
+
 The build fails rather than emitting a broken file if a reference does not resolve, if the
 two theme modes fall out of sync, or if a non-ASCII character appears.
 
