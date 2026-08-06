@@ -10,19 +10,19 @@ starts from fact rather than from a re-survey.
 | 0 - reusable skill | `~/.claude/skills/figma-to-css-design-system/SKILL.md` |
 | 1 - repo | done |
 | 2 - token layer | done, including the type tier |
-| 3 - components | **11 of 39 component sets** |
+| 3 - components | **12 of 39 component sets** |
 | 4 - audits | 5 audits, all wired and each proven against a fixture |
 | 5 - export | Copilot bundle, generated from one model, verified in a scratch consumer |
 
 ## Components built
 
-Button, Icon, Tags, Coloured circle icons, Single Checkbox, Checkbox, Single radio button,
-Radio button, in page message, Toggle, Link.
+Button, Icon, Tags, Coloured circle icons, Avatar, Single Checkbox, Checkbox,
+Single radio button, Radio button, in page message, Toggle, Link.
 
 Every one has a doc in `docs/`, node ids beside every value, and was verified in a browser
 against the measured Figma node.
 
-## Not built - 28 component sets
+## Not built - 27 component sets
 
 Ordered by variant count, which is roughly the work involved. Node ids are in
 `.figma/inventory.json`; nothing needs re-surveying.
@@ -33,7 +33,6 @@ Ordered by variant count, which is roughly the work involved. Node ids are in
 | 12 | Entity card | `7661:13220` |
 | 8 | Data display | `232:5313` |
 | 6 | Label | `58:919` |
-| 6 | Avatar | `289:4419` |
 | 6 | Tab single | see inventory |
 | 5 | Header display | `60:1151` |
 | 4 | Content display | `368:13923` |

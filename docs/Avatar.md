@@ -1,0 +1,52 @@
+# Avatar
+
+Figma: `Avatar`, node `289:4419` (page Components, `1:28`).
+6 variants - `size[3]` x `profile picture[2]`.
+
+Initials on a themed disc, or a photograph filling it.
+
+## Markup
+
+```html
+<span class="v27-avatar v27-avatar--medium" aria-hidden="true">JS</span>
+```
+
+With a photograph:
+
+```html
+<span class="v27-avatar v27-avatar--medium">
+  <img class="v27-avatar__image" src="/people/jane.jpg" alt="" />
+</span>
+```
+
+The avatar is decorative when the person's name is already beside it - mark it
+`aria-hidden` and let the visible name do the work. When it stands alone, give the `<img>`
+a real `alt`, or put an accessible name on the container.
+
+## Classes
+
+| Class | Box | Type |
+|---|---|---|
+| `.v27-avatar` | required base | |
+| `.v27-avatar--small` | 24px | 12px semibold |
+| `.v27-avatar--medium` | 32px | Sm bold - 14px |
+| `.v27-avatar--large` | 40px | Base bold - 16px |
+| `.v27-avatar__image` | fills the disc, `object-fit: cover` | |
+
+## Values
+
+Verified on `4326:67570` (small), `4326:67566` (medium) and `4326:67440` (large).
+
+| Property | Value |
+|---|---|
+| background | `Background/Theme` |
+| border | 1px `Border/Default` |
+| colour | `Foreground/Theme` |
+| radius | 29px - off the Radius scale, Figma's value for a circle |
+
+Because the disc uses the theme role, **the avatar changes hue between modes** - pink in
+light, blue in dark. That is intended; see FINDINGS.md #4.
+
+The three sizes carry three different type sizes, and only two are named styles. Small is
+a raw 12px semibold belonging to no style in the scale, so it is a literal carrying its
+node id - FINDINGS.md #24.

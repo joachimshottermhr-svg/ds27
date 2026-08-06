@@ -23,8 +23,8 @@
     "Check this component list before building anything new."
   ],
   "counts": {
-    "components": 11,
-    "classes": 54,
+    "components": 12,
+    "classes": 59,
     "tokens": 143,
     "themed": 39
   },
@@ -994,6 +994,22 @@
       ],
       "baseClass": "v27-checkbox",
       "doc": "Checkbox.md"
+    },
+    {
+      "name": "Avatar",
+      "figmaComponentSet": "Avatar",
+      "figmaNode": "289:4419",
+      "variantCount": 6,
+      "variantAxes": "size[3] x profile picture[2]",
+      "classes": [
+        "v27-avatar",
+        "v27-avatar--large",
+        "v27-avatar--medium",
+        "v27-avatar--small",
+        "v27-avatar__image"
+      ],
+      "baseClass": "v27-avatar",
+      "doc": "Avatar.md"
     },
     {
       "name": "Single radio button",

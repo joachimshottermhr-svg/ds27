@@ -410,6 +410,66 @@
 }
 
 /* ==========================================================================
+   Avatar - Figma `Avatar`, node 289:4419
+   6 variants: size[3] x profile picture[2]
+
+   Initials on a themed disc, or a photograph filling it. Both share the same box, so the
+   photo variant is a modifier rather than a second component.
+   ========================================================================== */
+
+/* Verified on 4326:67570 (small), 4326:67566 (medium) and 4326:67440 (large) - identical
+   but for the box and the type. The 29px radius is off the Radius scale; it is Figma's
+   value for a circle and browsers clamp it to one at all three sizes. */
+.v27-avatar {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  border: 1px solid var(--v27-border-default);
+  border-radius: 29px;
+  background: var(--v27-background-theme);
+  color: var(--v27-foreground-theme);
+  overflow: clip;
+  font-family: var(--v27-font-family);
+  font-weight: var(--v27-font-weight-semibold);
+}
+
+/* The three sizes carry three DIFFERENT type sizes, and only two of them are named styles
+   in Figma. Small is a raw 12px semibold that belongs to no style in the scale, so it is a
+   literal with its node id - see FINDINGS.md #24. */
+.v27-avatar--small {
+  width: var(--v27-size-m);
+  height: var(--v27-size-m);
+  font-size: 12px; /* figma-literal: 4326:67571 - unnamed 12px, not in the type scale */
+  line-height: normal;
+}
+
+/* medium - Sm bold */
+.v27-avatar--medium {
+  width: var(--v27-size-l);
+  height: var(--v27-size-l);
+  font-size: var(--v27-text-sm-bold-size);
+  line-height: var(--v27-text-sm-bold-line-height);
+}
+
+/* large - Base bold */
+.v27-avatar--large {
+  width: var(--v27-size-xl);
+  height: var(--v27-size-xl);
+  font-size: var(--v27-text-base-bold-size);
+  line-height: var(--v27-text-base-bold-line-height);
+}
+
+/* profile picture=True. The image fills the disc; the initials are simply not rendered. */
+.v27-avatar__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ==========================================================================
    Single radio button - Figma `Single radio button`, node 66:1541
    4 variants: selected[2] x state[2]
 

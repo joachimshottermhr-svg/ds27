@@ -338,6 +338,24 @@ dark mode without a reason.
 **Status:** open, and it needs a designer's answer rather than a developer's guess. If the
 raw white is deliberate, Single Checkbox is wrong; if not, the radio is.
 
+## 24. Avatar's small size uses a type size that is in no text style
+
+**Figma:** the three Avatar sizes carry three different type sizes, and only two of them
+are named styles:
+
+| Size | Box | Type | Named style |
+|---|---|---|---|
+| Small | 24px | Outfit SemiBold **12** / auto | **none** - `4326:67571` reports no style |
+| Medium | 32px | Outfit SemiBold 14 / auto | `Sm bold` |
+| Large | 40px | Outfit SemiBold 16 / 20 | `Base bold` |
+
+**Code:** the 12px is a literal carrying its node id, marked `figma-literal` so the audit
+accepts it. It is not added to the type tier, because a size used once and named nowhere is
+not a scale step.
+
+**Status:** open. Either the scale is missing an `Xs bold` step, or the small avatar should
+use `Sm bold` like the medium one. A one-off type size is how a scale erodes.
+
 ---
 
 ## Page inventory
