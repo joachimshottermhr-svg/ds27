@@ -10,19 +10,19 @@ starts from fact rather than from a re-survey.
 | 0 - reusable skill | `~/.claude/skills/figma-to-css-design-system/SKILL.md` |
 | 1 - repo | done |
 | 2 - token layer | done, including the type tier |
-| 3 - components | **9 of 39 component sets** |
+| 3 - components | **11 of 39 component sets** |
 | 4 - audits | 5 audits, all wired and each proven against a fixture |
 | 5 - export | Copilot bundle, generated from one model, verified in a scratch consumer |
 
 ## Components built
 
-Button, Icon, Tags, Coloured circle icons, Single Checkbox, Checkbox, in page message,
-Toggle, Link.
+Button, Icon, Tags, Coloured circle icons, Single Checkbox, Checkbox, Single radio button,
+Radio button, in page message, Toggle, Link.
 
 Every one has a doc in `docs/`, node ids beside every value, and was verified in a browser
 against the measured Figma node.
 
-## Not built - 30 component sets
+## Not built - 28 component sets
 
 Ordered by variant count, which is roughly the work involved. Node ids are in
 `.figma/inventory.json`; nothing needs re-surveying.
@@ -36,13 +36,11 @@ Ordered by variant count, which is roughly the work involved. Node ids are in
 | 6 | Avatar | `289:4419` |
 | 6 | Tab single | see inventory |
 | 5 | Header display | `60:1151` |
-| 4 | Single radio button | `66:1541` |
 | 4 | Content display | `368:13923` |
 | 4 | Toast | `347:15144` |
 | 4 | Step | see inventory |
 | 3 | Form field | `63:1078` |
 | 3 | Image, AI chat bubble, Tasks | see inventory |
-| 2 | Radio button | `66:1697` |
 | 2 | Progress bar | `405:17846` |
 | 2 | Multi avatar, Select button elements, Step connector, User chat bubble, App header + top navigation, Breadcrumb, workspace header, message box, Attachments, AI assistant overlay (mobile), config tile, Confirmation modal | see inventory |
 | 1 | side nav | see inventory |

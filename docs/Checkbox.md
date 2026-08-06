@@ -35,7 +35,7 @@ The box on its own, without a label:
 | Class | What it is |
 |---|---|
 | `.v27-checkbox` | the label row |
-| `.v27-checkbox__input` | the real input, visually hidden but focusable |
+| `.v27-choice-input` | the real input, visually hidden but focusable |
 | `.v27-checkbox-box` | the 20px box - the `Single Checkbox` component |
 
 ## Values

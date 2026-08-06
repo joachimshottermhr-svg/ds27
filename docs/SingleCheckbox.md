@@ -32,7 +32,7 @@ name; never ship one without.
 | Class | What it is |
 |---|---|
 | `.v27-checkbox-box` | the 20px box |
-| `.v27-checkbox__input` | the real input, visually hidden but focusable |
+| `.v27-choice-input` | the real input, visually hidden but focusable |
 
 ## Values
 

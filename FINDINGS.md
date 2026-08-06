@@ -320,6 +320,24 @@ the problem. Retokenising `Foreground/Secondary` will move every disabled label 
 library **except** the checkbox's, and the divergence will appear as a one-off visual bug
 long after the change that caused it.
 
+## 23. A component and its own instance disagree about a fill
+
+**Figma:** `Single radio button` leaves its background an unbound raw white on its own
+variants (`66:1540`, `66:1539` - neither reports a `Background/*` variable). The **instance
+of that same component** inside `Radio button` (`66:1592`) binds `Background/Primary`.
+
+So the component definition and its only in-library usage specify different things. In
+light mode both are `#ffffff` and the disagreement is invisible; in dark mode one flips and
+the other does not.
+
+**Code:** `Background/Primary` is used, matching the instance - it is how the component
+actually appears in the library, it matches Single Checkbox, which binds `Background/Primary`
+on its own node, and a raw white dial would be the only control in the library that ignores
+dark mode without a reason.
+
+**Status:** open, and it needs a designer's answer rather than a developer's guess. If the
+raw white is deliberate, Single Checkbox is wrong; if not, the radio is.
+
 ---
 
 ## Page inventory

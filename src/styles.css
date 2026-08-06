@@ -334,18 +334,18 @@
 
 /* Selected, enabled - 66:1389. The fill is Foreground/Primary, a text role used as a
    surface (the same pattern as Toggle), and Figma drops the border entirely. */
-.v27-checkbox__input:checked + .v27-checkbox-box {
+.v27-choice-input:checked + .v27-checkbox-box {
   border-color: transparent;
   background: var(--v27-foreground-primary);
   color: var(--v27-background-primary);
 }
 
-.v27-checkbox__input:checked + .v27-checkbox-box > svg {
+.v27-choice-input:checked + .v27-checkbox-box > svg {
   visibility: visible;
 }
 
 /* Unselected, disabled - 66:1628. */
-.v27-checkbox__input:disabled + .v27-checkbox-box {
+.v27-choice-input:disabled + .v27-checkbox-box {
   border-color: var(--v27-border-bold);
   background: var(--v27-background-tertiary);
 }
@@ -353,13 +353,13 @@
 /* Selected, disabled - 66:1630. Figma binds PRIMITIVES here - Neutral/400 for the box and
    Neutral/0 for the tick - not the semantic roles that carry the same values. Reproduced
    as bound; see FINDINGS.md #22. */
-.v27-checkbox__input:checked:disabled + .v27-checkbox-box {
+.v27-choice-input:checked:disabled + .v27-checkbox-box {
   border-color: transparent;
   background: var(--v27-neutral-400);
   color: var(--v27-neutral-0);
 }
 
-.v27-checkbox__input:focus-visible + .v27-checkbox-box {
+.v27-choice-input:focus-visible + .v27-checkbox-box {
   outline: 2px solid var(--v27-border-input-active);
   outline-offset: 2px;
 }
@@ -385,8 +385,12 @@
 }
 
 /* Visually hidden, still focusable and still announced. Not display:none, which would
-   remove it from the tab order and from the accessibility tree. */
-.v27-checkbox__input {
+   remove it from the tab order and from the accessibility tree.
+
+   Shared by Checkbox and Radio button rather than duplicated per component. A second copy
+   under a different name would be byte-identical, would be invisible to any change made to
+   the first, and is exactly what the duplicate-rules audit flags. */
+.v27-choice-input {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -400,7 +404,92 @@
 
 /* Disabled - 66:1688. The label colour Figma binds is the Neutral/600 PRIMITIVE, not
    Foreground/Secondary, even though the two hold the same value. FINDINGS.md #22. */
-.v27-checkbox:has(.v27-checkbox__input:disabled) {
+.v27-checkbox:has(.v27-choice-input:disabled) {
+  color: var(--v27-neutral-600);
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Single radio button - Figma `Single radio button`, node 66:1541
+   4 variants: selected[2] x state[2]
+
+   The dial on its own, composed by Radio button. Same arrangement as Single Checkbox.
+   ========================================================================== */
+
+/* Unselected, enabled - 66:1539. 20x20 on the Size scale; the 15px radius is off the
+   Radius scale (4/8/16) and is Figma's value for a circle, so it is a literal.
+
+   The fill is the one value the file disagrees with itself about: the component's own
+   variant leaves it a raw white, while the instance inside Radio button (66:1592) binds
+   Background/Primary. Background/Primary is used here - see FINDINGS.md #23. */
+.v27-radio-box {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: var(--v27-size-s);
+  height: var(--v27-size-s);
+  border: 1px solid var(--v27-border-input-bold);
+  border-radius: 15px;
+  background: var(--v27-background-primary);
+  overflow: clip;
+}
+
+/* The 14px dot, hidden until selected. Unlike the checkbox tick this is a filled shape
+   rather than a glyph, so it is drawn in CSS and needs no asset. */
+.v27-radio-box::after {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border-radius: 15px;
+  background: currentColor;
+  visibility: hidden;
+}
+
+/* Selected, enabled - 66:1540. The border stays; only the dot appears. */
+.v27-choice-input:checked + .v27-radio-box {
+  color: var(--v27-foreground-primary);
+}
+
+.v27-choice-input:checked + .v27-radio-box::after {
+  visibility: visible;
+}
+
+/* Disabled, either state - 66:1670 (unselected) and 66:1668 (selected). The selected dot
+   binds the Neutral/400 PRIMITIVE, not a semantic role - FINDINGS.md #22. */
+.v27-choice-input:disabled + .v27-radio-box {
+  border-color: var(--v27-border-bold);
+  background: var(--v27-background-tertiary);
+  color: var(--v27-neutral-400);
+}
+
+.v27-choice-input:focus-visible + .v27-radio-box {
+  outline: 2px solid var(--v27-border-input-active);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Radio button - Figma `Radio button`, node 66:1697
+   2 variants: property 1[2] - Default and Disabled.
+   ========================================================================== */
+
+/* The dial plus its label, 12px apart - verified on 66:1602. Identical arrangement to
+   Checkbox, and it shares the hidden-input class with it. */
+.v27-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--v27-spacing-sm);
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-sm-size);
+  font-weight: var(--v27-text-sm-weight);
+  line-height: var(--v27-text-sm-line-height);
+  color: var(--v27-foreground-primary);
+  cursor: pointer;
+}
+
+/* Disabled - 66:1698 reports the same Neutral/600 label colour as the Checkbox's. */
+.v27-radio:has(.v27-choice-input:disabled) {
   color: var(--v27-neutral-600);
   cursor: not-allowed;
 }

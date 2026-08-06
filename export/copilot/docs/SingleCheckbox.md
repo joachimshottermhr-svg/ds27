@@ -34,7 +34,7 @@ name; never ship one without.
 | Class | What it is |
 |---|---|
 | `.v27-checkbox-box` | the 20px box |
-| `.v27-checkbox__input` | the real input, visually hidden but focusable |
+| `.v27-choice-input` | the real input, visually hidden but focusable |
 
 ## Values
 
@@ -56,4 +56,4 @@ semantic roles holding the same values - FINDINGS.md #22.
 
 ## All classes in this component
 
-`.v27-checkbox-box`, `.v27-checkbox__input`
+`.v27-checkbox-box`, `.v27-choice-input`

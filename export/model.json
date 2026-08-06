@@ -23,8 +23,8 @@
     "Check this component list before building anything new."
   ],
   "counts": {
-    "components": 9,
-    "classes": 50,
+    "components": 11,
+    "classes": 54,
     "tokens": 143,
     "themed": 39
   },
@@ -977,7 +977,7 @@
       "variantAxes": "selected[2] x state[3]",
       "classes": [
         "v27-checkbox-box",
-        "v27-checkbox__input"
+        "v27-choice-input"
       ],
       "baseClass": "v27-checkbox-box",
       "doc": "SingleCheckbox.md"
@@ -990,10 +990,36 @@
       "variantAxes": "property 1[2] - Default and Disabled.",
       "classes": [
         "v27-checkbox",
-        "v27-checkbox__input"
+        "v27-choice-input"
       ],
       "baseClass": "v27-checkbox",
       "doc": "Checkbox.md"
+    },
+    {
+      "name": "Single radio button",
+      "figmaComponentSet": "Single radio button",
+      "figmaNode": "66:1541",
+      "variantCount": 4,
+      "variantAxes": "selected[2] x state[2]",
+      "classes": [
+        "v27-choice-input",
+        "v27-radio-box"
+      ],
+      "baseClass": "v27-choice-input",
+      "doc": "SingleRadio.md"
+    },
+    {
+      "name": "Radio button",
+      "figmaComponentSet": "Radio button",
+      "figmaNode": "66:1697",
+      "variantCount": 2,
+      "variantAxes": "property 1[2] - Default and Disabled.",
+      "classes": [
+        "v27-choice-input",
+        "v27-radio"
+      ],
+      "baseClass": "v27-choice-input",
+      "doc": "Radio.md"
     },
     {
       "name": "In page message",
