@@ -23,8 +23,8 @@
     "Check this component list before building anything new."
   ],
   "counts": {
-    "components": 15,
-    "classes": 80,
+    "components": 16,
+    "classes": 83,
     "tokens": 143,
     "themed": 39
   },
@@ -994,6 +994,20 @@
       ],
       "baseClass": "v27-checkbox",
       "doc": "Checkbox.md"
+    },
+    {
+      "name": "Tab single",
+      "figmaComponentSet": "Tab single",
+      "figmaNode": "347:15180",
+      "variantCount": 6,
+      "variantAxes": "state[2] x style[3]",
+      "classes": [
+        "v27-tab",
+        "v27-tab__icon",
+        "v27-tab__image"
+      ],
+      "baseClass": "v27-tab",
+      "doc": "Tab.md"
     },
     {
       "name": "Breadcrumb",

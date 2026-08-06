@@ -410,6 +410,65 @@
 }
 
 /* ==========================================================================
+   Tab single - Figma `Tab single`, node 347:15180
+   6 variants: state[2] x style[3]
+
+   One tab, not the group. `style` adds a leading glyph or image; it does not change the
+   box, so it is a slot rather than a modifier.
+   ========================================================================== */
+
+/* Verified on 347:15178 (Default) and 347:15179 (Selected). The box is identical - 8px
+   top and bottom, no horizontal padding - and only the underline, the colour and the
+   WEIGHT change.
+
+   The transparent bottom border is carried on the base rather than added on selection, so
+   the tab does not shift by a pixel when it becomes selected. Figma draws no border on the
+   unselected variant, which is the same rendered result. */
+.v27-tab {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--v27-spacing-xs);
+  padding-block: var(--v27-spacing-s);
+  padding-inline: 0;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  background: none;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: var(--v27-font-family);
+  font-size: var(--v27-text-base-size);
+  font-weight: var(--v27-text-base-weight);
+  line-height: var(--v27-text-base-line-height);
+  color: var(--v27-foreground-secondary);
+}
+
+/* state=Selected - 347:15179. The weight steps up to Outfit Medium, which is 500 - a
+   weight that belongs to NO named text style in the file and has no token, so it is a
+   literal with its node id. See FINDINGS.md #26. */
+.v27-tab[aria-selected='true'] {
+  border-bottom-color: var(--v27-border-theme);
+  color: var(--v27-foreground-theme);
+  font-weight: 500; /* figma-literal: 347:15174 - Outfit Medium, no named style */
+}
+
+/* style=Icon - 347:15206. A 20px leading glyph that takes the tab's colour. */
+.v27-tab__icon {
+  width: var(--v27-size-s);
+  height: var(--v27-size-s);
+  flex: none;
+}
+
+/* style=Image. Same slot, a 24px picture rather than a glyph. */
+.v27-tab__image {
+  width: var(--v27-size-m);
+  height: var(--v27-size-m);
+  flex: none;
+  object-fit: cover;
+}
+
+/* ==========================================================================
    Breadcrumb - Figma `Breadcrumb`, node 3401:59667
    2 variants: property 1[2] - breadcrumb and back.
 

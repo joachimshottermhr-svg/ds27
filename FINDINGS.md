@@ -391,6 +391,21 @@ colours already exist and are already in use on a shipped component.
 Note also that `Chart/1` `#ffffff` in the V27 export now looks less like an oversight and
 more like a placeholder nobody replaced, given a real palette existed elsewhere all along.
 
+## 26. A third font weight is in use that belongs to no text style
+
+**Figma:** the selected tab (`347:15174`) is `Outfit Medium, weight 500`. Every named text
+style in the file is either Regular (400) or SemiBold (600) - `Sm`, `Base`, `Sm bold`,
+`Base bold`, `Lg bold`. There is no Medium style, and 500 appears nowhere else so far.
+
+**Code:** a literal carrying its node id, marked `figma-literal`. It is not added to the
+token layer, because a weight used once and named nowhere is not a scale step - the same
+reasoning as Avatar's 12px in #24.
+
+**Status:** open. Together with #24 this is a pattern rather than two accidents: the type
+scale is five named styles, and components reach outside it whenever they want a size or
+weight it does not offer. Each one that is not brought back into the scale is a value no
+retokenisation will ever reach.
+
 ---
 
 ## Page inventory
